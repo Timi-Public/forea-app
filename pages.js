@@ -13,7 +13,7 @@ window.Pages = {
   agent() {
     const {t,badge,tabs} = U;
     const tab=S.agentTab;
-    return `<section data-screen-label="Agent Trading"><div class="banner banner-agent"><div class="row"><div class="icon-head">${icon('agent','',25)}</div><div><h1>Agent Trading</h1></div></div>${badge(t('运行中','Running'))}</div>${tabs(['总览','智能分析','交易执行','引擎监控'],['Overview','Intelligence','Execution','Monitoring'],tab,'agent-tab')}${tab===0?Pages.agentOverview():tab===2?Pages.execution():U.pending(tab===1?t('智能分析','Intelligence'):t('引擎监控','Engine monitoring'),'')}</section>`;
+    return `<section data-screen-label="Agent Trading"><div class="banner banner-agent"><div class="row"><div class="icon-head">${icon('agent','',25)}</div><div><h1>Agent Trading</h1></div></div>${badge(t('运行中','Running'))}</div>${tabs(['总览','智能分析','交易执行','引擎监控'],['Overview','Intelligence','Execution','Monitoring'],tab,'agent-tab')}${tab===0?Pages.agentOverview():tab===1?Insights.analysis():tab===2?Pages.execution():Insights.monitoring()}</section>`;
   },
   agentOverview() {
     const {t,money,source,badge} = U;

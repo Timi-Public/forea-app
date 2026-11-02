@@ -10,7 +10,7 @@
 .showcase header{padding:25px 42px 20px}.showcase header .brand{font-size:11px}.showcase h1{font-size:29px;margin:15px 0 0}.showcase header>p,.showcase .legend,.showcase nav,.showcase footer{display:none}.showcase main{grid-template-columns:repeat(3,390px);justify-content:center;gap:30px;padding:24px 30px}.showcase article p{min-height:20px}.showcase iframe{height:880px;width:390px;border-width:5px;box-shadow:0 12px 35px #23462b12}.showcase article h2{font-size:12px}.showcase .brand img{width:28px;height:28px}</style>
 </head>
 <body>
-<header><div class="brand"><img src="assets/mark.svg" alt="">FOREA / MOBILE</div><h1>让每一页，都对上产品。</h1><p>Forea 手机 App 交互预览。先看全局与 Agent，再看流动性市场。采用 Kalshi 明亮配色。每个手机画板可直接操作、页内滚动，也可打开完整页面。演示数据保留标识，不执行真实资金操作。</p><div class="legend"><span><b>已明确</b>：Agent、交易执行、市场发现、Tokenomics、个人资料、全局导航</span><span><b>提案待确认</b>：首页、我的服务细节、资产扩展、白皮书</span><span><b>待补</b>：智能分析、引擎监控</span></div><nav><a href="index.html#home" target="_blank" class="active">打开完整 DApp ↗</a><button id="device">聚焦单列画板</button><a href="#agent">Agent Trading</a><a href="#liquidity">Liquidity Marketplace</a><a href="#states">Agent 全状态</a><a href="README.md">交付说明</a></nav></header>
+<header><div class="brand"><img src="assets/mark.svg" alt="">FOREA / MOBILE</div><h1>让每一页，都对上产品。</h1><p>Forea 手机 App 交互预览。先看全局与 Agent，再看流动性市场。采用 Kalshi 明亮配色。每个手机画板可直接操作、页内滚动，也可打开完整页面。演示数据保留标识，不执行真实资金操作。</p><div class="legend"><span><b>已明确</b>：Agent、交易执行、市场发现、Tokenomics、个人资料、全局导航</span><span><b>提案待确认</b>：首页、我的服务细节、资产扩展、白皮书</span><span><b>提案待 Leo 确认</b>：智能分析、引擎监控</span></div><nav><a href="index.html#home" target="_blank" class="active">打开完整 DApp ↗</a><button id="device">聚焦单列画板</button><a href="#agent">Agent Trading</a><a href="#liquidity">Liquidity Marketplace</a><a href="#states">Agent 全状态</a><a href="README.md">交付说明</a></nav></header>
 <main id="boards"></main>
 <footer>12 个真实市场 · 3 份 CLOB 订单簿 · 24 笔公开成交快照 · 无外部 JS、字体、图片依赖。市场资料为公开来源，账户及模型为设计演示。</footer>
 <script>
@@ -28,8 +28,8 @@ const screens=[
 ['cancelling','11 / My Agent · 撤单中','提出锁定，继续运行后进入 5–10 分钟恢复态。','agent','cancelling'],
 ['resuming','12 / My Agent · 恢复中','终止撤单与恢复进度；禁用重复操作。','agent','resuming'],
 ['stopped','13 / My Agent · 已停止','权益固定，可以继续，也可提出至演示钱包。','agent','stopped'],
-['analysis','14 / 智能分析 · 待补','内容将在后续版本补充，保留页签与正常导航。','agent/analysis','running'],
-['monitoring','15 / 引擎监控 · 待补','内容将在后续版本补充，保留页签与正常导航。','agent/monitoring','running'],
+['analysis','14 / 智能分析 · 提案','信号漏斗、模型与市场偏差、单条信号拆解、关键参数。市场数据真实，模型与评分为演示。','agent/analysis','running'],
+['monitoring','15 / 引擎监控 · 提案','引擎健康、延迟与队列趋势、风控拦截原因、数据连接、引擎日志。全部为演示状态。','agent/monitoring','running'],
 ['data','16 / 数据与来源','公共快照、演示指标、账户示例分开说明。','sources','running'],
 ['profile','17 / 个人资料','修改昵称、随机头像、联系手机号与完整钱包地址。','account/profile','inactive'],
 ['consumption','18 / Agent 消耗详情','钱包与项目 ABC 余额分别展示，运行消耗从项目余额扣除。','account/consumption','running'],
