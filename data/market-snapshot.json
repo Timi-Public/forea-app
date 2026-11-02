@@ -1,64 +1,68 @@
 {
   "schemaVersion": 1,
   "kind": "public-market-snapshot",
-  "fetchedAt": "2026-11-02T06:32:49.742Z",
-  "scope": "A bounded sample of at most 12 distinct events, selected from the first 200 active markets ordered by volume24hr; not all Polymarket markets.",
+  "fetchedAt": "2026-11-02T16:53:01.590Z",
+  "scope": "A bounded sample of at most 12 distinct events, selected from the first 500 active markets ordered by volume24hr; not all Polymarket markets.",
   "selection": {
-    "queryLimit": 200,
+    "queryLimit": 500,
     "minimumLiquidity": 50000,
     "minimumYesProbability": 0.02,
     "maximumYesProbability": 0.98,
     "requiresFutureEndDate": true,
+    "minimumDaysOpen": 7,
     "oneMarketPerEvent": true
   },
   "summary": {
     "sampleMarketCount": 12,
-    "sampleVolume24hr": 8652743.212263001,
-    "sampleLiquidity": 18565850.758169997,
+    "sampleVolume24hr": 2145016.5353630004,
+    "sampleLiquidity": 4080872.50672,
     "globalMarketCount": null,
+    "globalEventCount": 21009,
+    "eligibleEventCount": 1177,
+    "eligibleEventRule": "open events with Gamma liquidity_min=100000",
     "globalTradeCount24h": null
   },
   "markets": [
     {
-      "id": "562802",
-      "question": "Will the Democratic Party control the House after the 2026 Midterm elections?",
-      "slug": "will-the-democratic-party-control-the-house-after-the-2026-midterm-elections",
-      "eventSlug": "which-party-will-win-the-house-in-2026",
-      "eventTitle": "Which party will win the House in 2026?",
-      "conditionId": "0xd5d9fc47718bd553592d126b1fa5e87183d27f3936975b0c04cc0f2dec1f1bb4",
+      "id": "665374",
+      "question": "Will the U.S. invade Iran before 2027?",
+      "slug": "will-the-us-invade-iran-before-2027",
+      "eventSlug": "will-the-us-invade-iran-before-2027",
+      "eventTitle": "Will the U.S. invade Iran before 2027?",
+      "conditionId": "0x5db999fad322cea2914535aae5517060c3f80ad6d8c0231cde2124a434d16846",
       "clobTokenIds": [
-        "83247781037352156539108067944461291821683755894607244160607042790356561625563",
-        "33156410999665902694791064431724433042010245771106314074312009703157423879038"
+        "55115078421062885512539156303747803058407616201213034911037320915726138659123",
+        "1910830010387565971650098373488592514702818137344973088263643820608151819241"
       ],
       "outcomes": [
         "Yes",
         "No"
       ],
       "outcomePrices": [
-        0.945,
-        0.055
+        0.175,
+        0.825
       ],
-      "liquidity": 8075441.6948,
-      "liquidityNum": 8075441.6948,
-      "volume24hr": 1676314.3371020004,
-      "volume": 21035467.127761997,
-      "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/will-the-democratic-party-control-the-senate-after-the-2026-midterm-elections-JJ9h02JGR09z.png",
-      "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/will-the-democratic-party-control-the-senate-after-the-2026-midterm-elections-JJ9h02JGR09z.png",
+      "liquidity": 327360.1356,
+      "liquidityNum": 327360.1356,
+      "volume24hr": 500362.814195,
+      "volume": 76630023.01298098,
+      "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/will-the-us-invade-iran-in-2025-0Eh3J0ku_Fbj.jpg",
+      "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/will-the-us-invade-iran-in-2025-0Eh3J0ku_Fbj.jpg",
       "tags": [
         {
-          "id": "106412",
-          "label": "Control & Seats",
-          "slug": "midterms-control"
+          "id": "104039",
+          "label": "U.S. x Iran",
+          "slug": "trump-iran"
         },
         {
-          "id": "103123",
-          "label": "Parent For Derivative",
-          "slug": "parent-for-derivative"
+          "id": "101253",
+          "label": "Macro Geopolitics",
+          "slug": "macro-geopolitics"
         },
         {
-          "id": "165",
-          "label": "United States",
-          "slug": "united-states"
+          "id": "104007",
+          "label": "Military Strikes",
+          "slug": "military-strikes"
         },
         {
           "id": "2",
@@ -66,815 +70,93 @@
           "slug": "politics"
         },
         {
-          "id": "1101",
-          "label": "US Election",
-          "slug": "us-presidential-election"
+          "id": "78",
+          "label": "Iran",
+          "slug": "iran"
         },
         {
-          "id": "102289",
-          "label": "Midterms",
-          "slug": "midterms"
+          "id": "126",
+          "label": "Trump",
+          "slug": "trump"
         },
         {
-          "id": "101206",
-          "label": "World Elections",
-          "slug": "world-elections"
+          "id": "154",
+          "label": "Middle East",
+          "slug": "middle-east"
         },
         {
-          "id": "144",
-          "label": "Elections",
-          "slug": "elections"
+          "id": "180",
+          "label": "Israel",
+          "slug": "israel"
         },
         {
-          "id": "1597",
-          "label": "Global Elections",
-          "slug": "global-elections"
+          "id": "100265",
+          "label": "Geopolitics",
+          "slug": "geopolitics"
         },
         {
-          "id": "102458",
-          "label": "Earn 3.25%",
-          "slug": "earn-4"
-        },
-        {
-          "id": "104743",
-          "label": "Main Election",
-          "slug": "main-election"
+          "id": "101970",
+          "label": "World",
+          "slug": "world"
         }
       ],
       "active": true,
       "closed": false,
       "acceptingOrders": true,
-      "endDate": "2026-11-04T04:59:00Z",
-      "updatedAt": "2026-11-02T06:28:07.211738Z",
-      "fetchedAt": "2026-11-02T06:32:32.155Z",
-      "sourceUrl": "https://polymarket.com/event/which-party-will-win-the-house-in-2026",
+      "endDate": "2027-01-01T04:59:00Z",
+      "updatedAt": "2026-11-02T16:51:13.809826Z",
+      "spread": 0.01,
+      "bestBid": 0.17,
+      "bestAsk": 0.18,
+      "oneDayPriceChange": 0.01,
+      "localImage": "assets/market-665374.jpg",
+      "fetchedAt": "2026-11-02T16:52:39.050Z",
+      "sourceUrl": "https://polymarket.com/event/will-the-us-invade-iran-before-2027",
       "eligibility": "prototype-threshold-only",
       "tokenIds": [
-        "83247781037352156539108067944461291821683755894607244160607042790356561625563",
-        "33156410999665902694791064431724433042010245771106314074312009703157423879038"
+        "55115078421062885512539156303747803058407616201213034911037320915726138659123",
+        "1910830010387565971650098373488592514702818137344973088263643820608151819241"
       ],
       "prices": [
-        0.945,
-        0.055
+        0.175,
+        0.825
       ],
       "tagLabels": [
-        "Control & Seats",
-        "Parent For Derivative",
-        "United States",
+        "U.S. x Iran",
+        "Macro Geopolitics",
+        "Military Strikes",
         "Politics",
-        "US Election",
-        "Midterms",
-        "World Elections",
-        "Elections",
-        "Global Elections",
-        "Earn 3.25%",
-        "Main Election"
-      ],
-      "localImage": "assets/market-562802.png"
+        "Iran",
+        "Trump",
+        "Middle East",
+        "Israel",
+        "Geopolitics",
+        "World"
+      ]
     },
     {
-      "id": "562794",
-      "question": "Will the Republican Party control the Senate after the 2026 Midterm elections?",
-      "slug": "will-the-republican-party-control-the-senate-after-the-2026-midterm-elections",
-      "eventSlug": "which-party-will-win-the-senate-in-2026",
-      "eventTitle": "Which party will win the Senate in 2026?",
-      "conditionId": "0x86bfb53af7250a40928975c551d12c185b762fa4ce0b40c6a64a50c946d72587",
-      "clobTokenIds": [
-        "51939490109676186832507970701169130490548061087912630009168726706475001411420",
-        "108587038225191871355030577171066853142535232042155117887981453750193713427381"
-      ],
-      "outcomes": [
-        "Yes",
-        "No"
-      ],
-      "outcomePrices": [
-        0.285,
-        0.715
-      ],
-      "liquidity": 2055259.7697,
-      "liquidityNum": 2055259.7697,
-      "volume24hr": 1352916.736797,
-      "volume": 7774573.004691,
-      "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/will-the-republican-party-control-the-senate-after-the-2026-midterm-elections-JSsqogfn0U0u.png",
-      "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/will-the-republican-party-control-the-senate-after-the-2026-midterm-elections-JSsqogfn0U0u.png",
-      "tags": [
-        {
-          "id": "100199",
-          "label": "Senate",
-          "slug": "senate-elections"
-        },
-        {
-          "id": "106412",
-          "label": "Control & Seats",
-          "slug": "midterms-control"
-        },
-        {
-          "id": "103123",
-          "label": "Parent For Derivative",
-          "slug": "parent-for-derivative"
-        },
-        {
-          "id": "165",
-          "label": "United States",
-          "slug": "united-states"
-        },
-        {
-          "id": "2",
-          "label": "Politics",
-          "slug": "politics"
-        },
-        {
-          "id": "1101",
-          "label": "US Election",
-          "slug": "us-presidential-election"
-        },
-        {
-          "id": "102289",
-          "label": "Midterms",
-          "slug": "midterms"
-        },
-        {
-          "id": "101206",
-          "label": "World Elections",
-          "slug": "world-elections"
-        },
-        {
-          "id": "144",
-          "label": "Elections",
-          "slug": "elections"
-        },
-        {
-          "id": "1597",
-          "label": "Global Elections",
-          "slug": "global-elections"
-        },
-        {
-          "id": "102458",
-          "label": "Earn 3.25%",
-          "slug": "earn-4"
-        },
-        {
-          "id": "514",
-          "label": "Congress",
-          "slug": "congress"
-        },
-        {
-          "id": "104743",
-          "label": "Main Election",
-          "slug": "main-election"
-        }
-      ],
-      "active": true,
-      "closed": false,
-      "acceptingOrders": true,
-      "endDate": "2026-11-04T04:59:00Z",
-      "updatedAt": "2026-11-02T06:28:07.211738Z",
-      "fetchedAt": "2026-11-02T06:32:32.963Z",
-      "sourceUrl": "https://polymarket.com/event/which-party-will-win-the-senate-in-2026",
-      "eligibility": "prototype-threshold-only",
-      "tokenIds": [
-        "51939490109676186832507970701169130490548061087912630009168726706475001411420",
-        "108587038225191871355030577171066853142535232042155117887981453750193713427381"
-      ],
-      "prices": [
-        0.285,
-        0.715
-      ],
-      "tagLabels": [
-        "Senate",
-        "Control & Seats",
-        "Parent For Derivative",
-        "United States",
-        "Politics",
-        "US Election",
-        "Midterms",
-        "World Elections",
-        "Elections",
-        "Global Elections",
-        "Earn 3.25%",
-        "Congress",
-        "Main Election"
-      ],
-      "localImage": "assets/market-562794.png"
-    },
-    {
-      "id": "562831",
-      "question": "2026 Balance of Power: R Senate, R House",
-      "slug": "2026-balance-of-power-r-senate-r-house-537",
-      "eventSlug": "balance-of-power-2026-midterms",
-      "eventTitle": "Balance of Power: 2026 Midterms",
-      "conditionId": "0xc5eae79d1ffe716572353962eb926b1e3964c500a4880a7a94f58408218ee76b",
-      "clobTokenIds": [
-        "103704141773947678931823410030956181918562062788486034785782641603149828893320",
-        "25869296386911654049715489068824757745174681288397238521780118949553760488529"
-      ],
-      "outcomes": [
-        "Yes",
-        "No"
-      ],
-      "outcomePrices": [
-        0.055,
-        0.945
-      ],
-      "liquidity": 3196459.3159,
-      "liquidityNum": 3196459.3159,
-      "volume24hr": 1001852.1757649999,
-      "volume": 16216060.449205,
-      "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/balance-of-power-2024-election-r-Fp-y4ONJBS.jpg",
-      "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/balance-of-power-2024-election-r-Fp-y4ONJBS.jpg",
-      "tags": [
-        {
-          "id": "1597",
-          "label": "Global Elections",
-          "slug": "global-elections"
-        },
-        {
-          "id": "106412",
-          "label": "Control & Seats",
-          "slug": "midterms-control"
-        },
-        {
-          "id": "106417",
-          "label": "Midterm Combos",
-          "slug": "midterm-combos"
-        },
-        {
-          "id": "165",
-          "label": "United States",
-          "slug": "united-states"
-        },
-        {
-          "id": "103149",
-          "label": "Rewards 20, 4.5, 50",
-          "slug": "rewards-20-4pt5-50"
-        },
-        {
-          "id": "2",
-          "label": "Politics",
-          "slug": "politics"
-        },
-        {
-          "id": "144",
-          "label": "Elections",
-          "slug": "elections"
-        },
-        {
-          "id": "1101",
-          "label": "US Election",
-          "slug": "us-presidential-election"
-        },
-        {
-          "id": "102289",
-          "label": "Midterms",
-          "slug": "midterms"
-        },
-        {
-          "id": "102458",
-          "label": "Earn 3.25%",
-          "slug": "earn-4"
-        },
-        {
-          "id": "104743",
-          "label": "Main Election",
-          "slug": "main-election"
-        }
-      ],
-      "active": true,
-      "closed": false,
-      "acceptingOrders": true,
-      "endDate": "2026-11-04T04:59:00Z",
-      "updatedAt": "2026-11-02T06:28:07.211738Z",
-      "fetchedAt": "2026-11-02T06:32:34.016Z",
-      "sourceUrl": "https://polymarket.com/event/balance-of-power-2026-midterms",
-      "eligibility": "prototype-threshold-only",
-      "tokenIds": [
-        "103704141773947678931823410030956181918562062788486034785782641603149828893320",
-        "25869296386911654049715489068824757745174681288397238521780118949553760488529"
-      ],
-      "prices": [
-        0.055,
-        0.945
-      ],
-      "tagLabels": [
-        "Global Elections",
-        "Control & Seats",
-        "Midterm Combos",
-        "United States",
-        "Rewards 20, 4.5, 50",
-        "Politics",
-        "Elections",
-        "US Election",
-        "Midterms",
-        "Earn 3.25%",
-        "Main Election"
-      ],
-      "localImage": "assets/market-562831.jpg"
-    },
-    {
-      "id": "630964",
-      "question": "Will the Republicans win the Texas Senate race in 2026?",
-      "slug": "will-the-republicans-win-the-texas-senate-race-in-2026",
-      "eventSlug": "texas-senate-election-winner",
-      "eventTitle": "Texas Senate Election Winner",
-      "conditionId": "0x94521176f57d2ce81dde01e0b7699ca4279423042d37ed53908f0c8bfefe7e14",
-      "clobTokenIds": [
-        "21265207456609426291246075480390336499088453711419597084147957999650569091884",
-        "9846414914422486942750462555692240718767368950832862364324602361738794436048"
-      ],
-      "outcomes": [
-        "Yes",
-        "No"
-      ],
-      "outcomePrices": [
-        0.265,
-        0.735
-      ],
-      "liquidity": 1732805.1235,
-      "liquidityNum": 1732805.1235,
-      "volume24hr": 992322.290854,
-      "volume": 6575219.36693,
-      "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/midterms-26-ken-paxton-texas-senate-f6074df594.jpg",
-      "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/will-ken-paxton-win-the-2026-republican-primary-VUklJjUUDQCq.jpg",
-      "tags": [
-        {
-          "id": "1597",
-          "label": "Global Elections",
-          "slug": "global-elections"
-        },
-        {
-          "id": "165",
-          "label": "United States",
-          "slug": "united-states"
-        },
-        {
-          "id": "106217",
-          "label": "Tossup Senate Races",
-          "slug": "senate-tossups"
-        },
-        {
-          "id": "106369",
-          "label": "Senate Midterm Winners",
-          "slug": "senate-midterm-winners"
-        },
-        {
-          "id": "106418",
-          "label": "Tossups",
-          "slug": "midterm-tossups"
-        },
-        {
-          "id": "103792",
-          "label": "Texas Senate",
-          "slug": "texas-senate"
-        },
-        {
-          "id": "104040",
-          "label": "Texas Midterm",
-          "slug": "texas-midterm"
-        },
-        {
-          "id": "104093",
-          "label": "Senate Elections",
-          "slug": "senate-midterms"
-        },
-        {
-          "id": "105150",
-          "label": "Ken Paxton",
-          "slug": "ken-paxton"
-        },
-        {
-          "id": "105151",
-          "label": "James Talarico",
-          "slug": "james-talarico"
-        },
-        {
-          "id": "2",
-          "label": "Politics",
-          "slug": "politics"
-        },
-        {
-          "id": "144",
-          "label": "Elections",
-          "slug": "elections"
-        },
-        {
-          "id": "1101",
-          "label": "US Election",
-          "slug": "us-presidential-election"
-        },
-        {
-          "id": "102289",
-          "label": "Midterms",
-          "slug": "midterms"
-        }
-      ],
-      "active": true,
-      "closed": false,
-      "acceptingOrders": true,
-      "endDate": "2026-11-04T04:59:00Z",
-      "updatedAt": "2026-11-02T06:28:07.211738Z",
-      "fetchedAt": "2026-11-02T06:32:34.779Z",
-      "sourceUrl": "https://polymarket.com/event/texas-senate-election-winner",
-      "eligibility": "prototype-threshold-only",
-      "tokenIds": [
-        "21265207456609426291246075480390336499088453711419597084147957999650569091884",
-        "9846414914422486942750462555692240718767368950832862364324602361738794436048"
-      ],
-      "prices": [
-        0.265,
-        0.735
-      ],
-      "tagLabels": [
-        "Global Elections",
-        "United States",
-        "Tossup Senate Races",
-        "Senate Midterm Winners",
-        "Tossups",
-        "Texas Senate",
-        "Texas Midterm",
-        "Senate Elections",
-        "Ken Paxton",
-        "James Talarico",
-        "Politics",
-        "Elections",
-        "US Election",
-        "Midterms"
-      ],
-      "localImage": "assets/market-630964.jpg"
-    },
-    {
-      "id": "6274257",
-      "question": "Will Republicans lose the Alaska, Iowa, Kansas, Maine, Michigan, Ohio, and Texas Senate seats?",
-      "slug": "2026-senate-map-r-none",
-      "eventSlug": "which-tossup-senate-states-will-republicans-win-ak-ia-ks-me-mi-oh-tx",
-      "eventTitle": "Which Senate Swing States will Republicans win? (Build Your Map)",
-      "conditionId": "0xa32317ba83c3c83dc43ef260c3744c22ed8000db53d30bc09372c45cff5fb07a",
-      "clobTokenIds": [
-        "13535941900723044344907002451427688051727855016747811259193368015899108383450",
-        "80727480162707694817992062873857913056698208056368499870278974630056151503113"
-      ],
-      "outcomes": [
-        "Yes",
-        "No"
-      ],
-      "outcomePrices": [
-        0.315,
-        0.685
-      ],
-      "liquidity": 1566723.4449,
-      "liquidityNum": 1566723.4449,
-      "volume24hr": 917943.0950019998,
-      "volume": 3157328.046639,
-      "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/will-senate-pass-funding-bill-by-7NO2CCO7a2Mk.png",
-      "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/will-senate-pass-funding-bill-by-7NO2CCO7a2Mk.png",
-      "tags": [
-        {
-          "id": "2",
-          "label": "Politics",
-          "slug": "politics"
-        },
-        {
-          "id": "339",
-          "label": "election",
-          "slug": "election"
-        },
-        {
-          "id": "1101",
-          "label": "US Election",
-          "slug": "us-presidential-election"
-        },
-        {
-          "id": "104019",
-          "label": "Iowa Midterm",
-          "slug": "iowa-midterm"
-        },
-        {
-          "id": "104002",
-          "label": "Ohio Midterm",
-          "slug": "ohio-midterm"
-        },
-        {
-          "id": "104023",
-          "label": "Maine Midterm",
-          "slug": "maine-midterm"
-        },
-        {
-          "id": "104040",
-          "label": "Texas Midterm",
-          "slug": "texas-midterm"
-        },
-        {
-          "id": "104011",
-          "label": "Alaska Midterm",
-          "slug": "alaska-midterm"
-        },
-        {
-          "id": "104020",
-          "label": "Kansas Midterm",
-          "slug": "kansas-midterm"
-        },
-        {
-          "id": "104024",
-          "label": "Michigan Midterm",
-          "slug": "michigan-midterm"
-        },
-        {
-          "id": "100199",
-          "label": "Senate",
-          "slug": "senate-elections"
-        },
-        {
-          "id": "102289",
-          "label": "Midterms",
-          "slug": "midterms"
-        },
-        {
-          "id": "106544",
-          "label": "Build Your Map",
-          "slug": "build-your-map"
-        },
-        {
-          "id": "106545",
-          "label": "Build Your Own Map",
-          "slug": "build-your-own-map"
-        },
-        {
-          "id": "100678",
-          "label": "map",
-          "slug": "map"
-        },
-        {
-          "id": "106546",
-          "label": "Senate Map",
-          "slug": "senate-map"
-        }
-      ],
-      "active": true,
-      "closed": false,
-      "acceptingOrders": true,
-      "endDate": "2026-11-03T23:59:00Z",
-      "updatedAt": "2026-11-02T06:28:07.211738Z",
-      "fetchedAt": "2026-11-02T06:32:35.852Z",
-      "sourceUrl": "https://polymarket.com/event/which-tossup-senate-states-will-republicans-win-ak-ia-ks-me-mi-oh-tx",
-      "eligibility": "prototype-threshold-only",
-      "tokenIds": [
-        "13535941900723044344907002451427688051727855016747811259193368015899108383450",
-        "80727480162707694817992062873857913056698208056368499870278974630056151503113"
-      ],
-      "prices": [
-        0.315,
-        0.685
-      ],
-      "tagLabels": [
-        "Politics",
-        "election",
-        "US Election",
-        "Iowa Midterm",
-        "Ohio Midterm",
-        "Maine Midterm",
-        "Texas Midterm",
-        "Alaska Midterm",
-        "Kansas Midterm",
-        "Michigan Midterm",
-        "Senate",
-        "Midterms",
-        "Build Your Map",
-        "Build Your Own Map",
-        "map",
-        "Senate Map"
-      ],
-      "localImage": "assets/market-6274257.png"
-    },
-    {
-      "id": "630805",
-      "question": "Will the Democrats win the Michigan Senate race in 2026?",
-      "slug": "will-the-democrats-win-the-michigan-senate-race-in-2026",
-      "eventSlug": "michigan-senate-election-winner",
-      "eventTitle": "Michigan Senate Election Winner",
-      "conditionId": "0xbfeb6d4cf3eab6071e204219b0647c8224d63a12778df467311b5f2a4b3a5bd4",
-      "clobTokenIds": [
-        "71772627544132140586824126381855151743830987860593343955509593715269534710061",
-        "64025664961497419708095468282573682984741903075312816516046832361290996190088"
-      ],
-      "outcomes": [
-        "Yes",
-        "No"
-      ],
-      "outcomePrices": [
-        0.785,
-        0.215
-      ],
-      "liquidity": 855890.4423,
-      "liquidityNum": 855890.4423,
-      "volume24hr": 790608.072958,
-      "volume": 3776573.55451,
-      "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/midterms-26-abdul-el-sayed-michigan-senate-d7840cd59c.jpg",
-      "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/will-abdul-el-sayed-win-the-2026-michigan-democratic-primary-xVDS3V1P24E6.jpg",
-      "tags": [
-        {
-          "id": "105884",
-          "label": "Abdul El-Sayed",
-          "slug": "abdul-el-sayed"
-        },
-        {
-          "id": "100547",
-          "label": "mike rogers",
-          "slug": "mike-rogers"
-        },
-        {
-          "id": "1597",
-          "label": "Global Elections",
-          "slug": "global-elections"
-        },
-        {
-          "id": "165",
-          "label": "United States",
-          "slug": "united-states"
-        },
-        {
-          "id": "106217",
-          "label": "Tossup Senate Races",
-          "slug": "senate-tossups"
-        },
-        {
-          "id": "106369",
-          "label": "Senate Midterm Winners",
-          "slug": "senate-midterm-winners"
-        },
-        {
-          "id": "106418",
-          "label": "Tossups",
-          "slug": "midterm-tossups"
-        },
-        {
-          "id": "105969",
-          "label": "Michigan Senate",
-          "slug": "michigan-senate"
-        },
-        {
-          "id": "104024",
-          "label": "Michigan Midterm",
-          "slug": "michigan-midterm"
-        },
-        {
-          "id": "104093",
-          "label": "Senate Elections",
-          "slug": "senate-midterms"
-        },
-        {
-          "id": "2",
-          "label": "Politics",
-          "slug": "politics"
-        },
-        {
-          "id": "144",
-          "label": "Elections",
-          "slug": "elections"
-        },
-        {
-          "id": "1101",
-          "label": "US Election",
-          "slug": "us-presidential-election"
-        },
-        {
-          "id": "102289",
-          "label": "Midterms",
-          "slug": "midterms"
-        }
-      ],
-      "active": true,
-      "closed": false,
-      "acceptingOrders": true,
-      "endDate": "2026-11-04T04:59:00Z",
-      "updatedAt": "2026-11-02T06:28:07.211738Z",
-      "fetchedAt": "2026-11-02T06:32:36.637Z",
-      "sourceUrl": "https://polymarket.com/event/michigan-senate-election-winner",
-      "eligibility": "prototype-threshold-only",
-      "tokenIds": [
-        "71772627544132140586824126381855151743830987860593343955509593715269534710061",
-        "64025664961497419708095468282573682984741903075312816516046832361290996190088"
-      ],
-      "prices": [
-        0.785,
-        0.215
-      ],
-      "tagLabels": [
-        "Abdul El-Sayed",
-        "mike rogers",
-        "Global Elections",
-        "United States",
-        "Tossup Senate Races",
-        "Senate Midterm Winners",
-        "Tossups",
-        "Michigan Senate",
-        "Michigan Midterm",
-        "Senate Elections",
-        "Politics",
-        "Elections",
-        "US Election",
-        "Midterms"
-      ],
-      "localImage": "assets/market-630805.jpg"
-    },
-    {
-      "id": "5957352",
-      "question": "Will Newcastle United FC win on 2026-11-02?",
-      "slug": "epl-new-eve-2026-11-02-new",
-      "eventSlug": "epl-new-eve-2026-11-02",
-      "eventTitle": "Newcastle United FC vs. Everton FC",
-      "conditionId": "0xea60e2e993fed8ea4571c5710872037167a385939c1c8146d58823a72b8f6647",
-      "clobTokenIds": [
-        "55453212081599247458416133737705145586052699289726862289429070980867634630882",
-        "57916780288145357838017708847498342148683065883864281270116591083384785846253"
-      ],
-      "outcomes": [
-        "Yes",
-        "No"
-      ],
-      "outcomePrices": [
-        0.445,
-        0.555
-      ],
-      "liquidity": 319566.3772,
-      "liquidityNum": 319566.3772,
-      "volume24hr": 448971.16775,
-      "volume": 451204.388248,
-      "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/Repetitive-markets/premier+league.jpg",
-      "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/Repetitive-markets/premier+league.jpg",
-      "tags": [
-        {
-          "id": "1",
-          "label": "Sports",
-          "slug": "sports"
-        },
-        {
-          "id": "100639",
-          "label": "Games",
-          "slug": "games"
-        },
-        {
-          "id": "100350",
-          "label": "Soccer",
-          "slug": "soccer"
-        },
-        {
-          "id": "82",
-          "label": "Premier League",
-          "slug": "premier-league"
-        },
-        {
-          "id": "306",
-          "label": "EPL",
-          "slug": "EPL"
-        }
-      ],
-      "active": true,
-      "closed": false,
-      "acceptingOrders": true,
-      "endDate": "2026-11-02T20:00:00Z",
-      "updatedAt": "2026-11-02T06:28:07.211738Z",
-      "fetchedAt": "2026-11-02T06:32:37.530Z",
-      "sourceUrl": "https://polymarket.com/event/epl-new-eve-2026-11-02",
-      "eligibility": "prototype-threshold-only",
-      "tokenIds": [
-        "55453212081599247458416133737705145586052699289726862289429070980867634630882",
-        "57916780288145357838017708847498342148683065883864281270116591083384785846253"
-      ],
-      "prices": [
-        0.445,
-        0.555
-      ],
-      "tagLabels": [
-        "Sports",
-        "Games",
-        "Soccer",
-        "Premier League",
-        "EPL"
-      ],
-      "localImage": "assets/market-5957352.jpg"
-    },
-    {
-      "id": "6507379",
-      "question": "Will Bitcoin dip to $77,500 in November?",
-      "slug": "will-bitcoin-dip-to-77pt5k-in-november-2026",
+      "id": "6507378",
+      "question": "Will Bitcoin reach $80,000 in November?",
+      "slug": "will-bitcoin-reach-80k-in-november-2026",
       "eventSlug": "what-price-will-bitcoin-hit-in-november-2026",
       "eventTitle": "What price will Bitcoin hit in November?",
-      "conditionId": "0xf3c655fd740d79cd7437ce9091723b90c11f3fc34a91034034429f0d18b1652e",
+      "conditionId": "0x0c0edd60a7a802df8b57d6ecd8b45ef605914c63d13ee27f15d33c99d10c7832",
       "clobTokenIds": [
-        "92892397076920014167779127202476204258512888660520265273854352731446212062400",
-        "103197107482110057863746507124746797759994133934968880257086580058156662730074"
+        "113561016234671209942290839029259773639758977772501826895091536543084883546868",
+        "67514459239880074937476507066169842810265962569008392485881663605979878941449"
       ],
       "outcomes": [
         "Yes",
         "No"
       ],
       "outcomePrices": [
-        0.9435,
-        0.0565
+        0.755,
+        0.245
       ],
-      "liquidity": 54881.29082,
-      "liquidityNum": 54881.29082,
-      "volume24hr": 396267.340916,
-      "volume": 396550.114302,
+      "liquidity": 62486.3393,
+      "liquidityNum": 62486.3393,
+      "volume24hr": 353605.2412059999,
+      "volume": 391314.966487,
       "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/BTC+fullsize.png",
       "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/BTC+fullsize.png",
       "tags": [
@@ -913,17 +195,22 @@
       "closed": false,
       "acceptingOrders": true,
       "endDate": "2026-12-01T05:00:00Z",
-      "updatedAt": "2026-11-02T06:28:07.211738Z",
-      "fetchedAt": "2026-11-02T06:32:38.306Z",
+      "updatedAt": "2026-11-02T16:51:13.809826Z",
+      "spread": 0.01,
+      "bestBid": 0.75,
+      "bestAsk": 0.76,
+      "oneDayPriceChange": -0.03,
+      "localImage": "assets/market-6507378.png",
+      "fetchedAt": "2026-11-02T16:52:40.988Z",
       "sourceUrl": "https://polymarket.com/event/what-price-will-bitcoin-hit-in-november-2026",
       "eligibility": "prototype-threshold-only",
       "tokenIds": [
-        "92892397076920014167779127202476204258512888660520265273854352731446212062400",
-        "103197107482110057863746507124746797759994133934968880257086580058156662730074"
+        "113561016234671209942290839029259773639758977772501826895091536543084883546868",
+        "67514459239880074937476507066169842810265962569008392485881663605979878941449"
       ],
       "prices": [
-        0.9435,
-        0.0565
+        0.755,
+        0.245
       ],
       "tagLabels": [
         "Bitcoin",
@@ -932,59 +219,48 @@
         "Crypto",
         "Crypto Prices",
         "Recurring"
-      ],
-      "localImage": "assets/market-6507379.png"
+      ]
     },
     {
-      "id": "629691",
-      "question": "Will the Republicans win the Texas governor race in 2026?",
-      "slug": "will-the-republicans-win-the-texas-governor-race-in-2026",
-      "eventSlug": "texas-governor-winner-2026",
-      "eventTitle": "Texas Governor Election Winner",
-      "conditionId": "0xcd953913ecd5bf5387092bf447fe13190871b2bc9436c85b0918b4767c3fa58a",
+      "id": "560317",
+      "question": "Putin out as President of Russia by December 31, 2026?",
+      "slug": "putin-out-before-2027-346",
+      "eventSlug": "putin-out-before-2027",
+      "eventTitle": "Putin out as President of Russia by...?",
+      "conditionId": "0x6bd56627aa21311850825edb27e53434a0e17a4f782be0086bc07f71eee00d0d",
       "clobTokenIds": [
-        "54743173400191373818547682740700297683169841200363505623023527116388816282328",
-        "1866695229821909795321299492017203124655045093500207568743162324352894510180"
+        "350977769852917329387037893294763093471844346281449484439085576212613048126",
+        "87073899845581463485186346288398658568334162612963837182986759797304993556208"
       ],
       "outcomes": [
         "Yes",
         "No"
       ],
       "outcomePrices": [
-        0.6415,
-        0.3585
+        0.0205,
+        0.9795
       ],
-      "liquidity": 286152.6389,
-      "liquidityNum": 286152.6389,
-      "volume24hr": 336934.07750400004,
-      "volume": 1394134.704563,
-      "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/midterms-26-greg-abbott-texas-governor-2026-328e442186.jpg",
-      "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/will-the-republicans-win-the-texas-governor-race-in-2026-9361xc6PdMJr.png",
+      "liquidity": 473470.97824,
+      "liquidityNum": 473470.97824,
+      "volume24hr": 227918.614736,
+      "volume": 27158557.33678699,
+      "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/putin-out-as-president-of-russia-in-2025-nWuurkC8qfbi.jpg",
+      "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/putin-out-as-president-of-russia-in-2025-nWuurkC8qfbi.jpg",
       "tags": [
         {
-          "id": "106218",
-          "label": "Tossup Governor Races",
-          "slug": "governor-tossups"
+          "id": "270",
+          "label": "putin",
+          "slug": "putin"
         },
         {
-          "id": "106418",
-          "label": "Tossups",
-          "slug": "midterm-tossups"
+          "id": "100265",
+          "label": "Geopolitics",
+          "slug": "geopolitics"
         },
         {
-          "id": "106484",
-          "label": "Texas Governor",
-          "slug": "texas-governor"
-        },
-        {
-          "id": "104040",
-          "label": "Texas Midterm",
-          "slug": "texas-midterm"
-        },
-        {
-          "id": "104094",
-          "label": "Governor Elections",
-          "slug": "governor-midterms"
+          "id": "96",
+          "label": "Ukraine",
+          "slug": "ukraine"
         },
         {
           "id": "2",
@@ -992,49 +268,51 @@
           "slug": "politics"
         },
         {
-          "id": "144",
-          "label": "Elections",
-          "slug": "elections"
+          "id": "101970",
+          "label": "World",
+          "slug": "world"
         },
         {
-          "id": "1101",
-          "label": "US Election",
-          "slug": "us-presidential-election"
+          "id": "95",
+          "label": "Russia",
+          "slug": "russia"
         },
         {
-          "id": "102289",
-          "label": "Midterms",
-          "slug": "midterms"
+          "id": "102458",
+          "label": "Earn 3.25%",
+          "slug": "earn-4"
         }
       ],
       "active": true,
       "closed": false,
       "acceptingOrders": true,
-      "endDate": "2026-11-04T04:59:00Z",
-      "updatedAt": "2026-11-02T06:28:07.211738Z",
-      "fetchedAt": "2026-11-02T06:32:44.876Z",
-      "sourceUrl": "https://polymarket.com/event/texas-governor-winner-2026",
+      "endDate": "2027-01-01T04:59:00Z",
+      "updatedAt": "2026-11-02T16:51:13.809826Z",
+      "spread": 0.001,
+      "bestBid": 0.02,
+      "bestAsk": 0.021,
+      "oneDayPriceChange": 0.0035,
+      "localImage": "assets/market-560317.jpg",
+      "fetchedAt": "2026-11-02T16:52:42.743Z",
+      "sourceUrl": "https://polymarket.com/event/putin-out-before-2027",
       "eligibility": "prototype-threshold-only",
       "tokenIds": [
-        "54743173400191373818547682740700297683169841200363505623023527116388816282328",
-        "1866695229821909795321299492017203124655045093500207568743162324352894510180"
+        "350977769852917329387037893294763093471844346281449484439085576212613048126",
+        "87073899845581463485186346288398658568334162612963837182986759797304993556208"
       ],
       "prices": [
-        0.6415,
-        0.3585
+        0.0205,
+        0.9795
       ],
       "tagLabels": [
-        "Tossup Governor Races",
-        "Tossups",
-        "Texas Governor",
-        "Texas Midterm",
-        "Governor Elections",
+        "putin",
+        "Geopolitics",
+        "Ukraine",
         "Politics",
-        "Elections",
-        "US Election",
-        "Midterms"
-      ],
-      "localImage": "assets/market-629691.jpg"
+        "World",
+        "Russia",
+        "Earn 3.25%"
+      ]
     },
     {
       "id": "679022",
@@ -1052,13 +330,13 @@
         "No"
       ],
       "outcomePrices": [
-        0.1625,
-        0.8375
+        0.158,
+        0.842
       ],
-      "liquidity": 280559.13124,
-      "liquidityNum": 280559.13124,
-      "volume24hr": 299544.17681399995,
-      "volume": 6339838.0586830005,
+      "liquidity": 367914.63033,
+      "liquidityNum": 367914.63033,
+      "volume24hr": 216429.87677999996,
+      "volume": 6386113.972650001,
       "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/fr27-david-lisnard-04e491dec1.jpg",
       "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/fr27-david-lisnard-04e491dec1.jpg",
       "tags": [
@@ -1112,8 +390,13 @@
       "closed": false,
       "acceptingOrders": true,
       "endDate": "2027-04-19T03:59:00Z",
-      "updatedAt": "2026-11-02T06:28:07.211738Z",
-      "fetchedAt": "2026-11-02T06:32:45.738Z",
+      "updatedAt": "2026-11-02T16:51:13.809826Z",
+      "spread": 0.002,
+      "bestBid": 0.157,
+      "bestAsk": 0.159,
+      "oneDayPriceChange": -0.0295,
+      "localImage": "assets/market-679022.jpg",
+      "fetchedAt": "2026-11-02T16:52:44.744Z",
       "sourceUrl": "https://polymarket.com/event/next-french-presidential-election",
       "eligibility": "prototype-threshold-only",
       "tokenIds": [
@@ -1121,8 +404,8 @@
         "79358475953126059185096320578578995575874288599466094920037110232928386404141"
       ],
       "prices": [
-        0.1625,
-        0.8375
+        0.158,
+        0.842
       ],
       "tagLabels": [
         "Politics",
@@ -1134,34 +417,241 @@
         "World Elections",
         "French Election",
         "Main Election"
-      ],
-      "localImage": "assets/market-679022.jpg"
+      ]
     },
     {
-      "id": "6369333",
-      "question": "US x Iran ceasefire continues through November 2?",
-      "slug": "us-x-iran-ceasefire-continues-through-november-2",
-      "eventSlug": "us-iran-ceasefire-continues-throughptptpt",
-      "eventTitle": "US-Iran ceasefire continues through...?",
-      "conditionId": "0x5470b8ebb3de0afd56dcf537c62575f80cc86bda01ff57a332e8f3ae44c71b65",
+      "id": "3128886",
+      "question": "US announces end of Iranian blockade by December 31, 2026?",
+      "slug": "us-announces-end-of-iranian-blockade-by-december-31-2026-20260727171803489-375-949-645-919-269-157-255-857",
+      "eventSlug": "us-announces-end-of-iranian-blockade-byptptpt-20260713152715080",
+      "eventTitle": "US announces end of Iranian blockade by...?",
+      "conditionId": "0x46ca741da4abd7ffa993f59ac65bfe83de43ae027accac71d263a493e44064e7",
       "clobTokenIds": [
-        "3149184221354072778711612185076748475145234784664533895827707643347517632045",
-        "12073674699853720739034158731600464996820811632276194872625682171738638687396"
+        "86011229287950365043519117852041614651767455889324682112682327985496937935368",
+        "39147524522707536456910747992621671433032838141439193264830818731544404472030"
       ],
       "outcomes": [
         "Yes",
         "No"
       ],
       "outcomePrices": [
-        0.9735,
-        0.0265
+        0.4445,
+        0.5555
       ],
-      "liquidity": 78167.56282,
-      "liquidityNum": 78167.56282,
-      "volume24hr": 223527.595751,
-      "volume": 641964.791602,
-      "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/us-x-iran-ceasefire-continues-throughptptpt-fKOnupyGfr2q.jpg",
-      "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/us-x-iran-ceasefire-continues-throughptptpt-fKOnupyGfr2q.jpg",
+      "liquidity": 167259.11321,
+      "liquidityNum": 167259.11321,
+      "volume24hr": 179977.778903,
+      "volume": 4850952.035119,
+      "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/us-announces-blockade-on-iran-byptptpt-20260622191049039-hE3ZTZ51JJy3.jpg",
+      "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/us-announces-blockade-on-iran-byptptpt-20260622191049039-hE3ZTZ51JJy3.jpg",
+      "tags": [
+        {
+          "id": "2",
+          "label": "Politics",
+          "slug": "politics"
+        },
+        {
+          "id": "78",
+          "label": "Iran",
+          "slug": "iran"
+        },
+        {
+          "id": "126",
+          "label": "Trump",
+          "slug": "trump"
+        },
+        {
+          "id": "415",
+          "label": "Peace Deal",
+          "slug": "peace-deal"
+        },
+        {
+          "id": "583",
+          "label": "shipping",
+          "slug": "shipping"
+        },
+        {
+          "id": "100265",
+          "label": "Geopolitics",
+          "slug": "geopolitics"
+        },
+        {
+          "id": "104039",
+          "label": "U.S. x Iran",
+          "slug": "trump-iran"
+        },
+        {
+          "id": "104573",
+          "label": "Blockade",
+          "slug": "blockade"
+        },
+        {
+          "id": "262",
+          "label": "Strait of Hormuz",
+          "slug": "strait-of-hormuz"
+        },
+        {
+          "id": "309",
+          "label": "Oil",
+          "slug": "oil"
+        },
+        {
+          "id": "104010",
+          "label": "Iran Ceasefire",
+          "slug": "diplomacy-ceasefire"
+        }
+      ],
+      "active": true,
+      "closed": false,
+      "acceptingOrders": true,
+      "endDate": "2027-01-01T04:59:00Z",
+      "updatedAt": "2026-11-02T16:51:13.809826Z",
+      "spread": 0.005,
+      "bestBid": 0.442,
+      "bestAsk": 0.447,
+      "oneDayPriceChange": 0.0215,
+      "localImage": "assets/market-3128886.jpg",
+      "fetchedAt": "2026-11-02T16:52:47.132Z",
+      "sourceUrl": "https://polymarket.com/event/us-announces-end-of-iranian-blockade-byptptpt-20260713152715080",
+      "eligibility": "prototype-threshold-only",
+      "tokenIds": [
+        "86011229287950365043519117852041614651767455889324682112682327985496937935368",
+        "39147524522707536456910747992621671433032838141439193264830818731544404472030"
+      ],
+      "prices": [
+        0.4445,
+        0.5555
+      ],
+      "tagLabels": [
+        "Politics",
+        "Iran",
+        "Trump",
+        "Peace Deal",
+        "shipping",
+        "Geopolitics",
+        "U.S. x Iran",
+        "Blockade",
+        "Strait of Hormuz",
+        "Oil",
+        "Iran Ceasefire"
+      ]
+    },
+    {
+      "id": "559661",
+      "question": "Will Jon Ossoff win the 2028 Democratic presidential nomination?",
+      "slug": "will-jon-ossoff-win-the-2028-democratic-presidential-nomination-885",
+      "eventSlug": "democratic-presidential-nominee-2028",
+      "eventTitle": "Democratic Presidential Nominee 2028",
+      "conditionId": "0x74dba1ce1ae9dd535414e85f2d9ab5ea32c0fb1acc9b7130b67e6d91217e24e1",
+      "clobTokenIds": [
+        "70071592420137476676935286377781779672157004436137616627487590484756055232944",
+        "107829893465244243112531790315844862173967342141753896250561816305880797209350"
+      ],
+      "outcomes": [
+        "Yes",
+        "No"
+      ],
+      "outcomePrices": [
+        0.1445,
+        0.8555
+      ],
+      "liquidity": 261222.43086,
+      "liquidityNum": 261222.43086,
+      "volume24hr": 139075.16197800002,
+      "volume": 13750062.320063999,
+      "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/Jon_Ossoff.png",
+      "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/Jon_Ossoff.png",
+      "tags": [
+        {
+          "id": "264",
+          "label": "Primaries",
+          "slug": "primaries"
+        },
+        {
+          "id": "165",
+          "label": "United States",
+          "slug": "united-states"
+        },
+        {
+          "id": "2",
+          "label": "Politics",
+          "slug": "politics"
+        },
+        {
+          "id": "144",
+          "label": "Elections",
+          "slug": "elections"
+        },
+        {
+          "id": "1101",
+          "label": "US Election",
+          "slug": "us-presidential-election"
+        },
+        {
+          "id": "101206",
+          "label": "World Elections",
+          "slug": "world-elections"
+        },
+        {
+          "id": "102458",
+          "label": "Earn 3.25%",
+          "slug": "earn-4"
+        }
+      ],
+      "active": true,
+      "closed": false,
+      "acceptingOrders": true,
+      "endDate": "2028-11-08T04:59:00Z",
+      "updatedAt": "2026-11-02T16:51:13.809826Z",
+      "spread": 0.001,
+      "bestBid": 0.144,
+      "bestAsk": 0.145,
+      "oneDayPriceChange": -0.0065,
+      "localImage": "assets/market-559661.png",
+      "fetchedAt": "2026-11-02T16:52:49.456Z",
+      "sourceUrl": "https://polymarket.com/event/democratic-presidential-nominee-2028",
+      "eligibility": "prototype-threshold-only",
+      "tokenIds": [
+        "70071592420137476676935286377781779672157004436137616627487590484756055232944",
+        "107829893465244243112531790315844862173967342141753896250561816305880797209350"
+      ],
+      "prices": [
+        0.1445,
+        0.8555
+      ],
+      "tagLabels": [
+        "Primaries",
+        "United States",
+        "Politics",
+        "Elections",
+        "US Election",
+        "World Elections",
+        "Earn 3.25%"
+      ]
+    },
+    {
+      "id": "5190747",
+      "question": "US x Iran ceasefire continues through November 15?",
+      "slug": "us-x-iran-ceasefire-continues-through-november-15",
+      "eventSlug": "us-iran-ceasefire-continues-throughptptpt",
+      "eventTitle": "US-Iran ceasefire continues through...?",
+      "conditionId": "0xc83347e2b7a1d1341cba0fc6d03696c3be31c783b732355a04c8f8621ef4df09",
+      "clobTokenIds": [
+        "87031907950659152062446134694384505777054725343079883521973171236915469964057",
+        "104725734526819886955010495046133546614599790787785890611336154485100418718203"
+      ],
+      "outcomes": [
+        "Yes",
+        "No"
+      ],
+      "outcomePrices": [
+        0.63,
+        0.37
+      ],
+      "liquidity": 65060.528,
+      "liquidityNum": 65060.528,
+      "volume24hr": 108315.27600800002,
+      "volume": 922518.968132,
       "tags": [
         {
           "id": "2",
@@ -1209,9 +699,9 @@
           "slug": "military-strikes"
         },
         {
-          "id": "104010",
-          "label": "Iran Ceasefire",
-          "slug": "diplomacy-ceasefire"
+          "id": "104064",
+          "label": "Israel x Iran",
+          "slug": "israel-x-iran"
         },
         {
           "id": "104039",
@@ -1219,26 +709,31 @@
           "slug": "trump-iran"
         },
         {
-          "id": "104064",
-          "label": "Israel x Iran",
-          "slug": "israel-x-iran"
+          "id": "104010",
+          "label": "Iran Ceasefire",
+          "slug": "diplomacy-ceasefire"
         }
       ],
       "active": true,
       "closed": false,
       "acceptingOrders": true,
-      "endDate": "2026-11-03T04:59:00Z",
-      "updatedAt": "2026-11-02T06:28:07.211738Z",
-      "fetchedAt": "2026-11-02T06:32:46.496Z",
+      "endDate": "2026-11-16T04:59:00Z",
+      "updatedAt": "2026-11-02T16:49:13.972555Z",
+      "spread": 0.02,
+      "bestBid": 0.62,
+      "bestAsk": 0.64,
+      "oneDayPriceChange": 0.105,
+      "localImage": "assets/market-5190747.jpg",
+      "fetchedAt": "2026-11-02T16:52:51.547Z",
       "sourceUrl": "https://polymarket.com/event/us-iran-ceasefire-continues-throughptptpt",
       "eligibility": "prototype-threshold-only",
       "tokenIds": [
-        "3149184221354072778711612185076748475145234784664533895827707643347517632045",
-        "12073674699853720739034158731600464996820811632276194872625682171738638687396"
+        "87031907950659152062446134694384505777054725343079883521973171236915469964057",
+        "104725734526819886955010495046133546614599790787785890611336154485100418718203"
       ],
       "prices": [
-        0.9735,
-        0.0265
+        0.63,
+        0.37
       ],
       "tagLabels": [
         "Politics",
@@ -1250,38 +745,201 @@
         "Military Actions",
         "Geopolitics",
         "Military Strikes",
-        "Iran Ceasefire",
+        "Israel x Iran",
         "U.S. x Iran",
-        "Israel x Iran"
-      ],
-      "localImage": "assets/market-6369333.jpg"
+        "Iran Ceasefire"
+      ]
     },
     {
-      "id": "6361051",
-      "question": "US announces end of Iranian blockade by November 2, 2026?",
-      "slug": "us-announces-end-of-iranian-blockade-by-november-2-2026",
-      "eventSlug": "us-announces-end-of-iranian-blockade-byptptpt-20260713152715080",
-      "eventTitle": "US announces end of Iranian blockade by...?",
-      "conditionId": "0x178335a50d41d275515ce4a41a9b185d32147c19d65da743b1ffd937aee5fe77",
+      "id": "4397033",
+      "question": "Will Bilibili Gaming win Worlds 2026?",
+      "slug": "will-bilibili-gaming-win-worlds-2026",
+      "eventSlug": "worlds-2026-winner",
+      "eventTitle": "Worlds 2026: Winner",
+      "conditionId": "0xc288967f4bee42292b3c1516fe640c19d7805f8ed949bfcabf989b0eb5e70554",
       "clobTokenIds": [
-        "9928354446893449441612558666332666187965575870068016358861686087098036020787",
-        "11332486704122429404100627759392454900749785621238534573674289883835240233916"
+        "101156861859248010272982388611860996032700684150053028417361465335294418301847",
+        "869171973276415956635131341744431858844932704288749717904028189815261072106"
       ],
       "outcomes": [
         "Yes",
         "No"
       ],
       "outcomePrices": [
-        0.025,
-        0.975
+        0.1525,
+        0.8475
       ],
-      "liquidity": 63943.96609,
-      "liquidityNum": 63943.96609,
-      "volume24hr": 215542.14504999996,
-      "volume": 524096.306048,
-      "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/us-announces-blockade-on-iran-byptptpt-20260622191049039-hE3ZTZ51JJy3.jpg",
-      "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/us-announces-blockade-on-iran-byptptpt-20260622191049039-hE3ZTZ51JJy3.jpg",
+      "liquidity": 251238.45405,
+      "liquidityNum": 251238.45405,
+      "volume24hr": 98433.03026399996,
+      "volume": 751103.5672330001,
+      "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/will-bilibili-gaming-qualify-for-worlds-2026-20260728162208113-szzkq1r6IKmT.png",
+      "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/will-bilibili-gaming-qualify-for-worlds-2026-20260728162208113-szzkq1r6IKmT.png",
       "tags": [
+        {
+          "id": "100644",
+          "label": "lol",
+          "slug": "lol"
+        },
+        {
+          "id": "1",
+          "label": "Sports",
+          "slug": "sports"
+        },
+        {
+          "id": "64",
+          "label": "Esports",
+          "slug": "esports"
+        },
+        {
+          "id": "65",
+          "label": "league of legends",
+          "slug": "league-of-legends"
+        },
+        {
+          "id": "106330",
+          "label": "LoL Worlds 2026",
+          "slug": "lol-worlds-2026"
+        },
+        {
+          "id": "100665",
+          "label": "props",
+          "slug": "props"
+        }
+      ],
+      "active": true,
+      "closed": false,
+      "acceptingOrders": true,
+      "endDate": "2026-11-29T04:59:00Z",
+      "updatedAt": "2026-11-02T16:49:13.972555Z",
+      "spread": 0.001,
+      "bestBid": 0.152,
+      "bestAsk": 0.153,
+      "oneDayPriceChange": 0.002,
+      "localImage": "assets/market-4397033.png",
+      "fetchedAt": "2026-11-02T16:52:53.335Z",
+      "sourceUrl": "https://polymarket.com/event/worlds-2026-winner",
+      "eligibility": "prototype-threshold-only",
+      "tokenIds": [
+        "101156861859248010272982388611860996032700684150053028417361465335294418301847",
+        "869171973276415956635131341744431858844932704288749717904028189815261072106"
+      ],
+      "prices": [
+        0.1525,
+        0.8475
+      ],
+      "tagLabels": [
+        "lol",
+        "Sports",
+        "Esports",
+        "league of legends",
+        "LoL Worlds 2026",
+        "props"
+      ]
+    },
+    {
+      "id": "2771334",
+      "question": "Will Liverpool win the 2026-27 English Premier League (EPL) Championship?",
+      "slug": "will-liverpool-win-the-2026-27-english-premier-league-epl-championship-20260701200428760",
+      "eventSlug": "epl-2027-champion-20260701200428749",
+      "eventTitle": "EPL: 2027 Champion",
+      "conditionId": "0x849be83aad0311ca155a2ad0c1a86bf5cdf0313672c1de414bfaa902f351030a",
+      "clobTokenIds": [
+        "103113680967506285415247199316434245544375452747327929231569806258054261426999",
+        "70686636395240069222203446190109938422366913818539936226644681100652244830979"
+      ],
+      "outcomes": [
+        "Yes",
+        "No"
+      ],
+      "outcomePrices": [
+        0.052,
+        0.948
+      ],
+      "liquidity": 168576.65207,
+      "liquidityNum": 168576.65207,
+      "volume24hr": 85541.046623,
+      "volume": 1263803.970486,
+      "tags": [
+        {
+          "id": "306",
+          "label": "EPL",
+          "slug": "EPL"
+        },
+        {
+          "id": "100350",
+          "label": "Soccer",
+          "slug": "soccer"
+        },
+        {
+          "id": "1",
+          "label": "Sports",
+          "slug": "sports"
+        }
+      ],
+      "active": true,
+      "closed": false,
+      "acceptingOrders": true,
+      "endDate": "2027-05-30T23:59:00Z",
+      "updatedAt": "2026-11-02T16:49:13.972555Z",
+      "spread": 0.006,
+      "bestBid": 0.049,
+      "bestAsk": 0.055,
+      "oneDayPriceChange": -0.0365,
+      "localImage": "assets/market-2771334.png",
+      "fetchedAt": "2026-11-02T16:52:55.088Z",
+      "sourceUrl": "https://polymarket.com/event/epl-2027-champion-20260701200428749",
+      "eligibility": "prototype-threshold-only",
+      "tokenIds": [
+        "103113680967506285415247199316434245544375452747327929231569806258054261426999",
+        "70686636395240069222203446190109938422366913818539936226644681100652244830979"
+      ],
+      "prices": [
+        0.052,
+        0.948
+      ],
+      "tagLabels": [
+        "EPL",
+        "Soccer",
+        "Sports"
+      ]
+    },
+    {
+      "id": "663583",
+      "question": "Will the Iranian regime fall before 2027?",
+      "slug": "will-the-iranian-regime-fall-by-the-end-of-2026",
+      "eventSlug": "will-the-iranian-regime-fall-by-the-end-of-2026",
+      "eventTitle": "Will the Iranian regime fall before 2027?",
+      "conditionId": "0xbb4d51e6364066d92eb6f9b8413dd7193de70966736044463b205834805a1f3b",
+      "clobTokenIds": [
+        "10991849228756847439673778874175365458450913336396982752046655649803657501964",
+        "106181075047366745139197108801635573283215248045056329679360376976893016488727"
+      ],
+      "outcomes": [
+        "Yes",
+        "No"
+      ],
+      "outcomePrices": [
+        0.045,
+        0.955
+      ],
+      "liquidity": 549847.9038,
+      "liquidityNum": 549847.9038,
+      "volume24hr": 81547.53458600001,
+      "volume": 28993206.798181005,
+      "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/will-the-iranian-regime-fall-in-2025-YLXIniTmQs4q.png",
+      "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/will-the-iranian-regime-fall-in-2025-YLXIniTmQs4q.png",
+      "tags": [
+        {
+          "id": "103996",
+          "label": "Reza Pahlavi",
+          "slug": "reza-pahlavi"
+        },
+        {
+          "id": "104005",
+          "label": "Iran Regime",
+          "slug": "iranian-leadership-regime"
+        },
         {
           "id": "2",
           "label": "Politics",
@@ -1298,24 +956,14 @@
           "slug": "trump"
         },
         {
-          "id": "262",
-          "label": "Strait of Hormuz",
-          "slug": "strait-of-hormuz"
+          "id": "154",
+          "label": "Middle East",
+          "slug": "middle-east"
         },
         {
-          "id": "309",
-          "label": "Oil",
-          "slug": "oil"
-        },
-        {
-          "id": "415",
-          "label": "Peace Deal",
-          "slug": "peace-deal"
-        },
-        {
-          "id": "583",
-          "label": "shipping",
-          "slug": "shipping"
+          "id": "180",
+          "label": "Israel",
+          "slug": "israel"
         },
         {
           "id": "100265",
@@ -1323,784 +971,1052 @@
           "slug": "geopolitics"
         },
         {
-          "id": "104010",
-          "label": "Iran Ceasefire",
-          "slug": "diplomacy-ceasefire"
+          "id": "101970",
+          "label": "World",
+          "slug": "world"
         },
         {
-          "id": "104039",
-          "label": "U.S. x Iran",
-          "slug": "trump-iran"
-        },
-        {
-          "id": "104573",
-          "label": "Blockade",
-          "slug": "blockade"
+          "id": "102304",
+          "label": "Khamenei",
+          "slug": "khamenei"
         }
       ],
       "active": true,
       "closed": false,
       "acceptingOrders": true,
-      "endDate": "2026-11-03T04:59:00Z",
-      "updatedAt": "2026-11-02T06:28:07.211738Z",
-      "fetchedAt": "2026-11-02T06:32:47.280Z",
-      "sourceUrl": "https://polymarket.com/event/us-announces-end-of-iranian-blockade-byptptpt-20260713152715080",
+      "endDate": "2027-01-01T04:59:00Z",
+      "updatedAt": "2026-11-02T16:49:13.972555Z",
+      "spread": 0.01,
+      "bestBid": 0.04,
+      "bestAsk": 0.05,
+      "oneDayPriceChange": null,
+      "localImage": "assets/market-663583.png",
+      "fetchedAt": "2026-11-02T16:52:56.588Z",
+      "sourceUrl": "https://polymarket.com/event/will-the-iranian-regime-fall-by-the-end-of-2026",
       "eligibility": "prototype-threshold-only",
       "tokenIds": [
-        "9928354446893449441612558666332666187965575870068016358861686087098036020787",
-        "11332486704122429404100627759392454900749785621238534573674289883835240233916"
+        "10991849228756847439673778874175365458450913336396982752046655649803657501964",
+        "106181075047366745139197108801635573283215248045056329679360376976893016488727"
       ],
       "prices": [
-        0.025,
-        0.975
+        0.045,
+        0.955
       ],
       "tagLabels": [
+        "Reza Pahlavi",
+        "Iran Regime",
         "Politics",
         "Iran",
         "Trump",
-        "Strait of Hormuz",
-        "Oil",
-        "Peace Deal",
-        "shipping",
+        "Middle East",
+        "Israel",
         "Geopolitics",
-        "Iran Ceasefire",
-        "U.S. x Iran",
-        "Blockade"
+        "World",
+        "Khamenei"
+      ]
+    },
+    {
+      "id": "703257",
+      "question": "Will the US confirm that aliens exist before 2027?",
+      "slug": "will-the-us-confirm-that-aliens-exist-before-2027-789-924-249",
+      "eventSlug": "will-the-us-confirm-that-aliens-exist-before-2027",
+      "eventTitle": "Will the US confirm that aliens exist by...?",
+      "conditionId": "0x747dc809fb79e1b05be09c42d6179459a58de2ef3e40f02484a4e1260f741f75",
+      "clobTokenIds": [
+        "107505882767731489358349912513945399560393482969656700824895970500493757150417",
+        "7305630249804085635496399869905769372294302716159034447326228509068694952392"
       ],
-      "localImage": "assets/market-6361051.jpg"
+      "outcomes": [
+        "Yes",
+        "No"
+      ],
+      "outcomePrices": [
+        0.0295,
+        0.9705
+      ],
+      "liquidity": 926516.95106,
+      "liquidityNum": 926516.95106,
+      "volume24hr": 77478.213189,
+      "volume": 43319815.03845901,
+      "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/alien+head.jpeg",
+      "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/alien+head.jpeg",
+      "tags": [
+        {
+          "id": "2",
+          "label": "Politics",
+          "slug": "politics"
+        },
+        {
+          "id": "71",
+          "label": "Aliens",
+          "slug": "aliens"
+        },
+        {
+          "id": "74",
+          "label": "Science",
+          "slug": "science"
+        },
+        {
+          "id": "596",
+          "label": "Culture",
+          "slug": "pop-culture"
+        }
+      ],
+      "active": true,
+      "closed": false,
+      "acceptingOrders": true,
+      "endDate": "2027-01-01T04:59:00Z",
+      "updatedAt": "2026-11-02T16:49:13.972555Z",
+      "spread": 0.001,
+      "bestBid": 0.029,
+      "bestAsk": 0.03,
+      "oneDayPriceChange": 0.001,
+      "localImage": "assets/market-703257.jpg",
+      "fetchedAt": "2026-11-02T16:52:58.667Z",
+      "sourceUrl": "https://polymarket.com/event/will-the-us-confirm-that-aliens-exist-before-2027",
+      "eligibility": "prototype-threshold-only",
+      "tokenIds": [
+        "107505882767731489358349912513945399560393482969656700824895970500493757150417",
+        "7305630249804085635496399869905769372294302716159034447326228509068694952392"
+      ],
+      "prices": [
+        0.0295,
+        0.9705
+      ],
+      "tagLabels": [
+        "Politics",
+        "Aliens",
+        "Science",
+        "Culture"
+      ]
+    },
+    {
+      "id": "3215008",
+      "question": "Will the Fed increase interest rates by 25 bps after the December 2026 meeting?",
+      "slug": "will-the-fed-increase-interest-rates-by-25-bps-after-the-december-2026-meeting-20260729232808636",
+      "eventSlug": "fed-decision-in-december-20260729232808632",
+      "eventTitle": "Fed Decision in December?",
+      "conditionId": "0x8a4196617dcb703e49d9bb36d3847bf6a75fd364dbd19f8d408ac944bf1a03d8",
+      "clobTokenIds": [
+        "111662129652828266889360374468657435151479595863413519836161861837506140152890",
+        "94483965432909797688470702512207472940215538148754820061518518664128018848687"
+      ],
+      "outcomes": [
+        "Yes",
+        "No"
+      ],
+      "outcomePrices": [
+        0.725,
+        0.275
+      ],
+      "liquidity": 459918.3902,
+      "liquidityNum": 459918.3902,
+      "volume24hr": 76331.946895,
+      "volume": 2441851.553572,
+      "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/fed-decision-in-september-762-c4RyWuxRPo1L.jpg",
+      "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/fed-decision-in-september-762-c4RyWuxRPo1L.jpg",
+      "tags": [
+        {
+          "id": "159",
+          "label": "Fed",
+          "slug": "fed"
+        },
+        {
+          "id": "100478",
+          "label": "fomc",
+          "slug": "fomc"
+        },
+        {
+          "id": "126",
+          "label": "Trump",
+          "slug": "trump"
+        },
+        {
+          "id": "100328",
+          "label": "Economy",
+          "slug": "economy"
+        },
+        {
+          "id": "100196",
+          "label": "Fed Rates",
+          "slug": "fed-rates"
+        },
+        {
+          "id": "104088",
+          "label": "Kevin Warsh",
+          "slug": "kevin-warsh"
+        },
+        {
+          "id": "103176",
+          "label": "Global Rates",
+          "slug": "Global-Rates"
+        },
+        {
+          "id": "101800",
+          "label": "Economic Policy",
+          "slug": "economic-policy"
+        },
+        {
+          "id": "102000",
+          "label": "Macro Indicators",
+          "slug": "macro-indicators"
+        },
+        {
+          "id": "101757",
+          "label": "Recurring",
+          "slug": "recurring"
+        }
+      ],
+      "active": true,
+      "closed": false,
+      "acceptingOrders": true,
+      "endDate": "2026-12-09T23:59:00Z",
+      "updatedAt": "2026-11-02T16:49:13.972555Z",
+      "spread": 0.01,
+      "bestBid": 0.72,
+      "bestAsk": 0.73,
+      "oneDayPriceChange": 0.02,
+      "localImage": "assets/market-3215008.jpg",
+      "fetchedAt": "2026-11-02T16:53:00.456Z",
+      "sourceUrl": "https://polymarket.com/event/fed-decision-in-december-20260729232808632",
+      "eligibility": "prototype-threshold-only",
+      "tokenIds": [
+        "111662129652828266889360374468657435151479595863413519836161861837506140152890",
+        "94483965432909797688470702512207472940215538148754820061518518664128018848687"
+      ],
+      "prices": [
+        0.725,
+        0.275
+      ],
+      "tagLabels": [
+        "Fed",
+        "fomc",
+        "Trump",
+        "Economy",
+        "Fed Rates",
+        "Kevin Warsh",
+        "Global Rates",
+        "Economic Policy",
+        "Macro Indicators",
+        "Recurring"
+      ]
     }
   ],
   "orderBooks": [
     {
-      "conditionId": "0xd5d9fc47718bd553592d126b1fa5e87183d27f3936975b0c04cc0f2dec1f1bb4",
-      "marketId": "562802",
-      "question": "Will the Democratic Party control the House after the 2026 Midterm elections?",
-      "tokenId": "83247781037352156539108067944461291821683755894607244160607042790356561625563",
+      "conditionId": "0x5db999fad322cea2914535aae5517060c3f80ad6d8c0231cde2124a434d16846",
+      "marketId": "665374",
+      "question": "Will the U.S. invade Iran before 2027?",
+      "tokenId": "55115078421062885512539156303747803058407616201213034911037320915726138659123",
       "outcome": "Yes",
-      "timestamp": "1793601167945",
-      "hash": "fdf555f61daadd62209c776796305005020a759d",
+      "timestamp": "1793638379548",
+      "hash": "ae7bea8916f9c812cb058e0b38af8bf1cc5fb3eb",
       "bids": [
-        {
-          "price": 0.94,
-          "size": 2320567.68
-        },
-        {
-          "price": 0.93,
-          "size": 2528559.39
-        },
-        {
-          "price": 0.92,
-          "size": 499671.65
-        },
-        {
-          "price": 0.91,
-          "size": 973389.73
-        },
-        {
-          "price": 0.9,
-          "size": 754952.73
-        },
-        {
-          "price": 0.89,
-          "size": 936967.83
-        },
-        {
-          "price": 0.88,
-          "size": 2692.68
-        },
-        {
-          "price": 0.87,
-          "size": 101.48
-        },
-        {
-          "price": 0.86,
-          "size": 1028.24
-        },
-        {
-          "price": 0.85,
-          "size": 748.83
-        },
-        {
-          "price": 0.84,
-          "size": 678
-        },
-        {
-          "price": 0.83,
-          "size": 500
-        }
-      ],
-      "asks": [
-        {
-          "price": 0.95,
-          "size": 3540819.11
-        },
-        {
-          "price": 0.96,
-          "size": 4083765.06
-        },
-        {
-          "price": 0.97,
-          "size": 6716226.65
-        },
-        {
-          "price": 0.98,
-          "size": 84618.05
-        },
-        {
-          "price": 0.99,
-          "size": 1526544.61
-        }
-      ],
-      "tickSize": "0.01",
-      "minOrderSize": "5",
-      "lastTradePrice": "0.950",
-      "fetchedAt": "2026-11-02T06:32:47.700Z"
-    },
-    {
-      "conditionId": "0x86bfb53af7250a40928975c551d12c185b762fa4ce0b40c6a64a50c946d72587",
-      "marketId": "562794",
-      "question": "Will the Republican Party control the Senate after the 2026 Midterm elections?",
-      "tokenId": "51939490109676186832507970701169130490548061087912630009168726706475001411420",
-      "outcome": "Yes",
-      "timestamp": "1793601168104",
-      "hash": "43e2adc3f64feaa79c432e0141511e717b94a018",
-      "bids": [
-        {
-          "price": 0.28,
-          "size": 133822.97
-        },
-        {
-          "price": 0.27,
-          "size": 570674.79
-        },
-        {
-          "price": 0.26,
-          "size": 163196.75
-        },
-        {
-          "price": 0.25,
-          "size": 397011.92
-        },
-        {
-          "price": 0.24,
-          "size": 2207.83
-        },
-        {
-          "price": 0.23,
-          "size": 1895
-        },
-        {
-          "price": 0.22,
-          "size": 3825
-        },
-        {
-          "price": 0.21,
-          "size": 2311.65
-        },
-        {
-          "price": 0.2,
-          "size": 1020
-        },
-        {
-          "price": 0.19,
-          "size": 99.99
-        },
-        {
-          "price": 0.18,
-          "size": 2440
-        },
         {
           "price": 0.17,
-          "size": 20
-        }
-      ],
-      "asks": [
-        {
-          "price": 0.29,
-          "size": 82619.03
-        },
-        {
-          "price": 0.3,
-          "size": 2036765.31
-        },
-        {
-          "price": 0.31,
-          "size": 63865.38
-        },
-        {
-          "price": 0.32,
-          "size": 70956.94
-        },
-        {
-          "price": 0.33,
-          "size": 531810.99
-        },
-        {
-          "price": 0.34,
-          "size": 21239
-        },
-        {
-          "price": 0.35,
-          "size": 5000
-        },
-        {
-          "price": 0.36,
-          "size": 10260
-        },
-        {
-          "price": 0.37,
-          "size": 8376.69
-        },
-        {
-          "price": 0.38,
-          "size": 5050
-        },
-        {
-          "price": 0.39,
-          "size": 1170.27
-        },
-        {
-          "price": 0.41,
-          "size": 5008.3
-        }
-      ],
-      "tickSize": "0.01",
-      "minOrderSize": "5",
-      "lastTradePrice": "0.710",
-      "fetchedAt": "2026-11-02T06:32:48.530Z"
-    },
-    {
-      "conditionId": "0xc5eae79d1ffe716572353962eb926b1e3964c500a4880a7a94f58408218ee76b",
-      "marketId": "562831",
-      "question": "2026 Balance of Power: R Senate, R House",
-      "tokenId": "103704141773947678931823410030956181918562062788486034785782641603149828893320",
-      "outcome": "Yes",
-      "timestamp": "1793601168122",
-      "hash": "c335d03b08012d74c517b4dbad402a4d713ca659",
-      "bids": [
-        {
-          "price": 0.05,
-          "size": 194788.68
-        },
-        {
-          "price": 0.04,
-          "size": 2299016.28
-        },
-        {
-          "price": 0.03,
-          "size": 3657943.47
-        },
-        {
-          "price": 0.02,
-          "size": 929211.32
-        },
-        {
-          "price": 0.01,
-          "size": 632490.2
-        }
-      ],
-      "asks": [
-        {
-          "price": 0.06,
-          "size": 1570016.13
-        },
-        {
-          "price": 0.07,
-          "size": 965156.18
-        },
-        {
-          "price": 0.08,
-          "size": 97821.03
-        },
-        {
-          "price": 0.09,
-          "size": 388706.11
-        },
-        {
-          "price": 0.1,
-          "size": 11086.5
-        },
-        {
-          "price": 0.11,
-          "size": 12181
-        },
-        {
-          "price": 0.12,
-          "size": 5462.39
-        },
-        {
-          "price": 0.13,
-          "size": 5119.94
-        },
-        {
-          "price": 0.14,
-          "size": 5028.58
-        },
-        {
-          "price": 0.15,
-          "size": 1772.55
+          "size": 18400.67
         },
         {
           "price": 0.16,
-          "size": 5689.9
+          "size": 115405.08
         },
         {
-          "price": 0.17,
-          "size": 1145.96
+          "price": 0.15,
+          "size": 324475.22
+        },
+        {
+          "price": 0.14,
+          "size": 94250.58
+        },
+        {
+          "price": 0.13,
+          "size": 75454.18
+        },
+        {
+          "price": 0.12,
+          "size": 10498.64
+        },
+        {
+          "price": 0.11,
+          "size": 10887.65
+        },
+        {
+          "price": 0.1,
+          "size": 10961.64
+        },
+        {
+          "price": 0.09,
+          "size": 7665.47
+        },
+        {
+          "price": 0.08,
+          "size": 8702.11
+        },
+        {
+          "price": 0.07,
+          "size": 34394.34
+        },
+        {
+          "price": 0.06,
+          "size": 13254.92
+        }
+      ],
+      "asks": [
+        {
+          "price": 0.18,
+          "size": 31661.25
+        },
+        {
+          "price": 0.19,
+          "size": 28904.91
+        },
+        {
+          "price": 0.2,
+          "size": 56992.54
+        },
+        {
+          "price": 0.21,
+          "size": 2054
+        },
+        {
+          "price": 0.22,
+          "size": 2516.02
+        },
+        {
+          "price": 0.23,
+          "size": 1215.95
+        },
+        {
+          "price": 0.24,
+          "size": 1122.33
+        },
+        {
+          "price": 0.25,
+          "size": 964.92
+        },
+        {
+          "price": 0.26,
+          "size": 756.76
+        },
+        {
+          "price": 0.27,
+          "size": 597.4
+        },
+        {
+          "price": 0.28,
+          "size": 1665.97
+        },
+        {
+          "price": 0.29,
+          "size": 1871.73
         }
       ],
       "tickSize": "0.01",
       "minOrderSize": "5",
-      "lastTradePrice": "0.950",
-      "fetchedAt": "2026-11-02T06:32:49.284Z"
+      "lastTradePrice": "0.820",
+      "fetchedAt": "2026-11-02T16:53:00.711Z"
+    },
+    {
+      "conditionId": "0x0c0edd60a7a802df8b57d6ecd8b45ef605914c63d13ee27f15d33c99d10c7832",
+      "marketId": "6507378",
+      "question": "Will Bitcoin reach $80,000 in November?",
+      "tokenId": "113561016234671209942290839029259773639758977772501826895091536543084883546868",
+      "outcome": "Yes",
+      "timestamp": "1793638379735",
+      "hash": "962f896c813a0e29df8f6b3cefa3dd4920101dee",
+      "bids": [
+        {
+          "price": 0.75,
+          "size": 4223.47
+        },
+        {
+          "price": 0.74,
+          "size": 3319.01
+        },
+        {
+          "price": 0.73,
+          "size": 2854
+        },
+        {
+          "price": 0.72,
+          "size": 4340
+        },
+        {
+          "price": 0.71,
+          "size": 85
+        },
+        {
+          "price": 0.7,
+          "size": 814.28
+        },
+        {
+          "price": 0.69,
+          "size": 3220
+        },
+        {
+          "price": 0.68,
+          "size": 193.83
+        },
+        {
+          "price": 0.67,
+          "size": 50
+        },
+        {
+          "price": 0.66,
+          "size": 34.53
+        },
+        {
+          "price": 0.65,
+          "size": 63.43
+        },
+        {
+          "price": 0.64,
+          "size": 61.46
+        }
+      ],
+      "asks": [
+        {
+          "price": 0.76,
+          "size": 50
+        },
+        {
+          "price": 0.77,
+          "size": 1042.55
+        },
+        {
+          "price": 0.78,
+          "size": 7674
+        },
+        {
+          "price": 0.79,
+          "size": 2964.2
+        },
+        {
+          "price": 0.8,
+          "size": 150
+        },
+        {
+          "price": 0.81,
+          "size": 5
+        },
+        {
+          "price": 0.82,
+          "size": 4200
+        },
+        {
+          "price": 0.83,
+          "size": 1603
+        },
+        {
+          "price": 0.86,
+          "size": 2429.99
+        },
+        {
+          "price": 0.87,
+          "size": 91
+        },
+        {
+          "price": 0.9,
+          "size": 20
+        },
+        {
+          "price": 0.92,
+          "size": 1621
+        }
+      ],
+      "tickSize": "0.01",
+      "minOrderSize": "5",
+      "lastTradePrice": "0.240",
+      "fetchedAt": "2026-11-02T16:53:01.054Z"
+    },
+    {
+      "conditionId": "0x6bd56627aa21311850825edb27e53434a0e17a4f782be0086bc07f71eee00d0d",
+      "marketId": "560317",
+      "question": "Putin out as President of Russia by December 31, 2026?",
+      "tokenId": "350977769852917329387037893294763093471844346281449484439085576212613048126",
+      "outcome": "Yes",
+      "timestamp": "1793638378294",
+      "hash": "cc668da9d3ddc1f22100ebb66270bfd109fff65f",
+      "bids": [
+        {
+          "price": 0.02,
+          "size": 12713.3
+        },
+        {
+          "price": 0.019,
+          "size": 2241.8
+        },
+        {
+          "price": 0.018,
+          "size": 11840.58
+        },
+        {
+          "price": 0.017,
+          "size": 6520.99
+        },
+        {
+          "price": 0.016,
+          "size": 14473.08
+        },
+        {
+          "price": 0.015,
+          "size": 45927.27
+        },
+        {
+          "price": 0.014,
+          "size": 45239.96
+        },
+        {
+          "price": 0.013,
+          "size": 37281.75
+        },
+        {
+          "price": 0.012,
+          "size": 54491.25
+        },
+        {
+          "price": 0.011,
+          "size": 18419.92
+        },
+        {
+          "price": 0.01,
+          "size": 29874.65
+        },
+        {
+          "price": 0.009,
+          "size": 108737.74
+        }
+      ],
+      "asks": [
+        {
+          "price": 0.021,
+          "size": 23505.99
+        },
+        {
+          "price": 0.022,
+          "size": 23636.47
+        },
+        {
+          "price": 0.023,
+          "size": 34579.99
+        },
+        {
+          "price": 0.024,
+          "size": 1023.43
+        },
+        {
+          "price": 0.025,
+          "size": 1200
+        },
+        {
+          "price": 0.026,
+          "size": 5165.12
+        },
+        {
+          "price": 0.027,
+          "size": 34119.31
+        },
+        {
+          "price": 0.028,
+          "size": 1817.28
+        },
+        {
+          "price": 0.029,
+          "size": 1009.08
+        },
+        {
+          "price": 0.03,
+          "size": 8037.73
+        },
+        {
+          "price": 0.031,
+          "size": 3690.68
+        },
+        {
+          "price": 0.032,
+          "size": 44297.61
+        }
+      ],
+      "tickSize": "0.001",
+      "minOrderSize": "5",
+      "lastTradePrice": "0.980",
+      "fetchedAt": "2026-11-02T16:53:01.505Z"
     }
   ],
   "trades": [
     {
-      "conditionId": "0xd5d9fc47718bd553592d126b1fa5e87183d27f3936975b0c04cc0f2dec1f1bb4",
-      "marketId": "562802",
-      "question": "Will the Democratic Party control the House after the 2026 Midterm elections?",
-      "timestamp": 1793600949,
-      "side": "BUY",
-      "outcome": "Yes",
-      "price": 0.94999962,
-      "size": 2.105264,
-      "notional": 1.99999999999968,
-      "transactionHash": "0x5a8fd85352d2cd0ed0cf19d7d1ccb5c104c5f19a9d050836c708de8ffcef7321",
-      "source": "Polymarket public market trades, not PolyAgent account trades",
-      "fetchedAt": "2026-11-02T06:32:48.250Z",
-      "title": "Will the Democratic Party control the House after the 2026 Midterm elections?"
-    },
-    {
-      "conditionId": "0xd5d9fc47718bd553592d126b1fa5e87183d27f3936975b0c04cc0f2dec1f1bb4",
-      "marketId": "562802",
-      "question": "Will the Democratic Party control the House after the 2026 Midterm elections?",
-      "timestamp": 1793600947,
-      "side": "BUY",
-      "outcome": "No",
-      "price": 0.0599999999,
-      "size": 166.666667,
-      "notional": 10.000000003333334,
-      "transactionHash": "0x2f9829b045788555cf475bb22316a0d93c20b21b53d2e918aed11432e0568743",
-      "source": "Polymarket public market trades, not PolyAgent account trades",
-      "fetchedAt": "2026-11-02T06:32:48.250Z",
-      "title": "Will the Democratic Party control the House after the 2026 Midterm elections?"
-    },
-    {
-      "conditionId": "0xd5d9fc47718bd553592d126b1fa5e87183d27f3936975b0c04cc0f2dec1f1bb4",
-      "marketId": "562802",
-      "question": "Will the Democratic Party control the House after the 2026 Midterm elections?",
-      "timestamp": 1793600883,
-      "side": "BUY",
-      "outcome": "Yes",
-      "price": 0.94999962,
-      "size": 2.105264,
-      "notional": 1.99999999999968,
-      "transactionHash": "0xed5df4fd6f54e1ae61c76df8911f6f8c7c67ca64c0c3f4803e3eea10873a51d1",
-      "source": "Polymarket public market trades, not PolyAgent account trades",
-      "fetchedAt": "2026-11-02T06:32:48.250Z",
-      "title": "Will the Democratic Party control the House after the 2026 Midterm elections?"
-    },
-    {
-      "conditionId": "0xd5d9fc47718bd553592d126b1fa5e87183d27f3936975b0c04cc0f2dec1f1bb4",
-      "marketId": "562802",
-      "question": "Will the Democratic Party control the House after the 2026 Midterm elections?",
-      "timestamp": 1793600881,
-      "side": "SELL",
-      "outcome": "Yes",
-      "price": 0.94,
-      "size": 107.52,
-      "notional": 101.0688,
-      "transactionHash": "0x45a9041d40d4cdea92ec65183a72bf8317fdbb5202d7adcd81fed2c711900bce",
-      "source": "Polymarket public market trades, not PolyAgent account trades",
-      "fetchedAt": "2026-11-02T06:32:48.250Z",
-      "title": "Will the Democratic Party control the House after the 2026 Midterm elections?"
-    },
-    {
-      "conditionId": "0xd5d9fc47718bd553592d126b1fa5e87183d27f3936975b0c04cc0f2dec1f1bb4",
-      "marketId": "562802",
-      "question": "Will the Democratic Party control the House after the 2026 Midterm elections?",
-      "timestamp": 1793600763,
-      "side": "BUY",
-      "outcome": "Yes",
-      "price": 0.949999981,
-      "size": 31.578948,
-      "notional": 29.99999999999999,
-      "transactionHash": "0x3c31509f332d8148b2f32e606436407a00dfdf28a3918cff6cf4eefd81b4cdbe",
-      "source": "Polymarket public market trades, not PolyAgent account trades",
-      "fetchedAt": "2026-11-02T06:32:48.250Z",
-      "title": "Will the Democratic Party control the House after the 2026 Midterm elections?"
-    },
-    {
-      "conditionId": "0xd5d9fc47718bd553592d126b1fa5e87183d27f3936975b0c04cc0f2dec1f1bb4",
-      "marketId": "562802",
-      "question": "Will the Democratic Party control the House after the 2026 Midterm elections?",
-      "timestamp": 1793599935,
-      "side": "BUY",
-      "outcome": "Yes",
-      "price": 0.95,
-      "size": 350,
-      "notional": 332.5,
-      "transactionHash": "0x78e33e2c784d5d474bc6b50baf9f485bc4a641509c625458630c25db998efce5",
-      "source": "Polymarket public market trades, not PolyAgent account trades",
-      "fetchedAt": "2026-11-02T06:32:48.250Z",
-      "title": "Will the Democratic Party control the House after the 2026 Midterm elections?"
-    },
-    {
-      "conditionId": "0xd5d9fc47718bd553592d126b1fa5e87183d27f3936975b0c04cc0f2dec1f1bb4",
-      "marketId": "562802",
-      "question": "Will the Democratic Party control the House after the 2026 Midterm elections?",
-      "timestamp": 1793599900,
-      "side": "BUY",
-      "outcome": "Yes",
-      "price": 0.95,
-      "size": 4210.526316,
-      "notional": 4000.0000002,
-      "transactionHash": "0x69b12f64f04a0491fa6fc59d775423ad8a69203f45d153da6feb969f63766c4f",
-      "source": "Polymarket public market trades, not PolyAgent account trades",
-      "fetchedAt": "2026-11-02T06:32:48.250Z",
-      "title": "Will the Democratic Party control the House after the 2026 Midterm elections?"
-    },
-    {
-      "conditionId": "0xd5d9fc47718bd553592d126b1fa5e87183d27f3936975b0c04cc0f2dec1f1bb4",
-      "marketId": "562802",
-      "question": "Will the Democratic Party control the House after the 2026 Midterm elections?",
-      "timestamp": 1793599899,
-      "side": "BUY",
-      "outcome": "Yes",
-      "price": 0.949999981,
-      "size": 5.263158,
-      "notional": 4.999999999999998,
-      "transactionHash": "0x8c76b0ce1739cc0464cb33abf74c026ac97482515e1752f78bb50dbdaadb487f",
-      "source": "Polymarket public market trades, not PolyAgent account trades",
-      "fetchedAt": "2026-11-02T06:32:48.250Z",
-      "title": "Will the Democratic Party control the House after the 2026 Midterm elections?"
-    },
-    {
-      "conditionId": "0x86bfb53af7250a40928975c551d12c185b762fa4ce0b40c6a64a50c946d72587",
-      "marketId": "562794",
-      "question": "Will the Republican Party control the Senate after the 2026 Midterm elections?",
-      "timestamp": 1793601106,
+      "conditionId": "0x5db999fad322cea2914535aae5517060c3f80ad6d8c0231cde2124a434d16846",
+      "marketId": "665374",
+      "question": "Will the U.S. invade Iran before 2027?",
+      "timestamp": 1793635987,
       "side": "SELL",
       "outcome": "No",
-      "price": 0.71,
-      "size": 4.97,
-      "notional": 3.5286999999999997,
-      "transactionHash": "0x323230b507c4d5c61bbf765b364e50208fa380afa0164640b0c2f8bd51328529",
+      "price": 0.82,
+      "size": 78.53,
+      "notional": 64.3946,
+      "transactionHash": "0xd3bc70c6917939f2c62ac85fd145b5e2727395fe3707ffcf934bb3bd96b9de42",
       "source": "Polymarket public market trades, not PolyAgent account trades",
-      "fetchedAt": "2026-11-02T06:32:48.944Z",
-      "title": "Will the Republican Party control the Senate after the 2026 Midterm elections?"
+      "fetchedAt": "2026-11-02T16:53:00.796Z",
+      "title": "Will the U.S. invade Iran before 2027?"
     },
     {
-      "conditionId": "0x86bfb53af7250a40928975c551d12c185b762fa4ce0b40c6a64a50c946d72587",
-      "marketId": "562794",
-      "question": "Will the Republican Party control the Senate after the 2026 Midterm elections?",
-      "timestamp": 1793601040,
-      "side": "SELL",
-      "outcome": "No",
-      "price": 0.71,
-      "size": 4.97,
-      "notional": 3.5286999999999997,
-      "transactionHash": "0xd6c2bec2260400b556cbd989297d86f8e22ded0eb14764fb5132dcfe84ec3964",
-      "source": "Polymarket public market trades, not PolyAgent account trades",
-      "fetchedAt": "2026-11-02T06:32:48.944Z",
-      "title": "Will the Republican Party control the Senate after the 2026 Midterm elections?"
-    },
-    {
-      "conditionId": "0x86bfb53af7250a40928975c551d12c185b762fa4ce0b40c6a64a50c946d72587",
-      "marketId": "562794",
-      "question": "Will the Republican Party control the Senate after the 2026 Midterm elections?",
-      "timestamp": 1793600973,
+      "conditionId": "0x5db999fad322cea2914535aae5517060c3f80ad6d8c0231cde2124a434d16846",
+      "marketId": "665374",
+      "question": "Will the U.S. invade Iran before 2027?",
+      "timestamp": 1793635834,
       "side": "BUY",
       "outcome": "Yes",
-      "price": 0.2899999996,
-      "size": 310.344828,
-      "notional": 89.99999999586207,
-      "transactionHash": "0xf521b524eb1ae3d1eece978495364e5f738c6e46b09703a948f8028202104666",
+      "price": 0.1799999992,
+      "size": 132.944445,
+      "notional": 23.929999993644447,
+      "transactionHash": "0x657ae64d094b309cc80e734e929cef66eaa7b29fc3a0d848c882b505f7eed6fa",
       "source": "Polymarket public market trades, not PolyAgent account trades",
-      "fetchedAt": "2026-11-02T06:32:48.944Z",
-      "title": "Will the Republican Party control the Senate after the 2026 Midterm elections?"
+      "fetchedAt": "2026-11-02T16:53:00.796Z",
+      "title": "Will the U.S. invade Iran before 2027?"
     },
     {
-      "conditionId": "0x86bfb53af7250a40928975c551d12c185b762fa4ce0b40c6a64a50c946d72587",
-      "marketId": "562794",
-      "question": "Will the Republican Party control the Senate after the 2026 Midterm elections?",
-      "timestamp": 1793600827,
+      "conditionId": "0x5db999fad322cea2914535aae5517060c3f80ad6d8c0231cde2124a434d16846",
+      "marketId": "665374",
+      "question": "Will the U.S. invade Iran before 2027?",
+      "timestamp": 1793635758,
+      "side": "SELL",
+      "outcome": "Yes",
+      "price": 0.17,
+      "size": 5,
+      "notional": 0.8500000000000001,
+      "transactionHash": "0xe7df2feae0310a98c20dc53c60baaaed5a67fde58c24c7463bca8f665eb1d019",
+      "source": "Polymarket public market trades, not PolyAgent account trades",
+      "fetchedAt": "2026-11-02T16:53:00.796Z",
+      "title": "Will the U.S. invade Iran before 2027?"
+    },
+    {
+      "conditionId": "0x5db999fad322cea2914535aae5517060c3f80ad6d8c0231cde2124a434d16846",
+      "marketId": "665374",
+      "question": "Will the U.S. invade Iran before 2027?",
+      "timestamp": 1793635635,
       "side": "SELL",
       "outcome": "No",
-      "price": 0.71,
-      "size": 4.97,
-      "notional": 3.5286999999999997,
-      "transactionHash": "0x168c48b2569ec44171d6b25abbb7f85de53c91d6feb2cd5470338eb04274e8b7",
+      "price": 0.82,
+      "size": 268.12,
+      "notional": 219.8584,
+      "transactionHash": "0x2d87e660054ecb7181c334d6e3dfff16d1bd7fd494ce07a18ac70e067a4d4d87",
       "source": "Polymarket public market trades, not PolyAgent account trades",
-      "fetchedAt": "2026-11-02T06:32:48.944Z",
-      "title": "Will the Republican Party control the Senate after the 2026 Midterm elections?"
+      "fetchedAt": "2026-11-02T16:53:00.796Z",
+      "title": "Will the U.S. invade Iran before 2027?"
     },
     {
-      "conditionId": "0x86bfb53af7250a40928975c551d12c185b762fa4ce0b40c6a64a50c946d72587",
-      "marketId": "562794",
-      "question": "Will the Republican Party control the Senate after the 2026 Midterm elections?",
-      "timestamp": 1793600823,
-      "side": "BUY",
-      "outcome": "No",
-      "price": 0.72,
-      "size": 27.96,
-      "notional": 20.1312,
-      "transactionHash": "0x6659cc2effa72f53aa3932e5358fe758b5e91a5b6157c63d76071dc3d989faad",
-      "source": "Polymarket public market trades, not PolyAgent account trades",
-      "fetchedAt": "2026-11-02T06:32:48.944Z",
-      "title": "Will the Republican Party control the Senate after the 2026 Midterm elections?"
-    },
-    {
-      "conditionId": "0x86bfb53af7250a40928975c551d12c185b762fa4ce0b40c6a64a50c946d72587",
-      "marketId": "562794",
-      "question": "Will the Republican Party control the Senate after the 2026 Midterm elections?",
-      "timestamp": 1793600761,
-      "side": "BUY",
-      "outcome": "No",
-      "price": 0.7199999817,
-      "size": 21.819445,
-      "notional": 15.710000000704158,
-      "transactionHash": "0x144481291c9c1c63dd437cb182d37608c7f13203d98c861515cb504edd3eb2e6",
-      "source": "Polymarket public market trades, not PolyAgent account trades",
-      "fetchedAt": "2026-11-02T06:32:48.944Z",
-      "title": "Will the Republican Party control the Senate after the 2026 Midterm elections?"
-    },
-    {
-      "conditionId": "0x86bfb53af7250a40928975c551d12c185b762fa4ce0b40c6a64a50c946d72587",
-      "marketId": "562794",
-      "question": "Will the Republican Party control the Senate after the 2026 Midterm elections?",
-      "timestamp": 1793600760,
-      "side": "SELL",
-      "outcome": "No",
-      "price": 0.72,
-      "size": 50702.76,
-      "notional": 36505.9872,
-      "transactionHash": "0xb42d94604deb657f2866e3a9823715e34092dee1d363d659569c7680cd9b7286",
-      "source": "Polymarket public market trades, not PolyAgent account trades",
-      "fetchedAt": "2026-11-02T06:32:48.944Z",
-      "title": "Will the Republican Party control the Senate after the 2026 Midterm elections?"
-    },
-    {
-      "conditionId": "0x86bfb53af7250a40928975c551d12c185b762fa4ce0b40c6a64a50c946d72587",
-      "marketId": "562794",
-      "question": "Will the Republican Party control the Senate after the 2026 Midterm elections?",
-      "timestamp": 1793600697,
-      "side": "SELL",
-      "outcome": "No",
-      "price": 0.72,
-      "size": 0.05,
-      "notional": 0.036,
-      "transactionHash": "0x814b340506bd3a4ac0ef40c0353a7e179b12a4ad715bae7c219225adf5527594",
-      "source": "Polymarket public market trades, not PolyAgent account trades",
-      "fetchedAt": "2026-11-02T06:32:48.944Z",
-      "title": "Will the Republican Party control the Senate after the 2026 Midterm elections?"
-    },
-    {
-      "conditionId": "0xc5eae79d1ffe716572353962eb926b1e3964c500a4880a7a94f58408218ee76b",
-      "marketId": "562831",
-      "question": "2026 Balance of Power: R Senate, R House",
-      "timestamp": 1793600871,
-      "side": "BUY",
-      "outcome": "No",
-      "price": 0.95,
-      "size": 6924.91,
-      "notional": 6578.6645,
-      "transactionHash": "0xae2a24d818a78546c494df2ed6b0268205132b9e88382db1d39d27b06e3ec79e",
-      "source": "Polymarket public market trades, not PolyAgent account trades",
-      "fetchedAt": "2026-11-02T06:32:49.742Z",
-      "title": "2026 Balance of Power: R Senate, R House"
-    },
-    {
-      "conditionId": "0xc5eae79d1ffe716572353962eb926b1e3964c500a4880a7a94f58408218ee76b",
-      "marketId": "562831",
-      "question": "2026 Balance of Power: R Senate, R House",
-      "timestamp": 1793600784,
-      "side": "BUY",
-      "outcome": "No",
-      "price": 0.95,
-      "size": 2.10526,
-      "notional": 1.9999969999999998,
-      "transactionHash": "0xfd8197c8d127013d05c9863062af965744e51a1202ff4fc3a5b756eb46030d8d",
-      "source": "Polymarket public market trades, not PolyAgent account trades",
-      "fetchedAt": "2026-11-02T06:32:49.742Z",
-      "title": "2026 Balance of Power: R Senate, R House"
-    },
-    {
-      "conditionId": "0xc5eae79d1ffe716572353962eb926b1e3964c500a4880a7a94f58408218ee76b",
-      "marketId": "562831",
-      "question": "2026 Balance of Power: R Senate, R House",
-      "timestamp": 1793600784,
-      "side": "BUY",
-      "outcome": "No",
-      "price": 0.95,
-      "size": 1.6421,
-      "notional": 1.5599949999999998,
-      "transactionHash": "0x41db73a10b857b2a45de7ca8b53b9be1e52a92733ca672c5a8b1b878782e466c",
-      "source": "Polymarket public market trades, not PolyAgent account trades",
-      "fetchedAt": "2026-11-02T06:32:49.742Z",
-      "title": "2026 Balance of Power: R Senate, R House"
-    },
-    {
-      "conditionId": "0xc5eae79d1ffe716572353962eb926b1e3964c500a4880a7a94f58408218ee76b",
-      "marketId": "562831",
-      "question": "2026 Balance of Power: R Senate, R House",
-      "timestamp": 1793600782,
+      "conditionId": "0x5db999fad322cea2914535aae5517060c3f80ad6d8c0231cde2124a434d16846",
+      "marketId": "665374",
+      "question": "Will the U.S. invade Iran before 2027?",
+      "timestamp": 1793635047,
       "side": "BUY",
       "outcome": "Yes",
-      "price": 0.06,
-      "size": 1666.666667,
-      "notional": 100.00000001999999,
-      "transactionHash": "0x9f0f9e5967c7e99855eb90a0d7cfb3b3846edc392fd693bc9a1d039350890294",
+      "price": 0.1799999999,
+      "size": 277.777778,
+      "notional": 50.00000001222223,
+      "transactionHash": "0xb447630e267e9dab9110324d0400ef12597beae73445b056e4aa25750f0390b6",
       "source": "Polymarket public market trades, not PolyAgent account trades",
-      "fetchedAt": "2026-11-02T06:32:49.742Z",
-      "title": "2026 Balance of Power: R Senate, R House"
+      "fetchedAt": "2026-11-02T16:53:00.796Z",
+      "title": "Will the U.S. invade Iran before 2027?"
     },
     {
-      "conditionId": "0xc5eae79d1ffe716572353962eb926b1e3964c500a4880a7a94f58408218ee76b",
-      "marketId": "562831",
-      "question": "2026 Balance of Power: R Senate, R House",
-      "timestamp": 1793600478,
+      "conditionId": "0x5db999fad322cea2914535aae5517060c3f80ad6d8c0231cde2124a434d16846",
+      "marketId": "665374",
+      "question": "Will the U.S. invade Iran before 2027?",
+      "timestamp": 1793634793,
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.1799999986,
+      "size": 27.777778,
+      "notional": 5.00000000111111,
+      "transactionHash": "0xaff9579c38f4c8c9a23bfab9ee7f62ae6b523039a7531a97b19a8aa7a3809731",
+      "source": "Polymarket public market trades, not PolyAgent account trades",
+      "fetchedAt": "2026-11-02T16:53:00.796Z",
+      "title": "Will the U.S. invade Iran before 2027?"
+    },
+    {
+      "conditionId": "0x5db999fad322cea2914535aae5517060c3f80ad6d8c0231cde2124a434d16846",
+      "marketId": "665374",
+      "question": "Will the U.S. invade Iran before 2027?",
+      "timestamp": 1793634613,
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.1799999856,
+      "size": 5.555556,
+      "notional": 0.9999999999999936,
+      "transactionHash": "0x58b25f1be1d530f880f7b688f97c2ac6c781f43e24892f2094cdff3a5af1eee3",
+      "source": "Polymarket public market trades, not PolyAgent account trades",
+      "fetchedAt": "2026-11-02T16:53:00.796Z",
+      "title": "Will the U.S. invade Iran before 2027?"
+    },
+    {
+      "conditionId": "0x5db999fad322cea2914535aae5517060c3f80ad6d8c0231cde2124a434d16846",
+      "marketId": "665374",
+      "question": "Will the U.S. invade Iran before 2027?",
+      "timestamp": 1793634295,
       "side": "BUY",
       "outcome": "No",
-      "price": 0.95,
-      "size": 2.10526,
-      "notional": 1.9999969999999998,
-      "transactionHash": "0x23baaa042b8129f0cb4d26df746949ad3dfcd0792cc1950fdb29c29d0a14380c",
+      "price": 0.829999998,
+      "size": 361.445784,
+      "notional": 299.99999999710843,
+      "transactionHash": "0x6ddd9a10ba3219446807fc855620d38d440c599957a9d6a9377dda426fb61c00",
       "source": "Polymarket public market trades, not PolyAgent account trades",
-      "fetchedAt": "2026-11-02T06:32:49.742Z",
-      "title": "2026 Balance of Power: R Senate, R House"
+      "fetchedAt": "2026-11-02T16:53:00.796Z",
+      "title": "Will the U.S. invade Iran before 2027?"
     },
     {
-      "conditionId": "0xc5eae79d1ffe716572353962eb926b1e3964c500a4880a7a94f58408218ee76b",
-      "marketId": "562831",
-      "question": "2026 Balance of Power: R Senate, R House",
-      "timestamp": 1793600476,
+      "conditionId": "0x0c0edd60a7a802df8b57d6ecd8b45ef605914c63d13ee27f15d33c99d10c7832",
+      "marketId": "6507378",
+      "question": "Will Bitcoin reach $80,000 in November?",
+      "timestamp": 1793638155,
       "side": "SELL",
       "outcome": "No",
-      "price": 0.94,
+      "price": 0.24,
+      "size": 450,
+      "notional": 108,
+      "transactionHash": "0x13600463f9e17c8f2546b5dcbc975baec92b27aaba8c14e7180cdaf7cbbf1f20",
+      "source": "Polymarket public market trades, not PolyAgent account trades",
+      "fetchedAt": "2026-11-02T16:53:01.161Z",
+      "title": "Will Bitcoin reach $80,000 in November?"
+    },
+    {
+      "conditionId": "0x0c0edd60a7a802df8b57d6ecd8b45ef605914c63d13ee27f15d33c99d10c7832",
+      "marketId": "6507378",
+      "question": "Will Bitcoin reach $80,000 in November?",
+      "timestamp": 1793637864,
+      "side": "SELL",
+      "outcome": "No",
+      "price": 0.24,
+      "size": 1300,
+      "notional": 312,
+      "transactionHash": "0x92a8563f2f481a1ef6570fd004a1030d9ee1b49edf86a250df6677fc242c5123",
+      "source": "Polymarket public market trades, not PolyAgent account trades",
+      "fetchedAt": "2026-11-02T16:53:01.161Z",
+      "title": "Will Bitcoin reach $80,000 in November?"
+    },
+    {
+      "conditionId": "0x0c0edd60a7a802df8b57d6ecd8b45ef605914c63d13ee27f15d33c99d10c7832",
+      "marketId": "6507378",
+      "question": "Will Bitcoin reach $80,000 in November?",
+      "timestamp": 1793637777,
+      "side": "BUY",
+      "outcome": "No",
+      "price": 0.25,
+      "size": 2000,
+      "notional": 500,
+      "transactionHash": "0x7162adae7905858a98af72569fd35e79af7e953363be508f6aebedd2086a7537",
+      "source": "Polymarket public market trades, not PolyAgent account trades",
+      "fetchedAt": "2026-11-02T16:53:01.161Z",
+      "title": "Will Bitcoin reach $80,000 in November?"
+    },
+    {
+      "conditionId": "0x0c0edd60a7a802df8b57d6ecd8b45ef605914c63d13ee27f15d33c99d10c7832",
+      "marketId": "6507378",
+      "question": "Will Bitcoin reach $80,000 in November?",
+      "timestamp": 1793637255,
+      "side": "BUY",
+      "outcome": "No",
+      "price": 0.25,
+      "size": 5.2,
+      "notional": 1.3,
+      "transactionHash": "0xb69b9bf310d5089f0fc043e67b078539c85c844762a17919fce97cab5d930ccd",
+      "source": "Polymarket public market trades, not PolyAgent account trades",
+      "fetchedAt": "2026-11-02T16:53:01.161Z",
+      "title": "Will Bitcoin reach $80,000 in November?"
+    },
+    {
+      "conditionId": "0x0c0edd60a7a802df8b57d6ecd8b45ef605914c63d13ee27f15d33c99d10c7832",
+      "marketId": "6507378",
+      "question": "Will Bitcoin reach $80,000 in November?",
+      "timestamp": 1793637213,
+      "side": "SELL",
+      "outcome": "No",
+      "price": 0.24,
+      "size": 700,
+      "notional": 168,
+      "transactionHash": "0xaf2a349e8ca228376f8d17c03b595111f4b0e47cabb07130491e6fdda475fd13",
+      "source": "Polymarket public market trades, not PolyAgent account trades",
+      "fetchedAt": "2026-11-02T16:53:01.161Z",
+      "title": "Will Bitcoin reach $80,000 in November?"
+    },
+    {
+      "conditionId": "0x0c0edd60a7a802df8b57d6ecd8b45ef605914c63d13ee27f15d33c99d10c7832",
+      "marketId": "6507378",
+      "question": "Will Bitcoin reach $80,000 in November?",
+      "timestamp": 1793637211,
+      "side": "BUY",
+      "outcome": "No",
+      "price": 0.25,
       "size": 4,
-      "notional": 3.76,
-      "transactionHash": "0x07610edbba62669306d3e0c5b8418da9b8906065aeca4553985807901969291c",
+      "notional": 1,
+      "transactionHash": "0x477200e52be7e1f7d48596bcdf8b3175c40df40ad2ea07b544f4bd28cece3ab9",
       "source": "Polymarket public market trades, not PolyAgent account trades",
-      "fetchedAt": "2026-11-02T06:32:49.742Z",
-      "title": "2026 Balance of Power: R Senate, R House"
+      "fetchedAt": "2026-11-02T16:53:01.161Z",
+      "title": "Will Bitcoin reach $80,000 in November?"
     },
     {
-      "conditionId": "0xc5eae79d1ffe716572353962eb926b1e3964c500a4880a7a94f58408218ee76b",
-      "marketId": "562831",
-      "question": "2026 Balance of Power: R Senate, R House",
-      "timestamp": 1793600457,
-      "side": "BUY",
+      "conditionId": "0x0c0edd60a7a802df8b57d6ecd8b45ef605914c63d13ee27f15d33c99d10c7832",
+      "marketId": "6507378",
+      "question": "Will Bitcoin reach $80,000 in November?",
+      "timestamp": 1793637181,
+      "side": "SELL",
       "outcome": "No",
-      "price": 0.95,
-      "size": 10600,
-      "notional": 10070,
-      "transactionHash": "0x3ca2c96233e2af060da15f7d1edcbf06cc4c2f2b3a00e01556abf7a89cb47938",
+      "price": 0.25,
+      "size": 5,
+      "notional": 1.25,
+      "transactionHash": "0x21b73c350fabbcf1cc27cf36735428a975c1857921591d73600953fa8b4053c3",
       "source": "Polymarket public market trades, not PolyAgent account trades",
-      "fetchedAt": "2026-11-02T06:32:49.742Z",
-      "title": "2026 Balance of Power: R Senate, R House"
+      "fetchedAt": "2026-11-02T16:53:01.161Z",
+      "title": "Will Bitcoin reach $80,000 in November?"
     },
     {
-      "conditionId": "0xc5eae79d1ffe716572353962eb926b1e3964c500a4880a7a94f58408218ee76b",
-      "marketId": "562831",
-      "question": "2026 Balance of Power: R Senate, R House",
-      "timestamp": 1793600407,
+      "conditionId": "0x0c0edd60a7a802df8b57d6ecd8b45ef605914c63d13ee27f15d33c99d10c7832",
+      "marketId": "6507378",
+      "question": "Will Bitcoin reach $80,000 in November?",
+      "timestamp": 1793637165,
       "side": "BUY",
-      "outcome": "No",
-      "price": 0.95,
-      "size": 2.10526,
-      "notional": 1.9999969999999998,
-      "transactionHash": "0x987086bfa16d92b6c3dd2231e5c2b7795bc6d1bcd966b3dfa072610c162d04ba",
+      "outcome": "Yes",
+      "price": 0.75,
+      "size": 23.45,
+      "notional": 17.5875,
+      "transactionHash": "0xeb65b2f9c6146e87452d5f6affde8f509a4300cf8a21fbdfd904109ec6c8d0ff",
       "source": "Polymarket public market trades, not PolyAgent account trades",
-      "fetchedAt": "2026-11-02T06:32:49.742Z",
-      "title": "2026 Balance of Power: R Senate, R House"
+      "fetchedAt": "2026-11-02T16:53:01.161Z",
+      "title": "Will Bitcoin reach $80,000 in November?"
+    },
+    {
+      "conditionId": "0x6bd56627aa21311850825edb27e53434a0e17a4f782be0086bc07f71eee00d0d",
+      "marketId": "560317",
+      "question": "Putin out as President of Russia by December 31, 2026?",
+      "timestamp": 1793636569,
+      "side": "SELL",
+      "outcome": "Yes",
+      "price": 0.02,
+      "size": 10,
+      "notional": 0.2,
+      "transactionHash": "0xaf6ce24e5a74d647c416f2f920850678fb3e87021fef6d468855a40318916d97",
+      "source": "Polymarket public market trades, not PolyAgent account trades",
+      "fetchedAt": "2026-11-02T16:53:01.590Z",
+      "title": "Putin out as President of Russia by December 31, 2026?"
+    },
+    {
+      "conditionId": "0x6bd56627aa21311850825edb27e53434a0e17a4f782be0086bc07f71eee00d0d",
+      "marketId": "560317",
+      "question": "Putin out as President of Russia by December 31, 2026?",
+      "timestamp": 1793635522,
+      "side": "SELL",
+      "outcome": "Yes",
+      "price": 0.02,
+      "size": 1206,
+      "notional": 24.12,
+      "transactionHash": "0x3ae50fbd3b52d1efc00c3ba50581857e60fab2a4faeb3baa63d34c8b27480fc1",
+      "source": "Polymarket public market trades, not PolyAgent account trades",
+      "fetchedAt": "2026-11-02T16:53:01.590Z",
+      "title": "Putin out as President of Russia by December 31, 2026?"
+    },
+    {
+      "conditionId": "0x6bd56627aa21311850825edb27e53434a0e17a4f782be0086bc07f71eee00d0d",
+      "marketId": "560317",
+      "question": "Putin out as President of Russia by December 31, 2026?",
+      "timestamp": 1793633970,
+      "side": "SELL",
+      "outcome": "Yes",
+      "price": 0.02,
+      "size": 20000,
+      "notional": 400,
+      "transactionHash": "0x1b49231e4bfc62ba1b6ce7a238b1aba8510f6ec53d4f16152fa6e61efcc20460",
+      "source": "Polymarket public market trades, not PolyAgent account trades",
+      "fetchedAt": "2026-11-02T16:53:01.590Z",
+      "title": "Putin out as President of Russia by December 31, 2026?"
+    },
+    {
+      "conditionId": "0x6bd56627aa21311850825edb27e53434a0e17a4f782be0086bc07f71eee00d0d",
+      "marketId": "560317",
+      "question": "Putin out as President of Russia by December 31, 2026?",
+      "timestamp": 1793633865,
+      "side": "SELL",
+      "outcome": "Yes",
+      "price": 0.02,
+      "size": 2074.88,
+      "notional": 41.497600000000006,
+      "transactionHash": "0x60ff1e8fb5792c567b60cffcd428558aa29e6d6ec3a62f6d29c59fb17251a8a3",
+      "source": "Polymarket public market trades, not PolyAgent account trades",
+      "fetchedAt": "2026-11-02T16:53:01.590Z",
+      "title": "Putin out as President of Russia by December 31, 2026?"
+    },
+    {
+      "conditionId": "0x6bd56627aa21311850825edb27e53434a0e17a4f782be0086bc07f71eee00d0d",
+      "marketId": "560317",
+      "question": "Putin out as President of Russia by December 31, 2026?",
+      "timestamp": 1793633224,
+      "side": "SELL",
+      "outcome": "Yes",
+      "price": 0.02,
+      "size": 1000.02,
+      "notional": 20.0004,
+      "transactionHash": "0x9eb38b7b18ed84d0d673e3fb7af093b45ec1c4a94c4e4279aa36c5a448f25e5c",
+      "source": "Polymarket public market trades, not PolyAgent account trades",
+      "fetchedAt": "2026-11-02T16:53:01.590Z",
+      "title": "Putin out as President of Russia by December 31, 2026?"
+    },
+    {
+      "conditionId": "0x6bd56627aa21311850825edb27e53434a0e17a4f782be0086bc07f71eee00d0d",
+      "marketId": "560317",
+      "question": "Putin out as President of Russia by December 31, 2026?",
+      "timestamp": 1793633062,
+      "side": "SELL",
+      "outcome": "No",
+      "price": 0.9803479872,
+      "size": 119749.59,
+      "notional": 117396.26952452525,
+      "transactionHash": "0x0f2971121bc6296c94a42ef2ad67e00d1c64e508097d645d87dd37abcab81ee5",
+      "source": "Polymarket public market trades, not PolyAgent account trades",
+      "fetchedAt": "2026-11-02T16:53:01.590Z",
+      "title": "Putin out as President of Russia by December 31, 2026?"
+    },
+    {
+      "conditionId": "0x6bd56627aa21311850825edb27e53434a0e17a4f782be0086bc07f71eee00d0d",
+      "marketId": "560317",
+      "question": "Putin out as President of Russia by December 31, 2026?",
+      "timestamp": 1793633061,
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.021,
+      "size": 50,
+      "notional": 1.05,
+      "transactionHash": "0x0821a5d7387ff5d793c3da0c3e981f3f1a9dad15926a1a6e1edd0986494f4c2d",
+      "source": "Polymarket public market trades, not PolyAgent account trades",
+      "fetchedAt": "2026-11-02T16:53:01.590Z",
+      "title": "Putin out as President of Russia by December 31, 2026?"
+    },
+    {
+      "conditionId": "0x6bd56627aa21311850825edb27e53434a0e17a4f782be0086bc07f71eee00d0d",
+      "marketId": "560317",
+      "question": "Putin out as President of Russia by December 31, 2026?",
+      "timestamp": 1793633061,
+      "side": "BUY",
+      "outcome": "Yes",
+      "price": 0.021,
+      "size": 1000,
+      "notional": 21,
+      "transactionHash": "0xf479d3f1238a6d33225d923320aa3ee4d59c03975c8417d2fded300ef64adc6f",
+      "source": "Polymarket public market trades, not PolyAgent account trades",
+      "fetchedAt": "2026-11-02T16:53:01.590Z",
+      "title": "Putin out as President of Russia by December 31, 2026?"
     }
   ],
   "errors": [],
   "book": {
-    "conditionId": "0xd5d9fc47718bd553592d126b1fa5e87183d27f3936975b0c04cc0f2dec1f1bb4",
-    "marketId": "562802",
-    "question": "Will the Democratic Party control the House after the 2026 Midterm elections?",
-    "tokenId": "83247781037352156539108067944461291821683755894607244160607042790356561625563",
+    "conditionId": "0x5db999fad322cea2914535aae5517060c3f80ad6d8c0231cde2124a434d16846",
+    "marketId": "665374",
+    "question": "Will the U.S. invade Iran before 2027?",
+    "tokenId": "55115078421062885512539156303747803058407616201213034911037320915726138659123",
     "outcome": "Yes",
-    "timestamp": "1793601167945",
-    "hash": "fdf555f61daadd62209c776796305005020a759d",
+    "timestamp": "1793638379548",
+    "hash": "ae7bea8916f9c812cb058e0b38af8bf1cc5fb3eb",
     "bids": [
       {
-        "price": 0.94,
-        "size": 2320567.68
+        "price": 0.17,
+        "size": 18400.67
       },
       {
-        "price": 0.93,
-        "size": 2528559.39
+        "price": 0.16,
+        "size": 115405.08
       },
       {
-        "price": 0.92,
-        "size": 499671.65
+        "price": 0.15,
+        "size": 324475.22
       },
       {
-        "price": 0.91,
-        "size": 973389.73
+        "price": 0.14,
+        "size": 94250.58
       },
       {
-        "price": 0.9,
-        "size": 754952.73
+        "price": 0.13,
+        "size": 75454.18
       },
       {
-        "price": 0.89,
-        "size": 936967.83
+        "price": 0.12,
+        "size": 10498.64
       },
       {
-        "price": 0.88,
-        "size": 2692.68
+        "price": 0.11,
+        "size": 10887.65
       },
       {
-        "price": 0.87,
-        "size": 101.48
+        "price": 0.1,
+        "size": 10961.64
       },
       {
-        "price": 0.86,
-        "size": 1028.24
+        "price": 0.09,
+        "size": 7665.47
       },
       {
-        "price": 0.85,
-        "size": 748.83
+        "price": 0.08,
+        "size": 8702.11
       },
       {
-        "price": 0.84,
-        "size": 678
+        "price": 0.07,
+        "size": 34394.34
       },
       {
-        "price": 0.83,
-        "size": 500
+        "price": 0.06,
+        "size": 13254.92
       }
     ],
     "asks": [
       {
-        "price": 0.95,
-        "size": 3540819.11
+        "price": 0.18,
+        "size": 31661.25
       },
       {
-        "price": 0.96,
-        "size": 4083765.06
+        "price": 0.19,
+        "size": 28904.91
       },
       {
-        "price": 0.97,
-        "size": 6716226.65
+        "price": 0.2,
+        "size": 56992.54
       },
       {
-        "price": 0.98,
-        "size": 84618.05
+        "price": 0.21,
+        "size": 2054
       },
       {
-        "price": 0.99,
-        "size": 1526544.61
+        "price": 0.22,
+        "size": 2516.02
+      },
+      {
+        "price": 0.23,
+        "size": 1215.95
+      },
+      {
+        "price": 0.24,
+        "size": 1122.33
+      },
+      {
+        "price": 0.25,
+        "size": 964.92
+      },
+      {
+        "price": 0.26,
+        "size": 756.76
+      },
+      {
+        "price": 0.27,
+        "size": 597.4
+      },
+      {
+        "price": 0.28,
+        "size": 1665.97
+      },
+      {
+        "price": 0.29,
+        "size": 1871.73
       }
     ],
     "tickSize": "0.01",
     "minOrderSize": "5",
-    "lastTradePrice": "0.950",
-    "fetchedAt": "2026-11-02T06:32:47.700Z"
+    "lastTradePrice": "0.820",
+    "fetchedAt": "2026-11-02T16:53:00.711Z"
   }
 }
