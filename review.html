@@ -15,13 +15,13 @@
 <footer>12 个真实市场 · 3 份 CLOB 订单簿 · 24 笔公开成交快照 · 无外部 JS、字体、图片依赖。市场资料为公开来源，账户及模型为设计演示。</footer>
 <script>
 const screens=[
-['overview','01 / Overview','准备 USDT、选择参与方式、确认投入，一眼看懂两个产品。','home','inactive'],
+['overview','01 / Overview','准备 USDC、选择参与方式、确认投入，一眼看懂两个产品。','home','inactive'],
 ['agent','02 / Agent Trading · 总览','六组卡片，固定全局导航，My Agent 为首要信息。','agent','running'],
 ['execution','03 / Agent Trading · 交易执行','买入 / 卖出筛选的真实公开成交，Tx 跳 PolygonScan；深度另行展开。','agent/execution','running'],
 ['liquidity','04 / Liquidity Marketplace · 市场发现','九个默认事件，每组三张；搜索、分类、申请可操作。','liquidity','running'],
 ['services','05 / Liquidity Marketplace · 我的服务','服务中 / 已结算信息卡片，细节为待确认设计提案。','liquidity/services','running'],
-['tokenomics','06 / Tokenomics','一个项目代币直接消耗，不再拆出额外模型 Token。','tokenomics','running'],
-['account','07 / 我的账户','资产 Tab 与头像进入：准备 USDT、投入产品、可提出余额与记录。','account','running'],
+['tokenomics','06 / Tokenomics','行情、六个指标、双向闪兑、项目余额充值、回购销毁、分配与合约安全。','tokenomics','running'],
+['account','07 / 我的账户','资料卡、准备 USDC、投入产品、可提出余额和代币消耗记录。','account','running'],
 ['swap','08 / 独立兑换','专用表单、双向切换、滑点设置与预览确认。','swap','running'],
 ['whitepaper','09 / 白皮书','介绍内容收进更多菜单；机制草案保留待确认边界。','whitepaper','running'],
 ['states','10 / My Agent · 未激活','输入 20–1,000 USDC，校验后可以开始一个演示周期。','agent','inactive'],
@@ -30,7 +30,9 @@ const screens=[
 ['stopped','13 / My Agent · 已停止','权益固定，可以继续，也可提出至演示钱包。','agent','stopped'],
 ['analysis','14 / 智能分析 · 待补','内容将在后续版本补充，保留页签与正常导航。','agent/analysis','running'],
 ['monitoring','15 / 引擎监控 · 待补','内容将在后续版本补充，保留页签与正常导航。','agent/monitoring','running'],
-['data','16 / 数据与来源','公共快照、演示指标、账户示例分开说明。','sources','running']
+['data','16 / 数据与来源','公共快照、演示指标、账户示例分开说明。','sources','running'],
+['profile','17 / 个人资料','修改昵称、随机头像、联系手机号与完整钱包地址。','account/profile','inactive'],
+['consumption','18 / Agent 消耗详情','钱包与项目 ABC 余额分别展示，运行消耗从项目余额扣除。','account/consumption','running']
 ];
 const q=new URLSearchParams(location.search);const single=q.get('single');const showcase=q.has('showcase');if(showcase)document.body.classList.add('showcase');if(single)document.body.classList.add('single');
 document.getElementById('boards').innerHTML=screens.filter(s=>showcase?['overview','agent','liquidity'].includes(s[0]):!single||s[0]===single).map(([id,title,desc,hash,scene])=>`<article id="${id}"><h2>${title}<a target="_blank" href="index.html?scene=${scene}#${hash}">打开 ↗</a></h2><p>${desc}</p><iframe title="${title}" loading="${single||showcase?'eager':'lazy'}" src="app.html?embed=1&scene=${scene}#${hash}"></iframe></article>`).join('');

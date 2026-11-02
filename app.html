@@ -11,11 +11,16 @@
   <link rel="stylesheet" href="styles.css?v=20261102-participate">
   <script defer src="icons.js?v=20261102-participate"></script>
   <script defer src="pages.js?v=20261102-participate"></script>
+  <link rel="stylesheet" href="tokenomics.css">
+  <link rel="stylesheet" href="account.css">
+  <script defer src="tokenomics.js"></script>
+  <script defer src="account.js"></script>
+  <script defer src="wallet.js"></script>
   <script defer src="app.js?v=20261102-participate"></script>
 </head>
 <body>
   <!-- 设计依据：手机 App 逐页设计规范。移动优先；全局导航固定。
-       原型不连接钱包，不请求签名。账户、模型、引擎和服务数据均为可识别的演示。
+       钱包连接只读取 OKX 地址和 Polygon 网络，不请求签名。账户、模型、引擎和服务数据均为可识别的演示。
        公共市场和订单簿使用本地保存的 Polymarket 快照，不能称为平台真实交易。 -->
   <a class="skip" href="#main">跳到内容</a>
   <div id="app"></div>

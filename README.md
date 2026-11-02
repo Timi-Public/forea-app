@@ -27,11 +27,11 @@ The dev server runs at `http://127.0.0.1:4186`. The build produces a static `dis
 
 ## Interactions
 
-Prepare demo USDT, choose a participation mode, switch demo accounts, choose a language, use automatic or manual appearance, inspect run/exit/resume/stopped states, validate allocation limits, preview fund withdrawal, create a demo liquidity request, filter/sort public trades, follow transaction links, and preview a token swap.
+Prepare demo USDC, choose a participation mode, inspect run/exit/resume/stopped states, create a demo liquidity request, filter public trades, inspect historical token prices, simulate two-way swaps with a 5% token tax, deposit ABC into the project balance, and edit a local profile. Language choices remain visible for two seconds after selection; appearance defaults to Auto by device local time.
 
 ## Data boundaries
 
-This is an interface preview. It never connects a real wallet, requests signatures, approves tokens or moves funds. Accounts, P&L, engine telemetry, model estimates, services and swap quotes are explicitly labeled demonstrations.
+This is an interface preview. Optional OKX Wallet connection reads an address and checks Polygon only. It never requests signatures, approves tokens or moves funds. All pages and demo actions work as a guest. Accounts, balances, P&L, telemetry, services and swap quotes are labelled demonstrations.
 
 Public market titles, probabilities, liquidity, volume, order books and transactions come from a timestamped Polymarket snapshot. Counts and volume totals refer only to selected samples, not the entire platform. Market images are retained locally. See `data/sources.json` for endpoints and field scope.
 
