@@ -1,0 +1,99 @@
+{
+  "checkedAt": "2026-11-02T06:32:49.742Z",
+  "docs": {
+    "discovery": "https://docs.polymarket.com/market-data/discover-markets",
+    "markets": "https://docs.polymarket.com/api-reference/markets/list-markets",
+    "search": "https://docs.polymarket.com/api-reference/search/search-markets-events-and-profiles",
+    "orderBook": "https://docs.polymarket.com/api-reference/market-data/get-order-book",
+    "publicTradesLegacy": "https://docs.polymarket.com/api-reference/core/get-trades-for-a-user-or-markets",
+    "dataApiV2": "https://docs.polymarket.com/api-reference/data-api/overview"
+  },
+  "fieldNotes": {
+    "liquidityNum": "Gamma numeric market liquidity field. A screening proxy; not a verified executable depth at a given price.",
+    "volume24hr": "Per-market trailing 24h volume, not global platform volume.",
+    "outcomePrices": "Per-outcome Gamma quoted market prices. Display as market-implied percentages, not model forecasts.",
+    "book": "CLOB per-token bids/asks; book hash is not a transaction hash. Not a list of executed orders.",
+    "trades": "Public Data API v1 legacy endpoint used for this snapshot. transactionHash may link to polygonscan.com/tx/. Trades belong to public market participants, not PolyAgent.",
+    "globalTradeCount24h": "Unavailable in bounded snapshot. Do not infer from the latest 8 trades or invent.",
+    "eligibility": "Prototype threshold 50,000 applied to liquidityNum is a design assumption only, not a confirmed product or service approval.",
+    "tags": "Official market tags endpoint, not guessed categories."
+  },
+  "requests": [
+    {
+      "url": "https://gamma-api.polymarket.com/markets?closed=false&active=true&limit=200&order=volume24hr&ascending=false",
+      "fetchedAt": "2026-11-02T06:32:31.275Z"
+    },
+    {
+      "url": "https://gamma-api.polymarket.com/markets/562802/tags",
+      "fetchedAt": "2026-11-02T06:32:32.154Z"
+    },
+    {
+      "url": "https://gamma-api.polymarket.com/markets/562794/tags",
+      "fetchedAt": "2026-11-02T06:32:32.963Z"
+    },
+    {
+      "url": "https://gamma-api.polymarket.com/markets/562831/tags",
+      "fetchedAt": "2026-11-02T06:32:34.016Z"
+    },
+    {
+      "url": "https://gamma-api.polymarket.com/markets/630964/tags",
+      "fetchedAt": "2026-11-02T06:32:34.779Z"
+    },
+    {
+      "url": "https://gamma-api.polymarket.com/markets/6274257/tags",
+      "fetchedAt": "2026-11-02T06:32:35.852Z"
+    },
+    {
+      "url": "https://gamma-api.polymarket.com/markets/630805/tags",
+      "fetchedAt": "2026-11-02T06:32:36.637Z"
+    },
+    {
+      "url": "https://gamma-api.polymarket.com/markets/5957352/tags",
+      "fetchedAt": "2026-11-02T06:32:37.530Z"
+    },
+    {
+      "url": "https://gamma-api.polymarket.com/markets/6507379/tags",
+      "fetchedAt": "2026-11-02T06:32:38.305Z"
+    },
+    {
+      "url": "https://gamma-api.polymarket.com/markets/629691/tags",
+      "fetchedAt": "2026-11-02T06:32:44.876Z"
+    },
+    {
+      "url": "https://gamma-api.polymarket.com/markets/679022/tags",
+      "fetchedAt": "2026-11-02T06:32:45.738Z"
+    },
+    {
+      "url": "https://gamma-api.polymarket.com/markets/6369333/tags",
+      "fetchedAt": "2026-11-02T06:32:46.496Z"
+    },
+    {
+      "url": "https://gamma-api.polymarket.com/markets/6361051/tags",
+      "fetchedAt": "2026-11-02T06:32:47.280Z"
+    },
+    {
+      "url": "https://clob.polymarket.com/book?token_id=83247781037352156539108067944461291821683755894607244160607042790356561625563",
+      "fetchedAt": "2026-11-02T06:32:47.700Z"
+    },
+    {
+      "url": "https://data-api.polymarket.com/trades?market=0xd5d9fc47718bd553592d126b1fa5e87183d27f3936975b0c04cc0f2dec1f1bb4&limit=8",
+      "fetchedAt": "2026-11-02T06:32:48.250Z"
+    },
+    {
+      "url": "https://clob.polymarket.com/book?token_id=51939490109676186832507970701169130490548061087912630009168726706475001411420",
+      "fetchedAt": "2026-11-02T06:32:48.530Z"
+    },
+    {
+      "url": "https://data-api.polymarket.com/trades?market=0x86bfb53af7250a40928975c551d12c185b762fa4ce0b40c6a64a50c946d72587&limit=8",
+      "fetchedAt": "2026-11-02T06:32:48.944Z"
+    },
+    {
+      "url": "https://clob.polymarket.com/book?token_id=103704141773947678931823410030956181918562062788486034785782641603149828893320",
+      "fetchedAt": "2026-11-02T06:32:49.284Z"
+    },
+    {
+      "url": "https://data-api.polymarket.com/trades?market=0xc5eae79d1ffe716572353962eb926b1e3964c500a4880a7a94f58408218ee76b&limit=8",
+      "fetchedAt": "2026-11-02T06:32:49.742Z"
+    }
+  ]
+}

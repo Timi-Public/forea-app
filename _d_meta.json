@@ -1,0 +1,48 @@
+{
+  "type": "design",
+  "designSystems": [],
+  "primaryDesignSystem": null,
+  "assets": {
+    "Forea 手机 App 原型": {
+      "versions": [
+        {
+          "path": "index.html",
+          "createdAt": "2026-11-02T07:18:16.099Z",
+          "status": "needs-review",
+          "viewport": {
+            "width": 408,
+            "height": 902
+          }
+        }
+      ]
+    },
+    "Forea 全部手机页面画板": {
+      "versions": [
+        {
+          "path": "review.html",
+          "createdAt": "2026-11-02T07:18:16.170Z",
+          "status": "needs-review",
+          "viewport": {
+            "width": 1400,
+            "height": 1210
+          }
+        }
+      ]
+    },
+    "Forea App 内容": {
+      "versions": [
+        {
+          "path": "app.html",
+          "createdAt": "2026-11-02T07:18:16.239Z",
+          "status": "needs-review",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          }
+        }
+      ]
+    }
+  },
+  "createdAt": "2026-11-02T07:18:16.099Z",
+  "updatedAt": "2026-11-02T07:18:16.240Z"
+}

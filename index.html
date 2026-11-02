@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f9faf9">
+<title>Forea · 手机 App 交互原型</title>
+<link rel="icon" href="assets/mark.svg">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#edf0ed;font:12px/1.5 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;color:#47554b;min-height:100dvh;display:flex;align-items:center;justify-content:center;padding:35px;gap:70px;background-image:radial-gradient(ellipse at 70% 25%,#dfe9e0 0,transparent 55%)}.context{width:240px;align-self:center}.context img{width:40px;height:40px}.context h1{font-size:32px;line-height:1.2;letter-spacing:-1.5px;color:#1e2b22;font-weight:600;margin:24px 0 16px}.context p{font-size:12px;line-height:1.9;color:#77817a}.context .eyebrow{font-size:9px;font-weight:650;letter-spacing:1.8px;margin-top:20px}.context a{display:flex;align-items:center;justify-content:space-between;color:#24783c;text-decoration:none;border-bottom:1px solid #cdd6ce;padding:13px 0;font-size:11px}.context .note{font-size:10px;color:#8b958e;margin-top:28px}.device{width:408px;height:min(902px,calc(100dvh - 50px));min-height:650px;border:8px solid #25202b;border-radius:46px;background:#f9faf9;box-shadow:0 35px 100px #47325622,0 0 0 1px #83798d;position:relative;overflow:hidden;flex-shrink:0}.status{height:32px;color:#223429;display:flex;align-items:center;justify-content:space-between;padding:5px 25px 0;font-size:11px;font-weight:600}.status .sensors{display:flex;align-items:center;gap:5px}.island{position:absolute;top:5px;left:50%;transform:translateX(-50%);height:22px;width:92px;background:#16121c;border-radius:13px}.battery{width:18px;height:9px;border:1px solid #81778e;border-radius:3px;position:relative;padding:1px}.battery::before{content:"";display:block;background:#283d2c;width:12px;height:5px;border-radius:1px}.battery::after{content:"";position:absolute;right:-3px;top:2px;width:2px;height:3px;background:#81778e;border-radius:1px}.home-line{position:absolute;bottom:5px;left:50%;width:108px;height:4px;transform:translateX(-50%);border-radius:4px;background:#25392c;pointer-events:none;z-index:5;opacity:.65}iframe{height:calc(100% - 32px);width:100%;border:0;display:block;background:#f9faf9}.device .status svg{width:13px;height:10px}@media(max-width:850px){body{gap:30px;padding:20px}.context{width:190px}.context h1{font-size:28px}}@media(max-width:650px){body{display:block;padding:0;min-height:100dvh;background:#f9faf9}.context,.status,.island,.home-line{display:none}.device{width:100%;height:100dvh;min-height:0;border:0;border-radius:0;box-shadow:none}iframe{height:100%;width:100%}}@media(max-height:740px) and (min-width:651px){.device{height:700px;min-height:0}.context h1{font-size:28px}body{padding:20px}}
+</style>
+</head>
+<body>
+<aside class="context"><img src="assets/mark.svg" alt="Forea"><div class="eyebrow">FOREA / MOBILE</div><h1>预测市场，<br>掌中有序。</h1><p>手机 App 高保真交互原型。<br>固定导航、页内滚动、底部操作弹层。<br>明亮、清晰的预测市场体验。</p><a href="review.html">查看全部手机页面 <span>↗</span></a><a href="app.html#agent" target="_blank">单独打开 App 原型 <span>↗</span></a><a href="README.md">交付与验收说明 <span>↗</span></a><p class="note">此处为手机设计预览，HTML 仅作原型载体。<br>账户、模型与服务为标明的演示数据。</p></aside>
+<div class="device"><div class="status"><span>9:41</span><span class="sensors"><svg viewBox="0 0 14 10" fill="currentColor"><rect x="0" y="7" width="2" height="3" rx=".4"></rect><rect x="4" y="5" width="2" height="5" rx=".4"></rect><rect x="8" y="2" width="2" height="8" rx=".4"></rect><rect x="12" y="0" width="2" height="10" rx=".4"></rect></svg><span>◕</span><span class="battery"></span></span></div><div class="island"></div><iframe id="phone" title="Forea 手机 App 原型"></iframe><div class="home-line"></div></div>
+<script>
+const phone=document.getElementById('phone');
+phone.src='app.html'+location.search+(location.hash||'#home');
+phone.addEventListener('load',()=>{try{phone.contentWindow.addEventListener('hashchange',()=>history.replaceState(null,'',location.pathname+location.search+phone.contentWindow.location.hash))}catch{}});
+window.addEventListener('hashchange',()=>{try{phone.contentWindow.location.hash=location.hash||'#home'}catch{}});
+</script>
+</body>
+</html>
