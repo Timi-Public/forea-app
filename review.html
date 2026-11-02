@@ -32,10 +32,11 @@ const screens=[
 ['monitoring','15 / 引擎监控 · 待补','内容将在后续版本补充，保留页签与正常导航。','agent/monitoring','running'],
 ['data','16 / 数据与来源','公共快照、演示指标、账户示例分开说明。','sources','running'],
 ['profile','17 / 个人资料','修改昵称、随机头像、联系手机号与完整钱包地址。','account/profile','inactive'],
-['consumption','18 / Agent 消耗详情','钱包与项目 ABC 余额分别展示，运行消耗从项目余额扣除。','account/consumption','running']
+['consumption','18 / Agent 消耗详情','钱包与项目 ABC 余额分别展示，运行消耗从项目余额扣除。','account/consumption','running'],
+['activity','19 / 资金活动记录','公开钱包活动布局预览：类型、时间、搜索、加载更多与横向滑动。示例不代表真实钱包记录。','account/activity','inactive']
 ];
 const q=new URLSearchParams(location.search);const single=q.get('single');const showcase=q.has('showcase');if(showcase)document.body.classList.add('showcase');if(single)document.body.classList.add('single');
-document.getElementById('boards').innerHTML=screens.filter(s=>showcase?['overview','agent','liquidity'].includes(s[0]):!single||s[0]===single).map(([id,title,desc,hash,scene])=>`<article id="${id}"><h2>${title}<a target="_blank" href="index.html?scene=${scene}#${hash}">打开 ↗</a></h2><p>${desc}</p><iframe title="${title}" loading="${single||showcase?'eager':'lazy'}" src="app.html?embed=1&scene=${scene}#${hash}"></iframe></article>`).join('');
+document.getElementById('boards').innerHTML=screens.filter(s=>showcase?['overview','agent','liquidity'].includes(s[0]):!single||s[0]===single).map(([id,title,desc,hash,scene])=>`<article id="${id}"><h2>${title}<a target="_blank" href="index.html?scene=${scene}${['activity','account'].includes(id)?'&activity=preview':''}#${hash}">打开 ↗</a></h2><p>${desc}</p><iframe title="${title}" loading="${single||showcase?'eager':'lazy'}" src="app.html?embed=1&scene=${scene}${['activity','account'].includes(id)?'&activity=preview':''}#${hash}"></iframe></article>`).join('');
 document.getElementById('device').onclick=()=>{document.body.classList.toggle('desktop');document.getElementById('device').textContent=document.body.classList.contains('desktop')?'切换为手机画板':'聚焦单列画板'};
 </script>
 </body>

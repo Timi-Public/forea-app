@@ -24,6 +24,7 @@ The dev server runs at `http://127.0.0.1:4186`. The build produces a static `dis
 - Agent overview, public trade feed, five Agent lifecycle states, and planned analysis / monitoring tabs. The Portfolio tab is the funding entry; More is in the top bar.
 - Market categories, topics, search, three-card pagination, service requests and service details.
 - Whitepaper draft, guide, data sources and screen board (`review.html`).
+- Account activity: five latest entries, a full history screen, type/time filters, search, pagination and a horizontally scrollable table.
 
 ## Interactions
 
@@ -32,6 +33,8 @@ Prepare demo USDC, choose a participation mode, inspect run/exit/resume/stopped 
 ## Data boundaries
 
 This is an interface preview. Optional OKX Wallet connection reads an address and checks Polygon only. It never requests signatures, approves tokens or moves funds. All pages and demo actions work as a guest. Accounts, balances, P&L, telemetry, services and swap quotes are labelled demonstrations.
+
+Wallet activity is separate from the demo product ledger. No Polygon history provider is configured: address queries show an unavailable state and a PolygonScan link. Explicit layout samples can be opened with `?activity=preview#account/activity`; they are labelled samples and have no invented transaction links. A read-only `window.ForeaActivityProvider.list({address, chainId:137, cursor})` adapter is the integration boundary for a future history service.
 
 Public market titles, probabilities, liquidity, volume, order books and transactions come from a timestamped Polymarket snapshot. Counts and volume totals refer only to selected samples, not the entire platform. Market images are retained locally. See `data/sources.json` for endpoints and field scope.
 

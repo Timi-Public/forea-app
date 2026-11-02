@@ -12,6 +12,8 @@ product
 
 以两个核心入口串起 Agent Trading 与 Liquidity Marketplace。最新需求依据是本轮用户提供的 2026-11-02 的逐页设计要求，优先于 10-30 的旧 IA。
 
+Account 的 Activity 以查询地址的 Polygon 公开历史为来源，默认最新5条，完整页面支持类型/时间筛选、搜索、加载更多和横向滑动。项目演示资金账本不可替代公开历史；目前尚无历史查询服务，展示准确的不可读取状态，另提供明确标识的样式预览。
+
 ## Brand Personality
 
 明亮、清晰、舒服。用户本轮指定参考 [Kalshi](https://kalshi.com/) 的浅色与绿色操作体系；品牌暂沿用 Forea，保留独立标识。Polymarket 是数据与卡片结构参考，不复制第三方品牌。

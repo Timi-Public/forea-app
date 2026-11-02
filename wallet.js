@@ -12,6 +12,7 @@ window.OKXIdentity=(()=>{
       Object.assign(S,cache.get(next.toLowerCase()||'guest')||fresh());
     }
     S.walletAddress=next;S.walletChainId=chain?Number(chain):null;S.connected=!!next&&S.walletChainId===137;
+    Activity.identityChanged();
     if(D)render({preserve:true});
   }
   function unbind(){if(provider&&handlers&&provider.removeListener){for(const [name,fn] of Object.entries(handlers))provider.removeListener(name,fn)}handlers=null}

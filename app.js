@@ -93,7 +93,7 @@ function route(){
   S.route=['agent','liquidity','tokenomics','account','swap','whitepaper','sources','guide'].includes(path)?path:'home';
   if(S.route==='agent')S.agentTab=sub==='execution'?2:sub==='analysis'?1:sub==='monitoring'?3:0;
   if(S.route==='liquidity')S.liquidityTab=sub==='services'?1:0;
-  S.accountSub=S.route==='account'&&['profile','consumption'].includes(sub)?sub:'';
+  S.accountSub=S.route==='account'&&['profile','consumption','activity'].includes(sub)?sub:'';
   closeOverlay();render();document.getElementById('main')?.scrollTo(0,0);
 }
 function toast(text){const el=document.getElementById('toast');el.textContent=text;el.classList.add('show');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>el.classList.remove('show'),3500)}
@@ -172,17 +172,17 @@ const actions = {
 };
 document.addEventListener('click',e=>{
   const el=e.target.closest('[data-action]');
-  if(el&&!el.disabled){e.preventDefault();(actions[el.dataset.action]||Tokenomics.actions[el.dataset.action]||Account.actions[el.dataset.action])?.(el.dataset.value);return}
+  if(el&&!el.disabled){e.preventDefault();(actions[el.dataset.action]||Tokenomics.actions[el.dataset.action]||Account.actions[el.dataset.action]||Activity.actions[el.dataset.action])?.(el.dataset.value);return}
   if(e.target.dataset.dismiss)closeOverlay();
   if(e.target.closest('#overlay a[href^="#"]')){const href=e.target.closest('a').getAttribute('href');closeOverlay();if(location.hash===href){route()}}
 });
 document.addEventListener('input',e=>{
-  Tokenomics.onInput(e);Account.onInput(e);
+  Tokenomics.onInput(e);Account.onInput(e);Activity.onInput(e);
   if(e.target.id==='agent-amount')S.amount=Number(e.target.value);
   if(e.target.id==='service-amount'){const n=Number(e.target.value);document.getElementById('service-fee').textContent=U.money(n*.04);document.getElementById('service-return').textContent=U.money(n*.96);document.getElementById('service-error').textContent=''}
   if(e.target.id==='market-search'){S.search=e.target.value;S.marketPage=0;clearTimeout(window.searchTimer);window.searchTimer=setTimeout(()=>render({preserve:true,focus:'market-search'}),150)}
 });
-document.addEventListener('change',e=>{if(e.target.id==='book-market'){S.bookMarket=e.target.value;render({preserve:true});document.querySelector('.book-detail')?.setAttribute('open','')}if(e.target.id==='tape-market'){S.tapeMarket=e.target.value;render({preserve:true})}});
+document.addEventListener('change',e=>{Activity.onChange(e);if(e.target.id==='book-market'){S.bookMarket=e.target.value;render({preserve:true});document.querySelector('.book-detail')?.setAttribute('open','')}if(e.target.id==='tape-market'){S.tapeMarket=e.target.value;render({preserve:true})}});
 document.addEventListener('scroll',updateScroll,true);
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape')closeOverlay();
@@ -211,4 +211,5 @@ fetch('data/market-snapshot.json').then(r=>{if(!r.ok)throw new Error('Snapshot u
   S.services=params.get('scene')&&params.get('scene')!=='inactive'?[{id:'1042',marketId:D.markets[0].id,status:'active',amount:1500,startedAt:Date.now()-(12*60-392)*60000},{id:'1036',marketId:D.markets[1].id,status:'settled',amount:1000,startedAt:Date.now()-13*3600000}]:[];
   S.records=params.get('scene')&&params.get('scene')!=='inactive'?[{label:'agent-start',amount:-1000,unit:'USDC',time:Date.parse('2026-11-02T02:28:00Z')},{label:'service-apply',amount:-1500,unit:'USDC',time:Date.parse('2026-11-02T00:52:00Z')},{label:'model-use',amount:-125,unit:'ABC',time:Date.parse('2026-11-02T06:32:00Z')}]:[];
   route();
+  if(params.get('activity')==='preview')Activity.actions['activity-preview']();
  }).catch(err=>{document.getElementById('app').innerHTML=`<div class="loading-state"><h1>Forea</h1><p>${U.t('行情暂时无法加载，请重试。','Market data could not be loaded. Please try again.')}</p><button class="btn secondary" data-action="reload" style="margin-top:20px">${U.t('重新加载','Reload')}</button></div>`;console.error(err)});
