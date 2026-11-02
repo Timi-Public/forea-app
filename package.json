@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "node scripts/serve.mjs",
-    "check": "node --check app.js && node --check pages.js && node --check icons.js && node scripts/check.mjs",
+    "check": "node --check app.js && node --check pages.js && node --check icons.js && node --check theme.js && node scripts/check.mjs",
     "build": "node scripts/build.mjs"
   },
   "engines": {"node": ">=22"}

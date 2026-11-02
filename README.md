@@ -27,7 +27,7 @@ The dev server runs at `http://127.0.0.1:4186`. The build produces a static `dis
 
 ## Interactions
 
-Prepare demo USDT, choose a participation mode, switch demo accounts, change language/theme, inspect run/exit/resume/stopped states, validate allocation limits, preview fund withdrawal, create a demo liquidity request, filter/sort public trades, follow transaction links, and preview a token swap.
+Prepare demo USDT, choose a participation mode, switch demo accounts, choose a language, use automatic or manual appearance, inspect run/exit/resume/stopped states, validate allocation limits, preview fund withdrawal, create a demo liquidity request, filter/sort public trades, follow transaction links, and preview a token swap.
 
 ## Data boundaries
 
