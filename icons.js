@@ -27,6 +27,7 @@ window.icon = (name, cls = '', size = 20) => {
     clock:'<circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/>',
     coins:'<ellipse cx="9" cy="6" rx="6" ry="3"/><path d="M3 6v4c0 4 12 4 12 0V6M3 10v4c0 2 4 3 7 3m5-7c4-1 6 1 6 3s-3 3-6 3m-3-3v5c0 4 9 4 9 0v-5"/>',
     eye:'<path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>',
+    'eye-off':'<path d="m3 3 18 18M10.6 5.1A12 12 0 0 1 12 5c7 0 10 7 10 7a18 18 0 0 1-3.2 4.2M6 6.4A19 19 0 0 0 2 12s3 7 10 7a12 12 0 0 0 5.7-1.5M10 10a3 3 0 0 0 4 4"/>',
     book:'<path d="M12 5v16M3 3c4 0 6 0 9 2 3-2 5-2 9-2v16c-4 0-6 0-9 2-3-2-5-2-9-2V3Z"/>',
     refresh:'<path d="M20 7V2m0 5h-5M4 17v5m0-5h5"/><path d="M20 7a9 9 0 0 0-15-2M4 17a9 9 0 0 0 15 2"/>',
     info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10v1"/>',
