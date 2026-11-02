@@ -2,7 +2,8 @@
 
 A bright, mobile app prototype for prediction-market Agent execution and liquidity services. Open it on a phone for the app experience, or on a computer for a phone preview and screen board.
 
-Live preview: https://timi-public.github.io/forea-app/  
+Live preview: https://timi-public.github.io/forea-app/
+
 Screen board: https://timi-public.github.io/forea-app/review.html
 
 ## Run locally

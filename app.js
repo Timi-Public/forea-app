@@ -76,7 +76,7 @@ function render(options={}){
   document.documentElement.lang=S.lang==='zh'?'zh-CN':'en';
   document.body.classList.toggle('review-mode',params.has('embed'));
   const fn=Pages[S.route]||Pages.home;
-  document.title=({home:'Overview',agent:'Agent Trading',liquidity:'Liquidity Marketplace',tokenomics:'Tokenomics',account:'My Account',swap:'Swap',whitepaper:'Whitepaper',guide:'Quick Guide',sources:'Data Sources'})[S.route]+' · Forea';
+  document.title=({home:'Overview',agent:'Agent Trading',liquidity:'Liquidity Marketplace',tokenomics:'Tokenomics',account:'Portfolio',swap:'Swap',whitepaper:'Whitepaper',guide:'Quick Guide',sources:'Data Sources'})[S.route]+' · Forea';
   document.getElementById('app').innerHTML=header()+`<main id="main" class="main">${fn()}${footer()}</main><button class="to-top" data-action="top" aria-label="${U.t('返回顶部','Back to top')}">${icon('up','',18)}</button><button class="review-fab" data-action="review">${icon('settings','',11)}${U.t('设计验收','Design review')}</button>`;
   if(options.preserve)document.getElementById('main').scrollTop=y;
   if(options.focus){const el=document.getElementById(options.focus);el?.focus({preventScroll:true});if(el?.type==='search')el.setSelectionRange(el.value.length,el.value.length)}
