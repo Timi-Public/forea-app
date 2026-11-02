@@ -10,18 +10,18 @@
 .showcase header{padding:25px 42px 20px}.showcase header .brand{font-size:11px}.showcase h1{font-size:29px;margin:15px 0 0}.showcase header>p,.showcase .legend,.showcase nav,.showcase footer{display:none}.showcase main{grid-template-columns:repeat(3,390px);justify-content:center;gap:30px;padding:24px 30px}.showcase article p{min-height:20px}.showcase iframe{height:880px;width:390px;border-width:5px;box-shadow:0 12px 35px #23462b12}.showcase article h2{font-size:12px}.showcase .brand img{width:28px;height:28px}</style>
 </head>
 <body>
-<header><div class="brand"><img src="assets/mark.svg" alt="">FOREA / MOBILE</div><h1>让每一页，都对上产品。</h1><p>Forea 手机 App 交互预览。先看全局与 Agent，再看流动性市场。采用 Kalshi 明亮配色。每个手机画板可直接操作、页内滚动，也可打开完整页面。演示数据保留标识，不执行真实资金操作。</p><div class="legend"><span><b>已明确</b>：Agent 总览、交易执行、市场发现、全局导航</span><span><b>提案待确认</b>：首页、Tokenomics、我的服务、账户、兑换、白皮书</span><span><b>待补</b>：智能分析、引擎监控、第五入口</span></div><nav><a href="index.html#home" target="_blank" class="active">打开完整 DApp ↗</a><button id="device">聚焦单列画板</button><a href="#agent">Agent Trading</a><a href="#liquidity">Liquidity Marketplace</a><a href="#states">Agent 全状态</a><a href="README.md">交付说明</a></nav></header>
+<header><div class="brand"><img src="assets/mark.svg" alt="">FOREA / MOBILE</div><h1>让每一页，都对上产品。</h1><p>Forea 手机 App 交互预览。先看全局与 Agent，再看流动性市场。采用 Kalshi 明亮配色。每个手机画板可直接操作、页内滚动，也可打开完整页面。演示数据保留标识，不执行真实资金操作。</p><div class="legend"><span><b>已明确</b>：Agent 总览、交易执行、市场发现、全局导航</span><span><b>提案待确认</b>：首页、Tokenomics、我的服务、账户、兑换、白皮书</span><span><b>待补</b>：智能分析、引擎监控</span></div><nav><a href="index.html#home" target="_blank" class="active">打开完整 DApp ↗</a><button id="device">聚焦单列画板</button><a href="#agent">Agent Trading</a><a href="#liquidity">Liquidity Marketplace</a><a href="#states">Agent 全状态</a><a href="README.md">交付说明</a></nav></header>
 <main id="boards"></main>
 <footer>12 个真实市场 · 3 份 CLOB 订单簿 · 24 笔公开成交快照 · 无外部 JS、字体、图片依赖。市场资料为公开来源，账户及模型为设计演示。</footer>
 <script>
 const screens=[
-['overview','01 / Overview','官网与产品入口，一眼看懂两个产品。','home','running'],
+['overview','01 / Overview','准备 USDT、选择参与方式、确认投入，一眼看懂两个产品。','home','inactive'],
 ['agent','02 / Agent Trading · 总览','六组卡片，固定全局导航，My Agent 为首要信息。','agent','running'],
 ['execution','03 / Agent Trading · 交易执行','买入 / 卖出筛选的真实公开成交，Tx 跳 PolygonScan；深度另行展开。','agent/execution','running'],
 ['liquidity','04 / Liquidity Marketplace · 市场发现','九个默认事件，每组三张；搜索、分类、申请可操作。','liquidity','running'],
 ['services','05 / Liquidity Marketplace · 我的服务','服务中 / 已结算信息卡片，细节为待确认设计提案。','liquidity/services','running'],
 ['tokenomics','06 / Tokenomics','一个项目代币直接消耗，不再拆出额外模型 Token。','tokenomics','running'],
-['account','07 / 我的账户','头像进入账户：产品权益、可提出余额、钱包余额与记录。','account','running'],
+['account','07 / 我的账户','资产 Tab 与头像进入：准备 USDT、投入产品、可提出余额与记录。','account','running'],
 ['swap','08 / 独立兑换','专用表单、双向切换、滑点设置与预览确认。','swap','running'],
 ['whitepaper','09 / 白皮书','介绍内容收进更多菜单；机制草案保留待确认边界。','whitepaper','running'],
 ['states','10 / My Agent · 未激活','输入 20–1,000 USDC，校验后可以开始一个演示周期。','agent','inactive'],

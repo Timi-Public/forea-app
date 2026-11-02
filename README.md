@@ -2,6 +2,9 @@
 
 A bright, mobile app prototype for prediction-market Agent execution and liquidity services. Open it on a phone for the app experience, or on a computer for a phone preview and screen board.
 
+Live preview: https://timi-public.github.io/forea-app/  
+Screen board: https://timi-public.github.io/forea-app/review.html
+
 ## Run locally
 
 Node.js 22 or newer. No dependencies or install step.
@@ -16,14 +19,14 @@ The dev server runs at `http://127.0.0.1:4186`. The build produces a static `dis
 
 ## Screens
 
-- Overview, Agent Trading, Liquidity Marketplace, Tokenomics, My Account and Swap.
-- Agent overview, public trade feed, five Agent lifecycle states, and planned analysis / monitoring tabs.
+- Overview, Agent Trading, Liquidity Marketplace, Tokenomics, Portfolio and Swap.
+- Agent overview, public trade feed, five Agent lifecycle states, and planned analysis / monitoring tabs. The Portfolio tab is the funding entry; More is in the top bar.
 - Market categories, topics, search, three-card pagination, service requests and service details.
 - Whitepaper draft, guide, data sources and screen board (`review.html`).
 
 ## Interactions
 
-Switch demo accounts, change language/theme, inspect run/exit/resume/stopped states, validate allocation limits, preview fund withdrawal, create a demo liquidity request, filter/sort public trades, follow transaction links, and preview a token swap.
+Prepare demo USDT, choose a participation mode, switch demo accounts, change language/theme, inspect run/exit/resume/stopped states, validate allocation limits, preview fund withdrawal, create a demo liquidity request, filter/sort public trades, follow transaction links, and preview a token swap.
 
 ## Data boundaries
 
