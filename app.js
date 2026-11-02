@@ -1,4 +1,4 @@
-/* Offline-first review prototype. No providers, approvals, signatures or transactions. */
+/* Review prototype. OKX reads identity only; no approvals, signatures or fund transactions. */
 var D;
 var params = new URLSearchParams(location.search);
 var S = {
