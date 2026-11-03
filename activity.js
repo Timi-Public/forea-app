@@ -13,7 +13,7 @@ window.Activity=(()=>{
   function ensure(){identityChanged()}
   function example(){
     reset();state.preview=true;state.status='ready';const now=Date.now();
-    state.items=[['received',500,'USDC',1],['sent',28,'ABC',3],['swap',100,'USDC',6],['approve',0,'ABC',10],['received',250,'ABC',16],['sent',300,'USDC',28],['liquidity_add',1000,'USDC',48],['wrap',1,'POL',90],['liquidity_remove',200,'USDC',150],['fee_claim',12,'USDC',220],['mint',1,'NFT',400],['contract',0,'',900]].map(([type,value,symbol,hours],i)=>({id:'preview-'+i,timestamp:now-hours*3600000,type,status:'success',amounts:value?[{value:String(value),symbol,direction:['received','fee_claim','liquidity_remove'].includes(type)?'in':'out'}]:[],counterparty:'',hash:''}));
+    state.items=[['received',500,'USDC',1],['sent',28,'MAAT',3],['swap',100,'USDC',6],['approve',0,'MAAT',10],['received',250,'MAAT',16],['sent',300,'USDC',28],['liquidity_add',1000,'USDC',48],['wrap',1,'POL',90],['liquidity_remove',200,'USDC',150],['fee_claim',12,'USDC',220],['mint',1,'NFT',400],['contract',0,'',900]].map(([type,value,symbol,hours],i)=>({id:'preview-'+i,timestamp:now-hours*3600000,type,status:'success',amounts:value?[{value:String(value),symbol,direction:['received','fee_claim','liquidity_remove'].includes(type)?'in':'out'}]:[],counterparty:'',hash:''}));
     render({preserve:true});
   }
   function normalize(records){

@@ -80,3 +80,6 @@ button.more-item:hover,button.more-item:focus-visible{background:var(--panel2)}
 .more-row>.icon{color:var(--muted)}
 .more-row em{font-style:normal;color:var(--muted);white-space:nowrap}
 .more-note{margin:6px 12px 8px;font-size:11px;line-height:1.55;color:var(--quiet)}
+
+/* 11-03 echo: category and topic chips share one text size and height; topics stay one tone lighter */
+.topic-row button{font-size:11px;min-height:36px;padding:7px 13px;border-radius:7px}

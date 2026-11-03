@@ -32,7 +32,7 @@ const screens=[
 ['monitoring','15 / 引擎监控 · 提案','引擎健康、延迟与队列趋势、风控拦截原因、数据连接、引擎日志。全部为演示状态。','agent/monitoring','running'],
 ['data','16 / 数据与来源','公共快照、演示指标、账户示例分开说明。','sources','running'],
 ['profile','17 / 个人资料','修改昵称、随机头像、联系手机号与完整钱包地址。','account/profile','inactive'],
-['consumption','18 / Agent 消耗详情','钱包与项目 ABC 余额分别展示，运行消耗从项目余额扣除。','account/consumption','running'],
+['consumption','18 / Agent 消耗详情','钱包与项目 MAAT 余额分别展示，运行消耗从项目余额扣除。','account/consumption','running'],
 ['activity','19 / 资金活动记录','公开钱包活动布局预览：类型、时间、搜索、加载更多与横向滑动。示例不代表真实钱包记录。','account/activity','inactive']
 ];
 const q=new URLSearchParams(location.search);const single=q.get('single');const showcase=q.has('showcase');if(showcase)document.body.classList.add('showcase');if(single)document.body.classList.add('single');

@@ -28,7 +28,7 @@ The dev server runs at `http://127.0.0.1:4186`. The build produces a static `dis
 
 ## Interactions
 
-Prepare demo USDC, choose a participation mode, inspect run/exit/resume/stopped states, create a demo liquidity request, filter public trades, inspect historical token prices, simulate two-way swaps with a 5% token tax, deposit ABC into the project balance, and edit a local profile. Language choices remain visible for two seconds after selection; appearance defaults to Auto by device local time.
+Prepare demo USDC, choose a participation mode, inspect run/exit/resume/stopped states, create a demo liquidity request, filter public trades, inspect historical token prices, simulate two-way swaps with a 5% token tax, deposit MAAT into the project balance, and edit a local profile. Language choices remain visible for two seconds after selection; appearance defaults to Auto by device local time.
 
 ## Data boundaries
 

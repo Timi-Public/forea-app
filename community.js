@@ -27,8 +27,8 @@ window.Community=(()=>{
       +`<section class="cm-period"><div class="between"><h3>${monthName(p.last)}</h3><span class="cm-state">${icon('check','',13)}${t('已核定','Verified')}</span></div>`
       +`<div class="cm-main"><div class="cm-level"><b>${s.level}</b><span>${t('社区等级','Level')}</span></div><div class="cm-stack">`
       +`<div><span class="cm-label">${t('日均社区业绩','Daily community volume')}</span><strong>${volume(s.daily)} <small>USDC</small></strong></div>`
-      +`<div><span class="cm-label">${t('总奖励','Total rewards')}</span><div class="cm-reward-line"><strong data-community="total">${reward(total)} <small>ABC</small></strong><span class="cm-payout">${payout}</span></div></div></div></div>`
-      +`<div class="cm-grid three">${cell(t('社区级差奖励','Differential'),reward(s.diff),'ABC')}${cell(t('直属奖励','Direct'),reward(s.direct),'ABC')}${cell(t('托管手续费分成','Custody fee share'),reward(s.fee),'ABC')}</div>`
+      +`<div><span class="cm-label">${t('总奖励','Total rewards')}</span><div class="cm-reward-line"><strong data-community="total">${reward(total)} <small>MAAT</small></strong><span class="cm-payout">${payout}</span></div></div></div></div>`
+      +`<div class="cm-grid three">${cell(t('社区级差奖励','Differential'),reward(s.diff),'MAAT')}${cell(t('直属奖励','Direct'),reward(s.direct),'MAAT')}${cell(t('托管手续费分成','Custody fee share'),reward(s.fee),'MAAT')}</div>`
       +`<div class="cm-grid three counts">${cell(t('直属邀请人数','Direct invites'),t(`${s.invites} 人`,String(s.invites)))}${cell(t('社区总人数','Community members'),t(`${s.members} 人`,String(s.members)))}</div></section>`
       +`<section class="cm-period current"><div class="between"><h3>${monthName(p.month)}</h3><span class="cm-state live"><i></i>${t('考核中','In progress')}</span></div>`
       +`<div class="cm-main"><div class="cm-level plain"><b>${c.level}</b><span>${t('社区等级','Level')}</span></div><div class="cm-stack">`
