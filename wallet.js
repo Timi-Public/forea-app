@@ -1,10 +1,10 @@
 /* OKX identity connection only. This prototype never signs or sends transactions. */
 window.OKXIdentity=(()=>{
-  const stateFields=['walletBalance','capital','amount','agentState','elapsed','startedAt','services','records','tokenWalletBalance','tokenProjectBalance','tokenCycleUsed','tokenConsumptionRecords'];
+  const stateFields=['walletBalance','capital','amount','agentState','elapsed','startedAt','services','records','tokenWalletBalance','tokenProjectBalance','tokenCycleUsed','tokenConsumptionRecords','custody','custodyFee'];
   const cache=new Map();let provider=null,busy=false,handlers=null;
   const validAddress=a=>/^0x[\da-f]{40}$/i.test(a||'');
   const activeKey=()=>S.walletAddress?.toLowerCase()||'guest';
-  const fresh=()=>({walletBalance:3250,capital:0,amount:1000,agentState:'inactive',elapsed:0,startedAt:Date.now(),services:[],records:[],tokenWalletBalance:1000,tokenProjectBalance:0,tokenCycleUsed:0,tokenConsumptionRecords:[]});
+  const fresh=()=>({walletBalance:3250,capital:0,amount:1000,agentState:'inactive',elapsed:0,startedAt:Date.now(),services:[],records:[],tokenWalletBalance:1000,tokenProjectBalance:0,tokenCycleUsed:0,tokenConsumptionRecords:[],custody:null,custodyFee:0});
   function identity(address,chain){
     const next=validAddress(address)?address:'';
     if(activeKey()!==(next.toLowerCase()||'guest')){
