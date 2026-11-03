@@ -72,7 +72,16 @@ window.Engine = (() => {
   const hhmm = ms => new Date(ms).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Asia/Kuala_Lumpur' });
   const decisionLabel = d => ({ yes: 'YES', no: 'NO', watch: U.t('观望', 'WATCH') })[d];
   const decisionClass = d => ({ yes: 'yes-label', no: 'no-label', watch: 'hold-label' })[d];
-  return { hhmm, decisionLabel, decisionClass, hash, rnd, step, walk, monitored, signals, latency, queued, blocked, candidates, passed, pending, positions, activeServices, model, pct, edge, spread, daysLeft, factors, score, risk, decision, signalSet, signalTime, signalWindow, mixedSet };
+  // Overview platform cards: demo figures (echo 11-03 note #1 asked for demo numbers; Leo has not defined the four metrics).
+  // Active markets = positions (same as Market Monitor); liquidity = services in progress × demo average collateral.
+  const platform = (t = Date.now()) => {
+    const eligible = window.D ? (D.summary.eligibleEventCount ?? D.markets.filter(U.eligible).length) : 0;
+    const liquidity = Math.round(activeServices(eligible) * walk('svc-size', 3600000, 2400, 3200, t) / 100) * 100;
+    const agents = Math.round(walk('aum', 21600000, 1650000, 1950000, t) / 1000) * 1000;
+    const volume = Math.round((38600000 + Math.max(0, t - Date.UTC(2026, 10, 1)) / 3600000 * 52000) / 1000) * 1000;
+    return { assets: agents + liquidity, volume, markets: positions(t), liquidity };
+  };
+  return { platform, hhmm, decisionLabel, decisionClass, hash, rnd, step, walk, monitored, signals, latency, queued, blocked, candidates, passed, pending, positions, activeServices, model, pct, edge, spread, daysLeft, factors, score, risk, decision, signalSet, signalTime, signalWindow, mixedSet };
 })();
 
 // Live figures on Agent pages: update text in place; re-render once per 5-minute signal window.

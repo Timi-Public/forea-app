@@ -37,11 +37,17 @@ window.Feedback=(()=>{
     return {selector:path.join(' > '),text:(el.innerText||'').trim().slice(0,160)};
   }
   // rect in content coordinates of #main when the box sits in the scroll area, otherwise in screen coordinates
+  const frame=()=>document.getElementById('app')?.getBoundingClientRect()||{left:0,top:0,width:innerWidth,height:innerHeight,right:innerWidth,bottom:innerHeight};
+  const clip=(r,b)=>{const left=Math.max(r.left,b.left),top=Math.max(r.top,b.top),right=Math.min(r.right,b.right),bottom=Math.min(r.bottom,b.bottom);return right-left<8||bottom-top<8?null:{left,top,right,bottom,width:right-left,height:bottom-top}};
   function place(r){
-    const m=main(),mr=m?.getBoundingClientRect();
-    const inMain=mr&&r.top>=mr.top&&r.bottom<=Math.min(mr.bottom,innerHeight)&&!document.elementsFromPoint(r.left+r.width/2,r.top+r.height/2).some(e=>e.closest?.('.mobile-nav,.topbar,header'));
-    return inMain?{space:'main',x:r.left-mr.left,y:r.top-mr.top+m.scrollTop,w:r.width,h:r.height,mw:mr.width}:{space:'screen',x:r.left,y:r.top,w:r.width,h:r.height,mw:innerWidth};
+    const m=main(),mr=m?.getBoundingClientRect(),nav=document.querySelector('.mobile-nav')?.getBoundingClientRect();
+    const area=mr&&{left:mr.left,right:mr.right,top:mr.top,bottom:Math.min(mr.bottom,innerHeight,nav&&nav.height?nav.top:Infinity)};
+    const cx=r.left+r.width/2,cy=r.top+r.height/2;
+    const inMain=area&&cy>=area.top&&cy<=area.bottom&&!document.elementsFromPoint(cx,cy).some(e=>e.closest?.('.mobile-nav,.topbar,header'));
+    if(inMain){const c=clip(r,area)||r;return {space:'main',x:c.left-mr.left,y:c.top-mr.top+m.scrollTop,w:c.width,h:c.height,mw:mr.width}}
+    const f=frame(),c=clip(r,f)||r;return {space:'screen',x:c.left-f.left,y:c.top-f.top,w:c.width,h:c.height,mw:f.width};
   }
+  function syncFrame(){const f=frame();for(const el of [root,screenPins])if(el)el.style.cssText=`left:${f.left}px;top:${f.top}px;width:${f.width}px;height:${f.height}px`}
 
   /* ---------- pins ---------- */
   function drawPins(){
@@ -53,9 +59,10 @@ window.Feedback=(()=>{
     if(getComputedStyle(m).position==='static')m.style.position='relative';
     pins=document.createElement('div');pins.className='fb-pins';
     for(const n of list){
-      const b=n.data.box,k=b.mw?(b.space==='main'?m.getBoundingClientRect().width:innerWidth)/b.mw:1;
+      const b=n.data.box,W=b.space==='main'?m.clientWidth:frame().width,k=b.mw?W/b.mw:1;
+      const x=Math.max(0,Math.min(W-24,b.x*k)),w=Math.max(24,Math.min(W-x,b.w*k-(x-b.x*k)));
       const el=document.createElement('button');el.type='button';el.className='fb-pin '+n.status;el.dataset.fbNote=n.id;
-      el.style.cssText=`left:${b.x*k}px;top:${b.y}px;width:${Math.max(24,b.w*k)}px;height:${Math.max(24,b.h)}px`;
+      el.style.cssText=`left:${x}px;top:${Math.max(0,b.y)}px;width:${w}px;height:${Math.max(24,b.h)}px`;
       el.innerHTML=`<span>${n.id}</span>`;el.setAttribute('aria-label',t('批注 ','Note ')+n.id);
       (b.space==='main'?pins:screenPins).appendChild(el);
     }
@@ -79,11 +86,11 @@ window.Feedback=(()=>{
       </article>`).join(''):`<p class="fb-empty">${scope==='page'?t('这一页还没有批注','No notes on this page yet'):t('还没有批注','No notes yet')}</p>`}</div>`;
   }
   function renderUI(){
-    if(!root)return;
+    if(!root)return;syncFrame();
     const count=notes.filter(n=>n.page===page()&&n.status!=='closed').length;
-    root.innerHTML=`<button class="fb-fab" data-fb="toggle" aria-expanded="${open}">${t('批注','Notes')}${count?`<span>${count}</span>`:''}</button>${open&&!mode&&!draft?`<section class="fb-panel" role="dialog" aria-label="${t('批注','Notes')}">${panelHTML()}</section>`:''}${mode?`<div class="fb-hint"><span>${mode==='box'?t('拖动框出要改的地方','Drag a box around what needs changing'):t('点一段文字','Tap the text to change')}</span><button data-fb="cancel">${t('取消','Cancel')}</button></div>`:''}${draft?composeHTML():''}`;
+    root.innerHTML=`<button class="fb-fab" data-fb="toggle" aria-expanded="${open}">${window.icon?icon('chat','',19):''}${t('批注','Notes')}${count?`<span>${count}</span>`:''}</button>${open&&!mode&&!draft?`<section class="fb-panel" role="dialog" aria-label="${t('批注','Notes')}">${panelHTML()}</section>`:''}${mode?`<div class="fb-hint"><span>${mode==='box'?t('拖动框出要改的地方','Drag a box around what needs changing'):t('点一段文字','Tap the text to change')}</span><button data-fb="cancel">${t('取消','Cancel')}</button></div>`:''}${draft?composeHTML():''}`;
     if(mode==='box')root.insertAdjacentHTML('beforeend','<div class="fb-capture"><div class="fb-rect" hidden></div></div>');
-    if(draft?.rect){const r=draft.rect;root.insertAdjacentHTML('beforeend',`<div class="fb-rect fixed" style="left:${r.left}px;top:${r.top}px;width:${r.width}px;height:${r.height}px"></div>`)}
+    if(draft?.rect){const f=frame(),r=clip(draft.rect,f)||draft.rect;root.insertAdjacentHTML('beforeend',`<div class="fb-rect" style="left:${r.left-f.left}px;top:${r.top-f.top}px;width:${r.width}px;height:${r.height}px"></div>`)}
     root.querySelector('.fb-compose textarea')?.focus();
   }
   function composeHTML(){
@@ -184,7 +191,7 @@ window.Feedback=(()=>{
   }
   let start=null;
   function onDown(e){if(mode!=='box'||!e.target.closest('.fb-capture'))return;e.preventDefault();start={x:e.clientX,y:e.clientY};e.target.setPointerCapture?.(e.pointerId)}
-  function onMove(e){if(!start)return;const r=root.querySelector('.fb-capture .fb-rect');r.hidden=false;const x=Math.min(start.x,e.clientX),y=Math.min(start.y,e.clientY);r.style.cssText=`left:${x}px;top:${y}px;width:${Math.abs(e.clientX-start.x)}px;height:${Math.abs(e.clientY-start.y)}px`}
+  function onMove(e){if(!start)return;const r=root.querySelector('.fb-capture .fb-rect');r.hidden=false;const x=Math.min(start.x,e.clientX),y=Math.min(start.y,e.clientY);const f=frame();r.style.cssText=`left:${x-f.left}px;top:${y-f.top}px;width:${Math.abs(e.clientX-start.x)}px;height:${Math.abs(e.clientY-start.y)}px`}
   function onUp(e){
     if(!start)return;
     let x=Math.min(start.x,e.clientX),y=Math.min(start.y,e.clientY),w=Math.abs(e.clientX-start.x),h=Math.abs(e.clientY-start.y);start=null;
@@ -204,7 +211,7 @@ window.Feedback=(()=>{
     try{me=(await call('/me')).name}catch(e){if(e.status===401)disable();else{key='';}return}
     root=document.createElement('div');root.className='fb-root';document.body.appendChild(root);
     screenPins=document.createElement('div');screenPins.className='fb-pins screen';document.body.appendChild(screenPins);
-    document.body.classList.add('fb-on');
+    document.body.classList.add('fb-on');syncFrame();addEventListener('resize',()=>{syncFrame();drawPins()});
     if(page()==='rules'&&typeof render==='function')render({preserve:true});
     addEventListener('click',onClick,true);addEventListener('input',onInput,true);
     addEventListener('pointerdown',onDown,true);addEventListener('pointermove',onMove,true);addEventListener('pointerup',onUp,true);

@@ -32,8 +32,9 @@ window.Overview=(()=>{
       +`<button class="ov-funding" data-action="funding">${icon('wallet','',14)}${t('还没有 USDC？先准备资金','Need USDC? Prepare funds first')}</button></article>`;
   }
   function stats(){
-    const cards=[[t('平台管理资产','Assets managed'),'USDC','wallet'],[t('累计交易额','Cumulative volume'),'USDC','chart'],[t('活跃交易盘口','Active markets'),t('个','markets'),'pulse'],[t('流动性服务规模','Liquidity in service'),'USDC','waves']];
-    return `<section class="ov-stats" aria-label="${t('平台实时数据','Platform statistics')}">${cards.map(([l,u,ic])=>`<article class="panel ov-stat"><div class="between"><span class="label">${l}</span>${icon(ic,'muted',17)}</div><strong>—</strong><small>${u}</small><span class="ov-status"><i></i>${t('待接入','Pending')}</span></article>`).join('')}</section>`;
+    const p=Engine.platform(),big=n=>U.money(n,true);
+    const cards=[[t('平台管理资产','Assets managed'),big(p.assets),'USDC','wallet'],[t('累计交易额','Cumulative volume'),big(p.volume),'USDC','chart'],[t('活跃交易盘口','Active markets'),String(p.markets),t('个','markets'),'pulse'],[t('流动性服务规模','Liquidity in service'),big(p.liquidity),'USDC','waves']];
+    return `<section class="ov-stats" aria-label="${t('平台实时数据','Platform statistics')}">${cards.map(([l,v,u,ic])=>`<article class="panel ov-stat"><div class="between"><span class="label">${l}</span>${icon(ic,'muted',17)}</div><strong>${v}</strong><small>${u}</small><span class="ov-status demo"><i></i>${t('演示','Demo')}</span></article>`).join('')}</section>`;
   }
   function productHead(ic,title,sub,href){
     return `<a class="ov-product-head" href="${href}"><span class="metric-icon">${icon(ic,'',20)}</span><div><h3>${title}</h3><span>${sub}</span></div>${icon('external','muted',15)}</a>`;

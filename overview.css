@@ -134,3 +134,4 @@
 .ov-sec-grid button{display:block;width:100%;text-align:left;color:inherit}
 .ov-sec-rows button{width:100%;text-align:left;color:var(--text)}
 .ov-footer-links button{display:flex;align-items:center;min-height:36px;color:var(--muted);text-align:left}
+.ov-status.demo i{background:var(--amber);opacity:1}
