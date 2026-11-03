@@ -131,3 +131,6 @@
 .ov-social{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);color:var(--quiet)}
 .ov-footer small{font-size:10px;color:var(--quiet)}
 @media(max-width:370px){.ov-footer-links{grid-template-columns:1fr}}
+.ov-sec-grid button{display:block;width:100%;text-align:left;color:inherit}
+.ov-sec-rows button{width:100%;text-align:left;color:var(--text)}
+.ov-footer-links button{display:flex;align-items:center;min-height:36px;color:var(--muted);text-align:left}
