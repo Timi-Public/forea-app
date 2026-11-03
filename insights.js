@@ -12,6 +12,10 @@ window.Insights = (() => {
   const cents = v => v == null ? '—' : (v * 100).toFixed(1) + '¢';
   const sourceLine = () => `<div class="source"><span>${t('数据来源', 'Data source')}</span><a href="#sources">Polymarket · ${U.captureTime()}${icon('external', '', 10)}</a></div>`;
 
+  const cta = () => S.agentState === 'inactive'
+    ? `<article class="panel ins-cta" data-card="join"><p>${t('投入 USDC，Agent 按信号替你下单', 'Add USDC and the agent trades on these signals')}</p><button class="btn primary block" data-action="choose-agent">${t('开始智能交易', 'Start agent trading')}${icon('arrow', '', 14)}</button></article>`
+    : `<article class="panel ins-cta" data-card="join"><p>${t('你的 Agent 正在按这些信号运行', 'Your agent is running on these signals')}</p><button class="btn secondary block" data-action="choose-agent">${t('查看我的 Agent', 'View my agent')}${icon('arrow', '', 14)}</button></article>`;
+
   /* ---------- 智能分析 ---------- */
   function funnel() {
     const rows = [
@@ -94,7 +98,6 @@ window.Insights = (() => {
       [t('市场监测刷新', 'Market monitor refresh'), t('每 8 分钟', 'Every 8 min')],
       [t('模型与市场偏差', 'Model–market edge'), '2–5 pp'],
       [t('信号评分区间', 'Signal score range'), '50–95'],
-      [t('观望条件', 'Watch threshold'), t('评分低于 72', 'Score below 72')],
       [t('运行周期', 'Run cycle'), t('8H · 撤单 3–5H', '8H · Exit 3–5H')]
     ];
     return `<article class="panel ins-params" data-card="model-parameters">
@@ -104,7 +107,7 @@ window.Insights = (() => {
   }
 
   function analysis() {
-    return `<div class="ins-layout">${funnel()}${edgeMap()}${breakdown()}${parameters()}</div>`;
+    return `<div class="ins-layout">${funnel()}${edgeMap()}${breakdown()}${parameters()}${cta()}</div>`;
   }
 
   /* ---------- 引擎监控 ---------- */
@@ -126,39 +129,6 @@ window.Insights = (() => {
     </article>`;
   }
 
-  const series = (fn, minutes = 30, every = 60000) => { const now = Date.now(); return Array.from({ length: minutes + 1 }, (_, i) => fn(now - (minutes - i) * every)); };
-  const sparkPath = (values, lo, hi) => {
-    const w = 300, h = 64, n = values.length - 1;
-    const pts = values.map((v, i) => [i / n * w, h - 4 - (v - lo) / (hi - lo) * (h - 8)]);
-    const line = pts.map(([x, y], i) => (i ? 'L' : 'M') + x.toFixed(1) + ' ' + y.toFixed(1)).join(' ');
-    return { line, area: line + ` L${w} ${h} L0 ${h} Z` };
-  };
-  function chart(id, label, unit, values, lo, hi) {
-    const p = sparkPath(values, lo, hi), avg = Math.round(values.reduce((a, b) => a + b, 0) / values.length), max = Math.max(...values);
-    return `<div class="ins-chart">
-      <div class="between"><span class="label">${label}</span><span class="ins-chart-now"><b data-chart-now="${id}">${values.at(-1)}</b> ${unit}</span></div>
-      <svg viewBox="0 0 300 64" preserveAspectRatio="none" role="img" aria-label="${label}"><path class="area" data-chart-area="${id}" d="${p.area}"/><path class="line" data-chart-line="${id}" d="${p.line}"/></svg>
-      <div class="ins-chart-foot"><span>${t('30 分钟前', '30 min ago')}</span><span>${t('平均', 'Avg')} <b data-chart-avg="${id}">${avg}</b> · ${t('峰值', 'Peak')} <b data-chart-max="${id}">${max}</b></span><span>${t('现在', 'Now')}</span></div>
-    </div>`;
-  }
-  function trends() {
-    return `<article class="panel ins-trends" data-card="latency-queue">
-      <div class="panel-head"><h2>Latency & Queue</h2>${demo()}</div>
-      ${chart('latency', t('数据延迟', 'Data latency'), 'ms', series(Engine.latency), 40, 205)}
-      ${chart('queued', t('待处理订单', 'Queued orders'), t('笔', 'orders'), series(Engine.queued), 20, 112)}
-    </article>`;
-  }
-
-  function riskBlocks() {
-    const items = Engine.riskBreakdown(), max = Math.max(1, ...items.map(x => x.count));
-    return `<article class="panel ins-risk" data-card="risk-controls">
-      <div class="panel-head"><h2>Risk Controls</h2>${demo()}</div>
-      <div class="between ins-risk-total"><span class="label">${t('风控拦截（24H）', 'Risk blocks (24H)')}</span><strong><span data-engine="blocked">${Engine.blocked()}</span><small> ${t('次', 'checks')}</small></strong></div>
-      <div data-risk-list data-total="${Engine.blocked()}">${riskRows(items, max)}</div>
-    </article>`;
-  }
-  const riskRows = (items, max) => items.map(r => `<div class="ins-risk-row"><div class="between"><span>${t(r.zh, r.en)}</span><b>${r.count}</b></div><div class="ins-bar thin amber"><span style="width:${r.count / max * 100}%"></span></div></div>`).join('');
-
   function feeds() {
     const rows = [
       [t('预测市场与价格', 'Markets & prices'), 'Gamma API'],
@@ -179,7 +149,7 @@ window.Insights = (() => {
       const k = k0 - j, r = Engine.rnd('log', k), m = pool[Math.floor(Engine.rnd('log-market', k) * pool.length)], at = k * logEvery;
       if (r < .22) return { at, stage: t('市场扫描', 'Scan'), tone: 'gray', text: t(`完成扫描 ${fmt(Engine.monitored())} 个市场 · ${Engine.latency(at)}ms`, `Scanned ${fmt(Engine.monitored())} markets · ${Engine.latency(at)}ms`) };
       if (r < .58) { const e = Engine.edge(m); return { at, stage: t('信号识别', 'Signal'), tone: '', text: `${short(m)} · ${e > 0 ? 'YES' : 'NO'} ${signed(e)}pp · ${t('评分', 'score')} ${Engine.score(m)}` }; }
-      if (r < .78) { const reason = Engine.riskBreakdown(at)[Math.floor(Engine.rnd('log-reason', k) * 5)]; return { at, stage: t('风控拦截', 'Blocked'), tone: 'amber', text: `${short(m)} · ${t(reason.zh, reason.en)}` }; }
+      if (r < .78) return { at, stage: t('风控拦截', 'Blocked'), tone: 'amber', text: short(m) };
       const side = Engine.edge(m) > 0 ? 'YES' : 'NO', price = side === 'YES' ? m.prices[0] : m.prices[1];
       return { at, stage: t('订单执行', 'Order'), tone: 'purple', text: `${short(m)} · ${side} ${t('限价', 'limit')} ${(price * 100).toFixed(1)}¢` };
     });
@@ -193,28 +163,15 @@ window.Insights = (() => {
   }
 
   function monitoring() {
-    return `<div class="ins-layout">${health()}${trends()}${riskBlocks()}${feeds()}${engineLog()}</div>`;
+    return `<div class="ins-layout">${health()}${engineLog()}${feeds()}${cta()}</div>`;
   }
 
   /* ---------- live chart and log updates without re-rendering ---------- */
-  let lastLog = 0, lastChart = 0;
+  let lastLog = 0;
   const setText = (sel, v) => document.querySelectorAll(sel).forEach(el => { if (el.textContent !== String(v)) el.textContent = v; });
   function tick() {
     if (!window.D || S.route !== 'agent' || S.agentTab !== 3) return;
     const now = Date.now();
-    if (now - lastChart >= 5000) {
-      lastChart = now;
-      for (const [id, fn, lo, hi] of [['latency', Engine.latency, 40, 205], ['queued', Engine.queued, 20, 112]]) {
-        const values = series(fn), p = sparkPath(values, lo, hi);
-        document.querySelector(`[data-chart-line="${id}"]`)?.setAttribute('d', p.line);
-        document.querySelector(`[data-chart-area="${id}"]`)?.setAttribute('d', p.area);
-        setText(`[data-chart-now="${id}"]`, values.at(-1));
-        setText(`[data-chart-avg="${id}"]`, Math.round(values.reduce((x, y) => x + y, 0) / values.length));
-        setText(`[data-chart-max="${id}"]`, Math.max(...values));
-      }
-    }
-    const list = document.querySelector('[data-risk-list]'), total = Engine.blocked();
-    if (list && list.dataset.total !== String(total)) { const items = Engine.riskBreakdown(); list.dataset.total = total; list.innerHTML = riskRows(items, Math.max(1, ...items.map(x => x.count))); }
     const k = Math.floor(now / logEvery);
     if (k !== lastLog) { lastLog = k; const el = document.querySelector('[data-engine-log]'); if (el) el.innerHTML = logRows(); }
   }

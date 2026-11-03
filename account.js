@@ -16,7 +16,7 @@ window.Account=(()=>{
     Tokenomics.ensure();
     const walletUSDC=S.walletBalance,walletABC=S.tokenWalletBalance,projectABC=S.tokenProjectBalance;
     const agentUSDC=U.performance().cashBalance;
-    const liquidityUSDC=S.services.filter(s=>!s.withdrawn).reduce((sum,s)=>sum+(s.claimableAmount??(s.status==='settled'?s.amount*.96:s.amount)),0);
+    const liquidityUSDC=S.services.filter(s=>!s.withdrawn).reduce((sum,s)=>{const info=U.serviceInfo(s);return sum+(info.status==='settled'?info.claimable:s.amount)},0);
     const walletValue=walletUSDC+Tokenomics.tokenValue(walletABC),projectValue=agentUSDC+liquidityUSDC+Tokenomics.tokenValue(projectABC);
     return {walletUSDC,walletABC,projectABC,agentUSDC,liquidityUSDC,walletValue,projectValue,total:walletValue+projectValue};
   }

@@ -43,7 +43,7 @@ window.Tokenomics=(()=>{
   }
   function marketCard(){
     const {t}=U;
-    return `<article class="panel tk-market"><div class="tk-market-heading"><div class="row">${tokenMark()}<div><h2>${t('项目代币','Project token')} <span class="tk-symbol">MAAT</span></h2></div></div><span class="tk-network">${icon('cube','',13)} Polygon</span></div><div class="tk-prices"><div><span class="label">${t('发行价格','Issue price')}</span><strong>— <small>USDC</small></strong></div><div><span class="label">${t('当前价格','Current price')}</span><strong>— <small>USDC</small></strong></div></div>${chart()}<div class="tk-market-source"><span>${t('数据来源','Source')} <a href="https://app.uniswap.org/" target="_blank" rel="noopener noreferrer">Uniswap ${icon('external','',10)}</a> · ${t('行情未发布','Market data unavailable')}</span><time>${t('更新','Updated')} —</time></div></article>`;
+    return `<article class="panel tk-market"><div class="tk-market-heading"><div class="row">${tokenMark()}<div><h2>${t('项目代币','Project token')} <span class="tk-symbol">MAAT</span></h2></div></div><span class="tk-network">${icon('cube','',13)} Polygon</span></div><div class="tk-prices"><div><span class="label">${t('发行价格','Issue price')}</span><strong>— <small>USDC</small></strong></div><div data-row="current-price"><span class="label">${t('当前价格','Current price')} ${demo()}</span><strong>${U.money(demoRate,false,4)} <small>USDC</small></strong></div></div>${chart()}<div class="tk-market-source"><span>${t('演示价格，正式行情取自','Demo price. Live price from')} <a href="https://app.uniswap.org/" target="_blank" rel="noopener noreferrer">Uniswap ${icon('external','',10)}</a></span><time>${t('更新','Updated')} —</time></div></article>`;
   }
   function metrics(){
     const {t}=U;
@@ -94,14 +94,18 @@ window.Tokenomics=(()=>{
     pendingDeposit=true;
     sheet(t('充值 MAAT','Deposit MAAT'),`<div class="confirm-row"><span>${t('钱包余额','Wallet balance')}</span><b>${money(S.tokenWalletBalance)} MAAT</b></div><div class="confirm-row"><span>${t('项目余额','Project balance')}</span><b>${money(S.tokenProjectBalance)} MAAT</b></div><label class="field-label" for="token-deposit-amount">${t('充值数量','Amount')}</label><div class="amount-field"><input id="token-deposit-amount" type="number" inputmode="decimal" min="0" step="any" placeholder="0.00" value="${Math.min(100,S.tokenWalletBalance)||''}"><span>MAAT</span></div><p id="token-deposit-error" class="field-error" role="status"></p><p class="tk-deposit-note">${t('Agent 从项目余额中扣除消耗。本次充值为演示。','Agent usage is deducted from your project balance. This deposit is a demo.')}</p><button class="btn primary block" data-action="token-deposit-confirm">${t('确认充值','Confirm deposit')}</button>`,'sheet','token-deposit');
   }
+  function depositToProject(n){
+    ensure();if(!Number.isFinite(n)||n<=0||n>S.tokenWalletBalance)return false;
+    S.tokenWalletBalance=Number((S.tokenWalletBalance-n).toFixed(8));S.tokenProjectBalance=Number((S.tokenProjectBalance+n).toFixed(8));
+    U.record('token-deposit',n,'MAAT');return true;
+  }
   function confirmDeposit(){
     if(!pendingDeposit||S.overlay!=='token-deposit')return;
     const input=document.getElementById('token-deposit-amount');if(!input)return;
     const n=Number(input.value),{t}=U;
     if(!Number.isFinite(n)||n<=0||n>S.tokenWalletBalance){const error=document.getElementById('token-deposit-error');if(error)error.textContent=t('请输入不超过钱包余额的有效数量','Enter an amount within your wallet balance');return}
     pendingDeposit=false;
-    S.tokenWalletBalance=Number((S.tokenWalletBalance-n).toFixed(8));S.tokenProjectBalance=Number((S.tokenProjectBalance+n).toFixed(8));
-    U.record('token-deposit',n,'MAAT');closeOverlay();render({preserve:true});toast(t('已充值到项目余额（演示）','Deposited to project balance (demo)'));
+    if(!depositToProject(n))return;closeOverlay();render({preserve:true});toast(t('已充值到项目余额（演示）','Deposited to project balance (demo)'));
   }
   function swapReview(){
     const q=quote(),{t,money}=U;if(!q.valid)return;
@@ -142,5 +146,5 @@ window.Tokenomics=(()=>{
     'token-swap-review':swapReview,'token-swap-confirm':swapConfirm,'token-deposit':deposit,'token-deposit-confirm':confirmDeposit,
     'token-consumption-details':()=>{location.hash='account/consumption'}
   };
-  return {render:renderPage,swapMarkup,actions,onInput,ensure,quote,tokenValue:amount=>amount*demoRate};
+  return {render:renderPage,swapMarkup,actions,onInput,ensure,quote,depositToProject,price:demoRate,tokenValue:amount=>amount*demoRate};
 })();

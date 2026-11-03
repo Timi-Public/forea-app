@@ -69,23 +69,10 @@ window.Engine = (() => {
     for (const m of pool) { if (out.length >= 3) break; if (!out.some(o => o.m.id === m.id)) out.push({ m, decision: decision(m) }); }
     return out.slice(0, 3);
   };
-  const reasons = [
-    { zh: '买卖价差过大', en: 'Spread too wide', w: .3 },
-    { zh: '盘口深度不足', en: 'Thin order book', w: .26 },
-    { zh: '临近结算', en: 'Near resolution', w: .18 },
-    { zh: '价格短时异动', en: 'Sudden price move', w: .16 },
-    { zh: '单事件敞口上限', en: 'Event exposure limit', w: .1 }
-  ];
-  const riskBreakdown = t => {
-    const total = blocked(t), raw = reasons.map(r => total * r.w), counts = raw.map(Math.floor);
-    let left = total - counts.reduce((a, b) => a + b, 0);
-    raw.map((v, i) => [v - Math.floor(v), i]).sort((a, b) => b[0] - a[0]).forEach(([, i]) => { if (left > 0) { counts[i]++; left--; } });
-    return reasons.map((r, i) => ({ ...r, count: counts[i] }));
-  };
   const hhmm = ms => new Date(ms).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Asia/Kuala_Lumpur' });
   const decisionLabel = d => ({ yes: 'YES', no: 'NO', watch: U.t('观望', 'WATCH') })[d];
   const decisionClass = d => ({ yes: 'yes-label', no: 'no-label', watch: 'hold-label' })[d];
-  return { hhmm, decisionLabel, decisionClass, hash, rnd, step, walk, monitored, signals, latency, queued, blocked, candidates, passed, pending, positions, activeServices, model, pct, edge, spread, daysLeft, factors, score, risk, decision, signalSet, signalTime, signalWindow, mixedSet, riskBreakdown };
+  return { hhmm, decisionLabel, decisionClass, hash, rnd, step, walk, monitored, signals, latency, queued, blocked, candidates, passed, pending, positions, activeServices, model, pct, edge, spread, daysLeft, factors, score, risk, decision, signalSet, signalTime, signalWindow, mixedSet };
 })();
 
 // Live figures on Agent pages: update text in place; re-render once per 5-minute signal window.
