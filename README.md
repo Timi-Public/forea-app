@@ -1,4 +1,4 @@
-# Forea
+# Maat
 
 A bright, mobile app prototype for prediction-market Agent execution and liquidity services. Open it on a phone for the app experience, or on a computer for a phone preview and screen board.
 
@@ -40,4 +40,4 @@ Public market titles, probabilities, liquidity, volume, order books and transact
 
 Some product details are intentionally marked as planned or proposed. The illustrative 4% liquidity fee is paid by the user; it is not a promised yield.
 
-Visual direction: bright, calm white/gray surfaces and green actions inspired by [Kalshi](https://kalshi.com/). Forea has its own brand and is not presented as a Kalshi or Polymarket product.
+Visual direction: bright, calm white/gray surfaces and green actions inspired by [Kalshi](https://kalshi.com/). Maat has its own brand and is not presented as a Kalshi or Polymarket product.

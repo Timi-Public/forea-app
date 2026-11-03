@@ -4,7 +4,7 @@ window.Account=(()=>{
   const palette=[['#edb45e','#996432'],['#92cbb8','#356d68'],['#a8b8e5','#586baf'],['#d5a8ca','#925d8b'],['#a7c77a','#5b783f'],['#c5b2e2','#7960a5'],['#e2a397','#a86151'],['#99c7df','#447c99']];
   let draft=null,draftKey='';
   function profile(){
-    try{const p=JSON.parse(localStorage.getItem(key())||'{}');return {nickname:String(p.nickname||'Forea Explorer').slice(0,24),phone:String(p.phone||'').slice(0,24),avatar:Number.isInteger(p.avatar)?Math.abs(p.avatar)%24:0}}catch{return {nickname:'Forea Explorer',phone:'',avatar:0}}
+    try{const p=JSON.parse(localStorage.getItem(key())||'{}');return {nickname:String(p.nickname||U.brand+' Explorer').slice(0,24),phone:String(p.phone||'').slice(0,24),avatar:Number.isInteger(p.avatar)?Math.abs(p.avatar)%24:0}}catch{return {nickname:U.brand+' Explorer',phone:'',avatar:0}}
   }
   function avatar(seed=profile().avatar){
     const [bg,ink]=palette[seed%palette.length],style=Math.floor(seed/8)%3;

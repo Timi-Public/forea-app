@@ -16,7 +16,7 @@ Account 的 Activity 以查询地址的 Polygon 公开历史为来源，默认�
 
 ## Brand Personality
 
-明亮、清晰、舒服。用户本轮指定参考 [Kalshi](https://kalshi.com/) 的浅色与绿色操作体系；品牌暂沿用 Forea，保留独立标识。Polymarket 是数据与卡片结构参考，不复制第三方品牌。
+明亮、清晰、舒服。用户本轮指定参考 [Kalshi](https://kalshi.com/) 的浅色与绿色操作体系；英文品牌名定为 Maat（2026-11-03，曾用工作名 Forea），中文名待定；标识仍是 Forea 时期的抽象标，待按新名重做。Polymarket 是数据与卡片结构参考，不复制第三方品牌。
 
 ## Anti-references
 

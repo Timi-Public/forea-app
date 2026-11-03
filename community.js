@@ -51,7 +51,7 @@ window.Community=(()=>{
   async function copy(text){try{await navigator.clipboard.writeText(text);toast(U.t('已复制','Copied'))}catch{toast(U.t('复制失败，请长按复制','Copy failed. Long-press to copy'))}}
   const actions={
     'invite-copy':kind=>{const v=kind==='link'?inviteLink():S.walletAddress;if(v)copy(v)},
-    'invite-share':async()=>{const url=inviteLink();if(!url)return;if(navigator.share){try{await navigator.share({title:'Forea',url})}catch{}}else copy(url)},
+    'invite-share':async()=>{const url=inviteLink();if(!url)return;if(navigator.share){try{await navigator.share({title:U.brand,url})}catch{}}else copy(url)},
     'invite-manage':()=>toast(U.t('邀请管理即将开放','Invite management is coming soon'))
   };
   return {card,invite,actions,period,demo};

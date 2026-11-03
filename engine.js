@@ -93,7 +93,7 @@ window.Engine = (() => {
   let lastWindow = Engine.signalWindow();
   const setText = (sel, v) => document.querySelectorAll(sel).forEach(el => { if (el.textContent !== String(v)) el.textContent = v; });
   setInterval(() => {
-    if (!window.D || S.route !== 'agent') return;
+    if (!window.D || !['agent', 'home'].includes(S.route)) return;
     setText('[data-engine="latency"],#latency', Engine.latency());
     setText('[data-engine="queued"],#queued', Engine.queued());
     setText('[data-engine="blocked"],#blocked', Engine.blocked());
@@ -101,6 +101,6 @@ window.Engine = (() => {
     const nodes = document.querySelectorAll('.engine-node');
     if (nodes.length) { const k = Math.floor(Date.now() / 1800) % nodes.length; nodes.forEach((n, i) => n.classList.toggle('active', i === k)); }
     const w = Engine.signalWindow();
-    if (w !== lastWindow) { lastWindow = w; if ([0, 1].includes(S.agentTab) && !S.overlay && document.activeElement?.tagName !== 'INPUT') render({ preserve: true }); }
+    if (w !== lastWindow) { lastWindow = w; if (((S.route === 'agent' && [0, 1].includes(S.agentTab)) || (S.route === 'home' && S.ovTab === 1)) && !S.overlay && document.activeElement?.tagName !== 'INPUT') render({ preserve: true }); }
   }, 1000);
 })();
