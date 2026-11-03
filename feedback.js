@@ -7,7 +7,10 @@ window.Feedback=(()=>{
   const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
   const statusLabel=s=>({open:t('待改','Open'),done:t('已改','Done'),discuss:t('要讨论','Discuss'),closed:t('已确认','Closed')})[s]||s;
   const statusTone=s=>({open:'amber',done:'',discuss:'purple',closed:'gray'})[s]||'gray';
-  let rules=null,rulesLoading=false,ruleFilter='all';
+  let rules=null,rulesLoading=false,ruleFilter='all',panelTab='notes';
+  const PAGE_MODULES={home:['home'],agent:['agent'],liquidity:['liquidity'],tokenomics:['token'],swap:['token'],account:['assets','community']};
+  const RULE_TONE={set:'',product:'purple',demo:'amber',open:'gray'};
+  const pageRules=()=>{const ids=PAGE_MODULES[page().split('/')[0]]||[];return rules?rules.modules.filter(m=>ids.includes(m.id)):[]};
   let key='',me='',notes=[],open=false,scope='page',mode=null,draft=null,showPins=true,timer=null,root,pins,screenPins;
 
   const page=()=>(location.hash.slice(1)||'home').split('?')[0];
@@ -75,15 +78,21 @@ window.Feedback=(()=>{
     const pageCount=notes.filter(n=>n.page===page()&&n.status!=='closed').length;
     return `<div class="fb-head"><h2>${t('批注','Notes')}</h2><span class="fb-me">${esc(me)}</span><button class="fb-x" data-fb="close" aria-label="${t('关闭','Close')}">✕</button></div>
       <div class="fb-actions"><button data-fb="box">${t('圈出来','Circle')}</button><button data-fb="text">${t('改文字','Edit text')}</button><button data-fb="page">${t('整页说明','Page note')}</button></div>
-      <a class="fb-rules-link" href="#rules" data-fb="close">${t('规则文档','Rules')}</a>
-      <div class="fb-scope"><button data-fb="scope" data-v="page" class="${scope==='page'?'on':''}">${t('本页','This page')} ${pageCount}</button><button data-fb="scope" data-v="all" class="${scope==='all'?'on':''}">${t('全部','All')} ${notes.filter(n=>n.status!=='closed').length}</button><label class="fb-toggle"><input type="checkbox" data-fb="pins" ${showPins?'checked':''}>${t('显示框','Show boxes')}</label></div>
+      <div class="fb-tabs" role="tablist"><button role="tab" data-fb="ptab" data-v="notes" class="${panelTab==='notes'?'on':''}" aria-selected="${panelTab==='notes'}">${t('批注','Notes')} ${pageCount}</button><button role="tab" data-fb="ptab" data-v="rules" class="${panelTab==='rules'?'on':''}" aria-selected="${panelTab==='rules'}">${t('本页规则','Page rules')} ${rules?pageRules().reduce((n,m)=>n+m.rules.length,0):''}</button></div>
+      ${panelTab==='rules'?rulesTabHTML():`<div class="fb-scope"><button data-fb="scope" data-v="page" class="${scope==='page'?'on':''}">${t('本页','This page')} ${pageCount}</button><button data-fb="scope" data-v="all" class="${scope==='all'?'on':''}">${t('全部','All')} ${notes.filter(n=>n.status!=='closed').length}</button><label class="fb-toggle"><input type="checkbox" data-fb="pins" ${showPins?'checked':''}>${t('显示框','Show boxes')}</label></div>
       <div class="fb-list">${list.length?list.map(n=>`<article class="fb-item" data-fb="go" data-id="${n.id}">
         <div class="fb-meta"><b>#${n.id}</b><span>${esc(n.author)}</span><span>${when(n.created_at)}</span>${scope==='all'?`<span class="fb-page">${esc(n.page)}</span>`:''}<span class="badge ${statusTone(n.status)}">${statusLabel(n.status)}</span></div>
         ${n.kind==='text'?`<p class="fb-diff"><del>${esc(n.old_text)}</del><ins>${esc(n.new_text)}</ins></p>`:''}
         ${n.body?`<p>${esc(n.body)}</p>`:''}
         ${n.reply?`<p class="fb-reply">${esc(n.replied_by||'')}：${esc(n.reply)}</p>`:''}
         ${n.status==='done'?`<div class="fb-item-actions"><button data-fb="status" data-id="${n.id}" data-v="closed">${t('确认','Confirm')}</button><button data-fb="status" data-id="${n.id}" data-v="open">${t('没改好','Reopen')}</button></div>`:''}
-      </article>`).join(''):`<p class="fb-empty">${scope==='page'?t('这一页还没有批注','No notes on this page yet'):t('还没有批注','No notes yet')}</p>`}</div>`;
+      </article>`).join(''):`<p class="fb-empty">${scope==='page'?t('这一页还没有批注','No notes on this page yet'):t('还没有批注','No notes yet')}</p>`}</div>`}`;
+  }
+  function rulesTabHTML(){
+    if(!rules){loadRules();return `<p class="fb-empty">${t('正在加载','Loading')}</p>`}
+    const mods=pageRules(),st=rules.statuses;
+    const body=mods.length?mods.map(m=>`<h3 class="fb-rules-mod">${esc(m.title)}</h3>${m.rules.map(r=>`<div class="fb-rule"><div><h3>${esc(r[0])}</h3><p>${esc(r[1])}</p><small>${esc(r[3])}</small></div><span class="badge ${RULE_TONE[r[2]]}">${esc(st[r[2]])}</span></div>`).join('')}`).join(''):`<p class="fb-empty">${t('这一页没有单独的规则','No rules specific to this page')}</p>`;
+    return `<div class="fb-page-rules">${body}</div><a class="fb-rules-link" href="#rules" data-fb="close">${t('查看全部规则','All rules')}</a>`;
   }
   function renderUI(){
     if(!root)return;syncFrame();
@@ -161,7 +170,7 @@ window.Feedback=(()=>{
   async function loadRules(){
     if(rulesLoading)return;rulesLoading=true;
     try{rules=(await call('/docs/rules')).doc.body}catch{rules={updated:'—',statuses:{},modules:[]}}
-    rulesLoading=false;if(page()==='rules'&&typeof render==='function')render({preserve:true});
+    rulesLoading=false;renderUI();if(page()==='rules'&&typeof render==='function')render({preserve:true});
   }
   if(window.Pages)Pages.rules=rulesPage;
 
@@ -172,7 +181,7 @@ window.Feedback=(()=>{
     const el=e.target.closest('[data-fb]');if(!el||!el.closest('.fb-root,.fb-rules'))return;
     e.stopImmediatePropagation();
     const a=el.dataset.fb,id=Number(el.dataset.id);
-    if(a==='toggle'){open=!open;mode=null;if(draft){restorePreview();draft=null}renderUI();if(open)refresh()}
+    if(a==='toggle'){open=!open;mode=null;if(draft){restorePreview();draft=null}renderUI();if(open){refresh();if(!rules)loadRules()}}
     else if(a==='close'){open=false;renderUI()}
     else if(a==='box'||a==='text'){mode=a;renderUI()}
     else if(a==='page'){draft={kind:'page'};renderUI()}
@@ -182,6 +191,7 @@ window.Feedback=(()=>{
     else if(a==='scope'){scope=el.dataset.v;renderUI()}
     else if(a==='status'){setStatus(id,el.dataset.v)}
     else if(a==='go'&&!e.target.closest('button'))focusNote(id);
+    else if(a==='ptab'){panelTab=el.dataset.v;renderUI()}
     else if(a==='rule-add'){draft={kind:'page',module:el.dataset.module,moduleTitle:el.dataset.title};open=false;renderUI()}
     else if(a==='rule-filter'){ruleFilter=el.dataset.v;if(typeof render==='function')render({preserve:true})}
   }

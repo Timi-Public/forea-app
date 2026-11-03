@@ -64,3 +64,9 @@
 .fb-rule .badge{flex:none;padding:3px 8px;font-size:11px}
 .fb-rule .badge .dot{display:none}
 .fb-rule.added h3{color:var(--muted);font-weight:500;font-size:12px}
+.fb-tabs{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:10px;padding:3px;border-radius:10px;background:var(--panel2)}
+.fb-tabs button{min-height:34px;border-radius:8px;font-size:12px;font-weight:550;color:var(--muted)}
+.fb-tabs button.on{background:var(--panel);color:var(--text);box-shadow:0 1px 2px oklch(0% 0 0 / .12)}
+.fb-rules-mod{font-size:12px;color:var(--muted);font-weight:600;margin:14px 0 2px}
+.fb-page-rules .fb-rule{padding:10px 0}
+.fb-page-rules .fb-rule p{font-size:12px}
