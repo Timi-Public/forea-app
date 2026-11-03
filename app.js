@@ -90,7 +90,7 @@ function render(options={}){
   document.documentElement.lang=S.lang==='zh'?'zh-CN':'en';
   document.body.classList.toggle('review-mode',params.has('embed'));
   const fn=Pages[S.route]||Pages.home;
-  document.title=({home:'Overview',agent:'Agent Trading',liquidity:'Liquidity Marketplace',tokenomics:'Tokenomics',account:'Portfolio',swap:'Swap',whitepaper:'Whitepaper',guide:'Quick Guide',sources:'Data Sources'})[S.route]+' · '+U.brand;
+  document.title=({home:'Overview',agent:'Agent Trading',liquidity:'Liquidity Marketplace',tokenomics:'Tokenomics',account:'Portfolio',swap:'Swap',whitepaper:'Whitepaper',guide:'Quick Guide',sources:'Data Sources',rules:'Rules'})[S.route]+' · '+U.brand;
   document.getElementById('app').innerHTML=header()+`<main id="main" class="main">${fn()}${footer()}</main><button class="to-top" data-action="top" aria-label="${U.t('返回顶部','Back to top')}">${icon('up','',18)}</button><button class="review-fab" data-action="review">${icon('settings','',11)}${U.t('设计验收','Design review')}</button>`;
   if(options.preserve)document.getElementById('main').scrollTop=y;
   if(options.focus){const el=document.getElementById(options.focus);el?.focus({preventScroll:true});if(el?.type==='search')el.setSelectionRange(el.value.length,el.value.length)}
@@ -98,7 +98,7 @@ function render(options={}){
 }
 function route(){
   const [path,sub]=location.hash.replace('#','').split('/');
-  S.route=['agent','liquidity','tokenomics','account','swap','whitepaper','sources','guide'].includes(path)?path:'home';
+  S.route=['agent','liquidity','tokenomics','account','swap','whitepaper','sources','guide','rules'].includes(path)?path:'home';
   if(S.route==='agent')S.agentTab=sub==='execution'?2:sub==='analysis'?1:sub==='monitoring'?3:0;
   if(S.route==='liquidity')S.liquidityTab=sub==='services'?1:0;
   S.accountSub=S.route==='account'&&['profile','consumption','activity'].includes(sub)?sub:'';
@@ -130,7 +130,7 @@ function menu(view='root'){const {t}=U;const pend=t('待公布','TBA'),undeploye
   const views={contracts:['Smart Contracts','code-file',[[t('项目代币合约 MAAT','Token contract MAAT'),undeployed],[t('Agent Trading 业务合约','Agent Trading contract'),undeployed],[t('Liquidity Marketplace 业务合约','Liquidity Marketplace contract'),undeployed],[t('网络','Network'),t('Polygon（137）','Polygon (137)')]],t('部署后在这里公开合约地址、权限与区块浏览器验证记录','Addresses, permissions and explorer verification appear here after deployment')],
     security:['Security & Audit','shield',[[t('安全审计报告','Audit report'),t('待发布','Not yet published')],[t('审计机构','Auditor'),pend],[t('代币合约验证状态','Token contract verification'),t('待部署验证','Pending deployment')]],t('报告发布后在这里提供原文与链接','The report and links appear here once published')],
     community:['Community','users',[['X',pend,'x-logo'],['Telegram',pend,'send'],['Discord',pend,'chat']],t('官方渠道开通后在这里公布，请只认这里的链接','Official channels will be listed here; trust only links shown here')]};
-  const root=[['book','Whitepaper',t('项目愿景、产品机制与代币经济','Vision, products and token economy'),'#whitepaper'],['file','Documentation',t('使用指南与数据来源','Guides and data sources'),'#guide'],['code-file','Smart Contracts',t('合约地址与权限信息','Contract addresses and permissions'),'contracts'],['shield','Security & Audit',t('审计状态与公开报告','Audit status and public reports'),'security'],['users','Community',t('官方社区与社交渠道','Official community channels'),'community']];
+  const root=[['book','Whitepaper',t('项目愿景、产品机制与代币经济','Vision, products and token economy'),'#whitepaper'],['file','Documentation',t('使用指南与数据来源','Guides and data sources'),'#guide'],['code-file','Smart Contracts',t('合约地址与权限信息','Contract addresses and permissions'),'contracts'],['shield','Security & Audit',t('审计状态与公开报告','Audit status and public reports'),'security'],['users','Community',t('官方社区与社交渠道','Official community channels'),'community'],...(window.Feedback?.me?[['list','Rules',t('已定规则与待定事项','Agreed rules and open items'),'#rules']]:[])];
   const v=views[view];
   const body=v?`<div class="more-detail-head"><button class="icon-btn more-back" data-action="more-view" data-value="root" aria-label="${t('返回','Back')}">${icon('chevron','',15)}</button>${icon(v[1],'',18)}<b>${v[0]}</b></div>${v[2].map(([a,b,ic])=>`<div class="more-row">${ic?icon(ic,'',16):''}<span>${a}</span><em>${b}</em></div>`).join('')}<p class="more-note">${v[3]}</p>`
     :root.map(([ic,title,desc,target])=>target.startsWith('#')?`<a class="more-item" href="${target}">${icon(ic,'',19)}<span><b>${title}</b><small>${desc}</small></span></a>`:`<button class="more-item" data-action="more-view" data-value="${target}">${icon(ic,'',19)}<span><b>${title}</b><small>${desc}</small></span>${icon('chevron','muted',14)}</button>`).join('');

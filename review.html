@@ -14,6 +14,7 @@
 <main id="boards"></main>
 <footer>12 个真实市场 · 3 份 CLOB 订单簿 · 24 笔公开成交快照 · 无外部 JS、字体、图片依赖。市场资料为公开来源，账户及模型为设计演示。</footer>
 <script>
+try{const k=new URLSearchParams(location.search).get('fb');if(k){localStorage.setItem('forea-fb-key',k);const q=new URLSearchParams(location.search);q.delete('fb');history.replaceState(null,'',location.pathname+(q.toString()?'?'+q:'')+location.hash)}}catch{}
 const screens=[
 ['overview','01 / Overview','准备 USDC、选择参与方式、确认投入，一眼看懂两个产品。','home','inactive'],
 ['agent','02 / Agent Trading · 总览','六组卡片，固定全局导航，My Agent 为首要信息。','agent','running'],
