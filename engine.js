@@ -22,7 +22,8 @@ window.Engine = (() => {
   const candidates = t => Math.round(walk('candidates', 600000, 260, 480, t));
   const passed = t => { const s = signals(t); return s - Math.round(s * walk('pass', 600000, .1, .22, t)); };
   const pending = t => Math.min(passed(t), step('pending', 480000, 9, 35, t));
-  const positions = t => { const n = step('positions', 480000, 30, 100, t), m = monitored(); return m ? Math.min(n, Math.floor(m * .13)) : n; };
+  // Leo 11-02, re-sent 11-05: positions are 8–13% of monitored markets (never above monitored); new value every 8 minutes.
+  const positions = t => { const m = monitored(); return m ? Math.round(m * (.08 + rnd('positions', Math.floor((t ?? Date.now()) / 480000)) * .05)) : step('positions', 480000, 30, 100, t); };
   const activeServices = eligible => eligible ? Math.max(1, Math.round(eligible * walk('services', 1800000, .11, .17))) : 0;
 
   // Model estimate: 2–5 pp away from the market YES price, rounded to 0.1 pp so YES + NO = 100.
@@ -62,13 +63,17 @@ window.Engine = (() => {
     return pool.slice(g * 3, g * 3 + 3);
   };
   const signalTime = (t = Date.now()) => signalWindow(t) * 300000;
-  // Market Monitor rows: one YES, one NO and one WATCH (Leo 11-02), stable for 8 minutes.
-  const mixedSet = (skip = []) => {
-    const pool = U.featured().filter(m => !skip.includes(m.id)), out = [];
-    for (const want of ['yes', 'no', 'watch']) { const m = pool.find(x => decision(x) === want && !out.some(o => o.m.id === x.id)); if (m) out.push({ m, decision: want }); }
-    for (const m of pool) { if (out.length >= 3) break; if (!out.some(o => o.m.id === m.id)) out.push({ m, decision: decision(m) }); }
+  // Market Monitor (Leo 11-02, re-sent 11-05): three real events per subtab, rotating every 8 minutes.
+  // 候选市场 = one 买入 YES, one 买入 NO, one 观望; 当前持仓 = three other events, held side follows the model.
+  const monitorPool = (t = Date.now()) => { const pool = U.featured(), k = pool.length ? (Math.floor(t / 480000) * 3) % pool.length : 0; return pool.slice(k).concat(pool.slice(0, k)); };
+  const pick = (pool, wants, sideOf) => {
+    const out = [];
+    for (const want of wants) { const m = pool.find(x => sideOf(x) === want && !out.some(o => o.m.id === x.id)); if (m) out.push({ m, side: want }); }
+    for (const m of pool) { if (out.length >= 3) break; if (!out.some(o => o.m.id === m.id)) out.push({ m, side: sideOf(m) }); }
     return out.slice(0, 3);
   };
+  const candidateSet = t => pick(monitorPool(t), ['yes', 'no', 'watch'], decision);
+  const holdingSet = t => { const skip = candidateSet(t).map(x => x.m.id); return pick(monitorPool(t).filter(m => !skip.includes(m.id)), ['yes', 'no'], m => edge(m) >= 0 ? 'yes' : 'no'); };
   const hhmm = ms => new Date(ms).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Asia/Kuala_Lumpur' });
   const decisionLabel = d => ({ yes: 'YES', no: 'NO', watch: U.t('观望', 'WATCH') })[d];
   const decisionClass = d => ({ yes: 'yes-label', no: 'no-label', watch: 'hold-label' })[d];
@@ -81,22 +86,22 @@ window.Engine = (() => {
     const volume = Math.round((38600000 + Math.max(0, t - Date.UTC(2026, 10, 1)) / 3600000 * 52000) / 1000) * 1000;
     return { assets: agents + liquidity, volume, markets: positions(t), liquidity };
   };
-  return { platform, hhmm, decisionLabel, decisionClass, hash, rnd, step, walk, monitored, signals, latency, queued, blocked, candidates, passed, pending, positions, activeServices, model, pct, edge, spread, daysLeft, factors, score, risk, decision, signalSet, signalTime, signalWindow, mixedSet };
+  return { platform, hhmm, decisionLabel, decisionClass, hash, rnd, step, walk, monitored, signals, latency, queued, blocked, candidates, passed, pending, positions, activeServices, model, pct, edge, spread, daysLeft, factors, score, risk, decision, signalSet, signalTime, signalWindow, candidateSet, holdingSet };
 })();
 
-// Live figures on Agent pages: update text in place; re-render once per 5-minute signal window.
+// Live figures on Agent pages: update text in place; re-render when the 5-minute signal or 8-minute monitor window turns.
 (() => {
-  let lastWindow = Engine.signalWindow();
+  let lastWindow = Engine.signalWindow() + ':' + Math.floor(Date.now() / 480000);
   const setText = (sel, v) => document.querySelectorAll(sel).forEach(el => { if (el.textContent !== String(v)) el.textContent = v; });
   setInterval(() => {
     if (!window.D || !['agent', 'home'].includes(S.route)) return;
     setText('[data-engine="latency"],#latency', Engine.latency());
     setText('[data-engine="queued"],#queued', Engine.queued());
     setText('[data-engine="blocked"],#blocked', Engine.blocked());
-    for (const key of ['signals', 'passed', 'pending', 'candidates', 'positions']) setText(`[data-engine="${key}"]`, Engine[key]());
+    for (const key of ['signals', 'passed', 'pending', 'candidates', 'positions']) setText(`[data-engine="${key}"]`, Number(Engine[key]()).toLocaleString('en-US'));
     const nodes = document.querySelectorAll('.engine-node');
     if (nodes.length) { const k = Math.floor(Date.now() / 1800) % nodes.length; nodes.forEach((n, i) => n.classList.toggle('active', i === k)); }
-    const w = Engine.signalWindow();
+    const w = Engine.signalWindow() + ':' + Math.floor(Date.now() / 480000);
     if (w !== lastWindow) { lastWindow = w; if (((S.route === 'agent' && [0, 1].includes(S.agentTab)) || (S.route === 'home' && S.ovTab === 1)) && !S.overlay && document.activeElement?.tagName !== 'INPUT') render({ preserve: true }); }
   }, 1000);
 })();

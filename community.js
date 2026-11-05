@@ -23,7 +23,7 @@ window.Community=(()=>{
     const {t}=U,p=period(),s=demo.settled,c=demo.current,total=s.diff+s.direct+s.fee;
     const payout=p.paid?t(`已发放 ${payDate(p.month)}`,`Paid ${payDate(p.month)}`):t(`待发放 ${payDate(p.month)}`,`Payout ${payDate(p.month)}`);
     const cell=(label,value,unit)=>`<div><span class="cm-label">${label}</span><b>${value}${unit?` <small>${unit}</small>`:''}</b></div>`;
-    return `<article class="panel community-card" data-card="community"><div class="panel-head"><div class="row">${icon('users','',20)}<h2>Community & Rewards</h2><span class="demo-tag">${t('演示','DEMO')}</span></div></div>`
+    return `<article class="panel community-card" data-card="community"><div class="panel-head"><div class="row">${icon('users','',20)}<h2>Community & Rewards</h2></div></div>`
       +`<section class="cm-period"><div class="between"><h3>${monthName(p.last)}</h3><span class="cm-state">${icon('check','',13)}${t('已核定','Verified')}</span></div>`
       +`<div class="cm-main"><div class="cm-level"><b>${s.level}</b><span>${t('社区等级','Level')}</span></div><div class="cm-stack">`
       +`<div><span class="cm-label">${t('日均社区业绩','Daily community volume')}</span><strong>${volume(s.daily)} <small>USDC</small></strong></div>`

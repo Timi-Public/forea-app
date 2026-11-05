@@ -50,6 +50,12 @@ for (const market of markets.slice(0,3)) {
     trades.push(...ts.map(t=>({conditionId:market.conditionId,marketId:market.id,question:market.question,timestamp:t.timestamp,side:t.side,outcome:t.outcome,price:Number(t.price),size:Number(t.size),notional:Number(t.price)*Number(t.size),transactionHash:t.transactionHash,source:'Polymarket public market trades, not PolyAgent account trades',fetchedAt:new Date().toISOString()})));
   } catch(e) { errors.push({kind:'trades',marketId:market.id,message:e.message.slice(0,180)}); }
 }
+// 24H YES price history ending at capture time, for the Market Monitor trend line (CLOB appends a live point after endTs; dropped here).
+const histEnd=Math.floor(now/1000);
+for (const market of markets) {
+  try { const h=await read('https://clob.polymarket.com/prices-history?market='+encodeURIComponent(market.clobTokenIds[0])+'&startTs='+(histEnd-86400)+'&endTs='+histEnd+'&fidelity=60'); market.history=(h.history||[]).filter(x=>x.t<=histEnd).map(x=>[x.t,Number(x.p)]); }
+  catch(e) { errors.push({kind:'history',marketId:market.id,message:e.message.slice(0,180)}); }
+}
 const snapshot={schemaVersion:1,kind:'public-market-snapshot',fetchedAt:new Date().toISOString(),scope:'A bounded sample of at most 12 distinct events, selected from the first 500 active markets ordered by volume24hr; not all Polymarket markets.',selection:{queryLimit:500,minimumLiquidity:50000,minimumYesProbability:0.02,maximumYesProbability:0.98,requiresFutureEndDate:true,minimumDaysOpen:7,oneMarketPerEvent:true},summary:{sampleMarketCount:markets.length,sampleVolume24hr:markets.reduce((s,m)=>s+m.volume24hr,0),sampleLiquidity:markets.reduce((s,m)=>s+m.liquidity,0),globalMarketCount:null,globalEventCount:Number(openEvents.pagination?.totalResults)||null,eligibleEventCount:Number(eligibleEvents.pagination?.totalResults)||null,eligibleEventRule:'open events with Gamma liquidity_min=100000',globalTradeCount24h:null},markets,orderBooks,trades,errors};
 snapshot.book=orderBooks[0]||null;
 snapshot.markets.forEach(m=>{m.tokenIds=m.clobTokenIds;m.prices=m.outcomePrices;m.tagLabels=m.tags.map(t=>t.label);});

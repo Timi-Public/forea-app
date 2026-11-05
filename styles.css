@@ -91,3 +91,38 @@ button.more-item:hover,button.more-item:focus-visible{background:var(--panel2)}
 
 /* 11-03 echo: category and topic chips share one text size and height; topics stay one tone lighter */
 .topic-row button{font-size:11px;min-height:36px;padding:7px 13px;border-radius:7px}
+
+/* 11-05 Leo: Market Monitor subtabs follow his three mock images: title with the tag at top right, one data line below */
+.monitor-row .monitor-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.monitor-row .monitor-top .title{flex:1;min-width:0}
+.monitor-row .monitor-top>span{flex:none;margin-top:1px}
+.holding-data{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-top:8px}
+.holding-prob{display:flex;align-items:baseline;gap:7px}
+.holding-prob b{font-size:18px;font-weight:650;font-variant-numeric:tabular-nums}
+.holding-prob span{font-size:11px;font-weight:600}
+.spark{flex:none;display:block}
+.candidate-data{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;margin-top:9px;font-size:11px;color:var(--muted);white-space:nowrap}
+.candidate-data span:nth-child(2){justify-self:center}
+.candidate-data span:last-child{justify-self:end}
+.candidate-data b{color:var(--text);font-weight:600}
+.trade-mini{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.trade-mini>div{flex:1;min-width:0}
+.trade-meta{margin-top:5px;font-size:11px;color:var(--muted)}
+.trade-amt{flex:none;font-size:13px;font-weight:600;font-variant-numeric:tabular-nums}
+.monitor-panel .monitor-more{margin-top:16px;gap:6px;min-height:40px;background:transparent;border-color:var(--line);border-radius:999px;color:var(--muted);font-weight:500;font-size:12px}
+.monitor-panel .monitor-more:hover{background:var(--hover);color:var(--text)}
+@media(max-width:370px){.candidate-data{font-size:10px;gap:6px}.monitor-stats .label{white-space:nowrap}.monitor-stats strong{font-size:20px}}
+
+/* 11-05 Leo: Liquidity Service card follows his mock: title + 12H, three terms with captions, black button.
+   流动性担保资金 keeps Leo's 11-02 rename of 服务资金. */
+.service-offer.panel{display:block;padding:18px 18px 16px;background:var(--panel);border-color:var(--line)}
+.service-offer .offer-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.service-offer .offer-head h3{display:flex;align-items:center;gap:7px;font-size:14px;font-weight:650}
+.service-offer .offer-head h3 .icon{color:var(--muted)}
+.service-offer .offer-head>span{font-size:11px;color:var(--muted)}
+.service-offer .offer-spec{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:14px 0 14px;padding:0;border:0}
+.service-offer .offer-spec .label{display:block;font-size:11px;color:var(--muted);white-space:nowrap}
+.service-offer .offer-spec b{display:block;font-size:17px;margin-top:6px;font-variant-numeric:tabular-nums}
+.service-offer .offer-spec small{display:block;margin-top:4px;font-size:11px;color:var(--muted);font-weight:400}
+.btn.ink{background:var(--text);color:var(--panel);min-height:42px;border-radius:999px;gap:6px}
+.btn.ink:hover{opacity:.88}
