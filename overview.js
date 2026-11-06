@@ -74,7 +74,7 @@ window.Overview=(()=>{
   function activity(){
     const tab=S.ovTab||0;
     const tabs=[t('交易动态','Trades'),t('交易信号','Signals'),t('流动性','Liquidity')];
-    const body=tab===0?`<div class="ov-trades">${[...D.trades].sort((a,b)=>b.timestamp-a.timestamp).slice(0,4).map(tr=>U.tradeRow(tr)).join('')}</div>`
+    const body=tab===0?`<div class="ov-empty">${icon('list','',22)}<b>${t('暂无成交','No trades yet')}</b><p>${t('已确认的预测市场成交记录将在这里按时间顺序展示','Confirmed prediction market trades will appear here in time order')}</p></div>`
       :tab===1?`<div class="ov-signals">${Engine.signalSet().map((m,i)=>U.signalRow(m,i)).join('')}</div>`:services();
     const link=[['#agent/execution',t('查看完整交易数据','View all trade data')],['#agent',t('查看全部信号','View all signals')],['#liquidity',t('查看流动性市场','Open Liquidity Marketplace')]][tab];
     return `<article class="panel ov-activity" data-card="ov-activity"><div class="panel-head"><div class="row">${icon('chart','',19)}<h2>Live Market Activity</h2></div></div><div class="ov-tabs" role="tablist">${tabs.map((l,i)=>`<button role="tab" aria-selected="${tab===i}" class="${tab===i?'active':''}" data-action="ov-tab" data-value="${i}">${l}</button>`).join('')}</div><div class="ov-activity-body" role="tabpanel">${body}</div><a class="ov-row-link" href="${link[0]}"><span>${link[1]}</span>${icon('external','',14)}</a></article>`;

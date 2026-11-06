@@ -144,6 +144,3 @@
 .ov-hero-svg .n2{animation-delay:2.6s}
 .ov-hero-svg .n3{animation-delay:3.9s}
 @media (prefers-reduced-motion:reduce){.ov-hero-svg .flow{animation:none;display:none}}
-
-/* 11-06: home Trades tab shows the latest public Polymarket fills instead of an empty state */
-.ov-trades .monitor-row:first-child{padding-top:4px}
