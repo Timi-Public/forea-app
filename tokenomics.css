@@ -12,3 +12,12 @@
 /* 11-06 走查 #51: 充值 stays on the balance line */
 .tk-balance-row{align-items:center}
 .tk-balance-row>div{flex-direction:row;align-items:center;gap:10px}
+
+/* 11-06 echo: token figures filled; burn track and history rows */
+.tk-supply-track>span{display:block;height:100%;border-radius:inherit;background:var(--accent)}
+.tk-history-list{display:flex;flex-direction:column}
+.tk-history-row{display:grid;grid-template-columns:1fr 1.3fr auto;align-items:center;gap:10px;padding:11px 0;border-top:1px solid var(--line);font-size:12px}
+.tk-history-row time{color:var(--muted);font-variant-numeric:tabular-nums}
+.tk-history-row span>b{display:block;font-weight:600;font-variant-numeric:tabular-nums}
+.tk-history-row span>small{display:block;font-size:10px;color:var(--quiet);margin-top:2px}
+.tk-history-link{display:grid;place-items:center;width:28px;height:28px;border:1px solid var(--line);border-radius:8px;color:var(--muted);opacity:.55}

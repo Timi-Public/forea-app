@@ -43,9 +43,24 @@ window.Tokenomics=(()=>{
     const {t}=U;
     return `<article class="panel tk-market"><div class="tk-market-heading"><div class="row">${tokenMark()}<div><h2>MAAT</h2></div></div><span class="tk-network"><img src="assets/chain-polygon.svg" alt="" width="14" height="14"> Polygon</span></div><div class="tk-prices"><div><span class="label">${t('发行价格','Issue price')}</span><strong>— <small>USDC</small></strong></div><div data-row="current-price"><span class="label">${t('当前价格','Current price')}</span><strong>${U.money(demoRate,false,4)} <small>USDC</small></strong></div></div>${chart()}<div class="tk-market-source"><span>${t('行情来源','Price source')} <a href="https://app.uniswap.org/" target="_blank" rel="noopener noreferrer">Uniswap ${icon('external','',10)}</a></span><time>${t('更新于','Updated')} ${U.stamp(chartEnd())} UTC+8</time></div></article>`;
   }
+  // echo 11-06: token figures shown like the platform figures. One source for the six cards, Buyback & Burn and Home,
+  // so they always agree: burned grows ~42 MAAT/h from 10-01; total = 21M − burned; circulating = liquidity 25% +
+  // ecosystem 40% released linearly over 48 months − burned; market cap = circulating × price.
+  const INITIAL=21000000,LAUNCH=Date.UTC(2026,9,1);
+  function stats(t=Date.now()){
+    const hours=Math.max(0,(t-LAUNCH)/3600000),days=hours/24;
+    const burned=Math.round(168000+hours*42),total=INITIAL-burned;
+    const circulating=Math.round(INITIAL*.25+INITIAL*.4*Math.min(1,days/1461)-burned);
+    return {burned,total,circulating,cap:Math.round(circulating*demoRate),pool:Math.round(Engine.walk('tk-pool',3600000,46000,54000,t)),volume:Math.round(Engine.walk('tk-vol',3600000,11000,18000,t)),ratio:burned/INITIAL};
+  }
+  function history(kind,t=Date.now()){
+    const rows=[];let at=Math.floor(t/60000)*60000-(kind==='burn'?7:41)*60000;
+    for(let i=0;i<5;i++){const r=Engine.rnd('tk-'+kind,Math.floor(at/3600000));rows.push({at,amount:kind==='burn'?Math.round(40+r*80):Math.round(800+r*1600)});at-=(kind==='burn'?95+Math.round(r*60):1380+Math.round(r*240))*60000}
+    return rows;
+  }
   function metrics(){
-    const {t}=U;
-    return `<div class="tk-metrics">${[[t('流通市值','Circulating market cap'),'USDC'],[t('24H 成交额','24H volume'),'USDC'],[t('流通供应量','Circulating supply'),'MAAT'],[t('流动性池规模','Pool liquidity'),'USDC'],[t('当前总供应量','Total supply'),'MAAT'],[t('累计销毁量','Total burned'),'MAAT']].map(([label,unit])=>`<article class="panel tk-metric"><span class="label">${label}</span><strong>—</strong><small>${unit}</small></article>`).join('')}</div>`;
+    const {t,money}=U,s=stats();
+    return `<div class="tk-metrics">${[[t('流通市值','Circulating market cap'),s.cap,'USDC'],[t('24H 成交额','24H volume'),s.volume,'USDC'],[t('流通供应量','Circulating supply'),s.circulating,'MAAT'],[t('流动性池规模','Pool liquidity'),s.pool,'USDC'],[t('当前总供应量','Total supply'),s.total,'MAAT'],[t('累计销毁量','Total burned'),s.burned,'MAAT']].map(([label,v,unit])=>`<article class="panel tk-metric"><span class="label">${label}</span><strong>${money(v,false,0)}</strong><small>${unit}</small></article>`).join('')}</div>`;
   }
   function quote(){
     ensure();
@@ -71,8 +86,8 @@ window.Tokenomics=(()=>{
     return `<article class="panel tk-consumption"><div class="panel-head"><h2>Agent Token Consumption</h2></div><div class="tk-balance-row"><span>${t('我的 MAAT 钱包余额','My MAAT wallet balance')}</span><b>${money(S.tokenWalletBalance)} <small>MAAT</small></b></div><div class="tk-balance-row"><span>${t('我的 MAAT 项目余额','My MAAT project balance')}</span><div><b>${money(S.tokenProjectBalance)} <small>MAAT</small></b><button class="text-link" data-action="token-deposit">${t('充值','Deposit')}${icon('arrow','',12)}</button></div></div><button class="tk-full-link" data-action="token-consumption-details"><span>${t('查看 Agent 消耗详情','View Agent consumption')}</span>${icon('arrow','',15)}</button></article>`;
   }
   function buyback(){
-    const {t}=U,isBurn=S.tokenHistoryTab==='burn';
-    return `<article class="panel tk-burn"><div class="panel-head"><h2>Buyback &amp; Burn</h2>${icon('leaf','',20)}</div><div class="tk-burn-metrics"><div><span class="label">${t('初始发行总量','Initial supply')}</span><strong>21,000,000</strong><small>MAAT</small></div><div><span class="label">${t('累计销毁量','Total burned')}</span><strong>—</strong><small>MAAT</small></div><div><span class="label">${t('当前总供应量','Current total supply')}</span><strong>—</strong><small>MAAT</small></div></div><div class="tk-supply-label"><span>${t('累计销毁占初始发行量','Burned of initial supply')}</span><span>—</span></div><div class="tk-supply-track" aria-label="${t('销毁比例暂无数据','Burn ratio unavailable')}"></div><div class="tk-history-tabs" role="tablist">${[['burn',t('最近销毁记录','Recent burns')],['buyback',t('最近回购记录','Recent buybacks')]].map(([id,label])=>`<button role="tab" aria-selected="${S.tokenHistoryTab===id}" class="${S.tokenHistoryTab===id?'active':''}" data-action="token-history" data-value="${id}">${label}</button>`).join('')}</div><div class="tk-history-columns"><span>${isBurn?t('销毁时间','Burn time'):t('回购时间','Buyback time')}</span><span>${t('数量 / 来源','Amount / Source')}</span><span>${t('链上记录','Explorer')}</span></div><div class="tk-history-empty">${icon('history','',24)}<span>${t('尚无链上数据','No onchain data available')}</span></div></article>`;
+    const {t,money}=U,isBurn=S.tokenHistoryTab==='burn',s=stats(),pct=(s.ratio*100).toFixed(2);
+    return `<article class="panel tk-burn"><div class="panel-head"><h2>Buyback &amp; Burn</h2>${icon('leaf','',20)}</div><div class="tk-burn-metrics"><div><span class="label">${t('初始发行总量','Initial supply')}</span><strong>21,000,000</strong><small>MAAT</small></div><div><span class="label">${t('累计销毁量','Total burned')}</span><strong>${money(s.burned,false,0)}</strong><small>MAAT</small></div><div><span class="label">${t('当前总供应量','Current total supply')}</span><strong>${money(s.total,false,0)}</strong><small>MAAT</small></div></div><div class="tk-supply-label"><span>${t('累计销毁占初始发行量','Burned of initial supply')}</span><span>${pct}%</span></div><div class="tk-supply-track" role="img" aria-label="${t('累计销毁','Burned')} ${pct}%"><span style="width:${Math.max(1,s.ratio*100)}%"></span></div><div class="tk-history-tabs" role="tablist">${[['burn',t('最近销毁记录','Recent burns')],['buyback',t('最近回购记录','Recent buybacks')]].map(([id,label])=>`<button role="tab" aria-selected="${S.tokenHistoryTab===id}" class="${S.tokenHistoryTab===id?'active':''}" data-action="token-history" data-value="${id}">${label}</button>`).join('')}</div><div class="tk-history-columns"><span>${isBurn?t('销毁时间','Burn time'):t('回购时间','Buyback time')}</span><span>${t('数量 / 来源','Amount / Source')}</span><span>${t('链上记录','Explorer')}</span></div><div class="tk-history-list">${history(isBurn?'burn':'buyback').map(r=>`<div class="tk-history-row"><time>${U.stamp(r.at)}</time><span><b>${money(r.amount,false,0)} MAAT</b><small>${isBurn?t('交易税','Trading tax'):t('托管费回购','Custody-fee buyback')}</small></span><span class="tk-history-link" aria-hidden="true">${icon('external','',13)}</span></div>`).join('')}</div></article>`;
   }
   function allocation(){
     const {t,money}=U;
@@ -144,5 +159,5 @@ window.Tokenomics=(()=>{
     'token-swap-review':swapReview,'token-swap-confirm':swapConfirm,'token-deposit':deposit,'token-deposit-confirm':confirmDeposit,
     'token-consumption-details':()=>{location.hash='account/consumption'}
   };
-  return {render:renderPage,swapMarkup,actions,onInput,ensure,quote,depositToProject,price:demoRate,tokenValue:amount=>amount*demoRate};
+  return {stats,render:renderPage,swapMarkup,actions,onInput,ensure,quote,depositToProject,price:demoRate,tokenValue:amount=>amount*demoRate};
 })();
