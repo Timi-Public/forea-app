@@ -94,19 +94,23 @@ window.Feedback=(()=>{
     const body=mods.length?mods.map(m=>`<h3 class="fb-rules-mod">${esc(m.title)}</h3>${m.rules.map(r=>`<div class="fb-rule"><div><h3>${esc(r[0])}</h3><p>${esc(r[1])}</p><small>${esc(r[3])}</small></div><span class="badge ${RULE_TONE[r[2]]}">${esc(st[r[2]])}</span></div>`).join('')}`).join(''):`<p class="fb-empty">${t('这一页没有单独的规则','No rules specific to this page')}</p>`;
     return `<div class="fb-page-rules">${body}</div><a class="fb-rules-link" href="#rules" data-fb="close">${t('查看全部规则','All rules')}</a>`;
   }
+  let focusKeep=null;
   function renderUI(){
     if(!root)return;syncFrame();
+    const a=document.activeElement;if(a?.dataset?.fbInput&&root.contains(a))focusKeep={name:a.dataset.fbInput,start:a.selectionStart,end:a.selectionEnd};
     const count=notes.filter(n=>n.page===page()&&n.status!=='closed').length;
-    root.innerHTML=`<button class="fb-fab" data-fb="toggle" aria-expanded="${open}">${window.icon?icon('chat','',19):''}${t('批注','Notes')}${count?`<span>${count}</span>`:''}</button>${open&&!mode&&!draft?`<section class="fb-panel" role="dialog" aria-label="${t('批注','Notes')}">${panelHTML()}</section>`:''}${mode?`<div class="fb-hint"><span>${mode==='box'?t('拖动框出要改的地方','Drag a box around what needs changing'):t('点一段文字','Tap the text to change')}</span><button data-fb="cancel">${t('取消','Cancel')}</button></div>`:''}${draft?composeHTML():''}`;
+    root.innerHTML=`<button class="fb-fab" data-fb="toggle" aria-expanded="${open}">${window.icon?icon('chat','',19):''}${t('批注','Notes')}${count?`<span>${count}</span>`:''}</button>${open&&!mode&&!draft?`<section class="fb-panel" role="dialog" aria-label="${t('批注','Notes')}">${panelHTML()}</section>`:''}${mode?`<div class="fb-hint"><span>${mode==='box'?t('拖动框出要改的地方','Drag a box around what needs changing'):t('点一段文字，或先选中要改的几个字','Tap text, or select the exact words first')}</span><button data-fb="cancel">${t('取消','Cancel')}</button></div>`:''}${draft?composeHTML():''}`;
     if(mode==='box')root.insertAdjacentHTML('beforeend','<div class="fb-capture"><div class="fb-rect" hidden></div></div>');
     if(draft?.rect){const f=frame(),r=clip(draft.rect,f)||draft.rect;root.insertAdjacentHTML('beforeend',`<div class="fb-rect" style="left:${r.left-f.left}px;top:${r.top-f.top}px;width:${r.width}px;height:${r.height}px"></div>`)}
-    root.querySelector('.fb-compose textarea')?.focus();
+    const f=focusKeep&&root.querySelector(`.fb-compose [data-fb-input="${focusKeep.name}"]`);
+    if(f){f.focus();try{f.setSelectionRange(focusKeep.start,focusKeep.end)}catch{}}else root.querySelector('.fb-compose textarea')?.focus();
+    focusKeep=null;
   }
   function composeHTML(){
     const d=draft;
     return `<section class="fb-compose" role="dialog" aria-label="${t('写批注','Write a note')}">
       <h3>${d.module?t('补一条规则','Add a rule')+'（'+esc(d.moduleTitle)+'）':d.kind==='box'?t('这里要怎么改','What should change here'):d.kind==='text'?t('改成','Change to'):t('整页说明','Page note')}</h3>
-      ${d.kind==='text'?`<p class="fb-old">${t('原文','Original')}：${esc(d.old)}</p><textarea data-fb-input="new" rows="3">${esc(d.old)}</textarea><textarea data-fb-input="body" rows="2" placeholder="${t('补充说明（可选）','Extra note (optional)')}"></textarea>`:`<textarea data-fb-input="body" rows="${d.kind==='page'?6:3}" placeholder="${d.module?t('规则名称和具体数值，比如：撤单时长 4 小时','Rule and value, e.g. exit phase 4 hours'):d.kind==='page'?t('这一页整体的修改要求','What should change on this page'):t('写一句要改什么','Say what should change')}"></textarea>`}
+      ${d.kind==='text'?`<p class="fb-old">${t('原文','Original')}：${esc(d.old)}</p><textarea data-fb-input="new" rows="3">${esc(d.vals?.new??d.old)}</textarea><textarea data-fb-input="body" rows="2" placeholder="${t('补充说明（可选）','Extra note (optional)')}">${esc(d.vals?.body??'')}</textarea>`:`<textarea data-fb-input="body" rows="${d.kind==='page'?6:3}" placeholder="${d.module?t('规则名称和具体数值，比如：撤单时长 4 小时','Rule and value, e.g. exit phase 4 hours'):d.kind==='page'?t('这一页整体的修改要求','What should change on this page'):t('写一句要改什么','Say what should change')}">${esc(d.vals?.body??'')}</textarea>`}
       <p class="fb-error" role="status"></p>
       <div class="fb-compose-actions"><button data-fb="discard">${t('取消','Cancel')}</button><button class="primary" data-fb="send">${t('发送','Send')}</button></div>
     </section>`;
@@ -115,10 +119,27 @@ window.Feedback=(()=>{
   /* ---------- flows ---------- */
   async function refresh(){
     try{notes=(await call('/notes')).notes||[]}catch(e){if(e.status===401)return disable()}
+    // While a note is being written, only refresh the count and pins: rebuilding the form lost typed text (Leo 11-05 bug 1).
+    if(draft){const c=notes.filter(n=>n.page===page()&&n.status!=='closed').length,b=root?.querySelector('.fb-fab span');if(b)b.textContent=c;drawPins();return}
     renderUI();drawPins();
   }
+  // Text the user selected in 改文字 mode. A drag-select ends with a click, and on phones the tap can clear the
+  // selection first, so the last selection from the past few seconds is kept as well.
+  let lastSel=null;
+  const selectionPick=()=>{const s=getSelection();if(!s||s.isCollapsed||!s.rangeCount)return null;const r=s.getRangeAt(0),c=r.commonAncestorContainer,el=c.nodeType===1?c:c.parentElement,raw=s.toString(),text=raw.trim();return text&&el?.closest('#app')&&!el.closest('.fb-root')?{range:r.cloneRange(),raw,text,el,at:Date.now()}:null};
+  document.addEventListener('selectionchange',()=>{if(mode==='text'){const p=selectionPick();if(p)lastSel=p}});
   function startText(e){
     const el=e.target.closest('#app *');if(!el||el.closest('.fb-root'))return;
+    let pick=selectionPick();
+    if(!pick&&lastSel&&Date.now()-lastSel.at<4000&&lastSel.el.isConnected&&(el.contains(lastSel.el)||lastSel.el.contains(el)))pick=lastSel;
+    if(pick){
+      e.preventDefault();e.stopImmediatePropagation();
+      const rg=pick.range,target=pick.el,lead=pick.raw.length-pick.raw.trimStart().length,tail=pick.raw.length-pick.raw.trimEnd().length;
+      const single=rg.startContainer===rg.endContainer&&rg.startContainer.nodeType===3&&target.childNodes.length===1&&target.firstChild===rg.startContainer;
+      const r=rg.getBoundingClientRect();
+      draft={kind:'text',el:target,old:pick.text,original:single?target.textContent:null,cut:single?[rg.startOffset+lead,rg.endOffset-tail]:null,rect:r,box:place(r),anchor:anchorOf(target)};
+      lastSel=null;getSelection().removeAllRanges();mode=null;renderUI();return;
+    }
     // pick the smallest element that carries visible text
     let target=el;while(target&&!(target.innerText||'').trim())target=target.parentElement;
     if(!target)return;
@@ -197,7 +218,9 @@ window.Feedback=(()=>{
   }
   function onInput(e){
     if(e.target.dataset?.fb==='pins'){showPins=e.target.checked;drawPins();return}
-    if(e.target.dataset?.fbInput==='new'&&draft?.el&&draft.original!=null)draft.el.textContent=e.target.value;
+    const name=e.target.dataset?.fbInput;if(!name||!draft)return;
+    draft.vals={...draft.vals,[name]:e.target.value};
+    if(name==='new'&&draft.el&&draft.original!=null)draft.el.textContent=draft.cut?draft.original.slice(0,draft.cut[0])+e.target.value+draft.original.slice(draft.cut[1]):e.target.value;
   }
   let start=null;
   function onDown(e){if(mode!=='box'||!e.target.closest('.fb-capture'))return;e.preventDefault();start={x:e.clientX,y:e.clientY};e.target.setPointerCapture?.(e.pointerId)}

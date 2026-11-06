@@ -161,3 +161,67 @@ button.more-item:hover,button.more-item:focus-visible{background:var(--panel2)}
 @media (prefers-reduced-motion:reduce){.activity-feed{height:auto;mask-image:none}.activity-feed .activity-scroll{animation:none}.activity-feed .activity-loop{display:none}}
 .mobile-nav>a,.mobile-nav>a .nav-label{font-size:min(9px,2.55vw);letter-spacing:-.1px}
 .mobile-nav>a{padding:0 1px}
+
+/* 11-06 走查 #1: shortfall under the wallet balance */
+.funding-balance>em{display:block;margin-top:6px;font-style:normal;font-size:12px;font-weight:600}
+
+/* 11-06 走查 #2: secondary pages (swap, whitepaper, guide, sources) have a back button */
+.banner>.page-back{flex:none;margin-right:6px}
+.banner:has(>.page-back){justify-content:flex-start;gap:6px}
+.banner:has(>.page-back)>div{flex:1}
+.page-title-back{justify-content:flex-start;gap:6px}
+
+/* 11-06 走查 #7: topbar controls at least 40×40 (compact at 320); bottom labels share one two-line box; ⋮ 40px wide;
+   back-to-top sits in the empty band above the bottom nav icons instead of over page text */
+.tools .language,.tools .theme-btn{width:40px;min-width:40px;min-height:40px}
+.tools .language{font-size:11px}
+.tools .wallet-btn{font-size:11px;min-height:40px}
+@media(max-width:370px){.tools .language,.tools .theme-btn{width:34px;min-width:34px}.tools .wallet-btn{font-size:10px}}
+/* every tab label gets a two-line box so all icons sit on one line; ⋮ stays about half a tab (002 底栏) and its icon follows */
+.mobile-nav>a .nav-label{min-height:calc(2.3 * min(9px,2.55vw));display:flex;align-items:flex-start;justify-content:center;line-height:1.15}
+.mobile-nav>button.nav-menu{padding-bottom:calc(2.3 * min(9px,2.55vw) + 6px)}
+.to-top{z-index:51;right:10px;width:34px;height:34px;bottom:calc(59px + env(safe-area-inset-bottom,0px))}
+/* #8: no tracked eyebrow; units at least 11px */
+.eyebrow{font-size:11px;letter-spacing:0}
+.engine-metric small{font-size:11px;margin-left:3px}
+/* #20: the side the signal does not suggest is grey */
+.off-label{display:inline-flex;justify-content:center;align-items:center;padding:2px 8px;background:var(--panel2);color:var(--quiet);border-radius:5px;font-size:10px;font-weight:600}
+/* #23: state text follows the badge tone */
+.progress-label b.amber{color:var(--amber)}
+.progress-label b.gray{color:var(--muted)}
+/* #26: equal fund columns; dashed loop without the stray glyph; custody shows the current 8H cycle */
+.funds-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.funds-grid>div{min-width:0}
+.engine-cycle::after{content:""}
+.my-agent .time-line .agent-cycle{margin-left:auto;font-size:10px;color:var(--muted);letter-spacing:0}
+/* #28: amount out of range shows inline under the input */
+.fund-unit.invalid{color:var(--red)}
+/* #27: Market Monitor stats carry units */
+.monitor-stats strong small{font-size:11px;font-weight:400;color:var(--muted);margin-left:4px;letter-spacing:0}
+/* #40: one selected style for category and topic chips */
+.topic-row button.active{background:var(--text);color:var(--panel)}
+/* #41: unit on the number baseline, not a superscript-sized glyph */
+.liquidity-stat strong small{font-size:13px;font-weight:400;color:var(--muted);vertical-align:baseline;margin-left:5px}
+/* #42: values inside a confirm row keep the value colour (only the left label is muted) */
+.confirm-row b span:first-child:not([class]){color:inherit}
+/* #45: service details as a timeline */
+.service-steps{list-style:none;margin:16px 0 8px;padding:0}
+.service-steps li{position:relative;display:flex;justify-content:space-between;gap:12px;padding:0 0 14px 20px;font-size:12px;color:var(--muted)}
+.service-steps li::before{content:"";position:absolute;left:0;top:5px;width:7px;height:7px;border-radius:50%;border:1px solid var(--quiet);background:var(--panel);box-sizing:border-box}
+.service-steps li.done::before{background:var(--accent);border-color:var(--accent)}
+.service-steps li:not(:last-child)::after{content:"";position:absolute;left:3px;top:15px;bottom:1px;width:1px;background:var(--line)}
+.service-steps li.done>span{color:var(--text)}
+.service-steps time{font-variant-numeric:tabular-nums}
+/* #47: service card cells read value, then unit, like the Liquidity Service card */
+.service-summary>div>small{display:block;font-size:11px;color:var(--muted);margin-top:3px}
+/* #75: whitepaper states in a 3 + 2 grid; chapter links wrap instead of being cut off */
+.doc-flow span{white-space:nowrap;text-align:center}
+.doc-flow.doc-states{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.doc-nav{flex-wrap:wrap;overflow:visible;gap:0 14px}
+.doc-layout.single{grid-template-columns:1fr}
+/* #14: Envo's store icon has wide transparent margins; scale it to DeBox's visual size */
+img[src$="social-envo.png"]{transform:scale(1.3)}
+/* #71: the full signal timestamp sits under the title so the question keeps its width */
+.signal-top .signal-head{flex:1;min-width:0}
+.signal-top .signal-head time{display:block;margin-top:5px}
+.doc-table td:first-child{white-space:nowrap;padding-right:12px}

@@ -8,3 +8,7 @@
 .tk-audit-links{display:inline-flex;gap:6px}
 .tk-audit-links button{display:inline-flex;align-items:center;gap:4px;height:28px;padding:0 10px;border:1px solid var(--line);border-radius:999px;font-size:11px;color:var(--muted);background:var(--panel2)}
 .tk-audit-links button:disabled{opacity:.7}
+
+/* 11-06 走查 #51: 充值 stays on the balance line */
+.tk-balance-row{align-items:center}
+.tk-balance-row>div{flex-direction:row;align-items:center;gap:10px}

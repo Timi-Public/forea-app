@@ -144,3 +144,6 @@
 .ov-hero-svg .n2{animation-delay:2.6s}
 .ov-hero-svg .n3{animation-delay:3.9s}
 @media (prefers-reduced-motion:reduce){.ov-hero-svg .flow{animation:none;display:none}}
+
+/* 11-06 走查 #12: button rows align with link rows */
+.ov-footer-links button,.ov-sec-rows button,.ov-sec-grid button{padding-left:0;padding-right:0}

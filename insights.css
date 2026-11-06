@@ -84,3 +84,10 @@
 @media (min-width:761px){.ins-layout{grid-template-columns:1fr 1fr}.ins-layout .ins-breakdown,.ins-layout .ins-log,.ins-layout .ins-cta{grid-column:1/-1}}
 
 .ins-cta p{font-size:14px;font-weight:600;margin:0 0 14px}
+
+/* 11-06 走查 #29: full question, two lines at most */
+.ins-edge-row p{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.45}
+/* #31: room for "+3.4 pp" on one line */
+.ins-edge-line{grid-template-columns:minmax(0,1fr) 96px 52px}
+.ins-edge-head{grid-template-columns:minmax(0,1fr) 48px 48px 52px}
+.ins-edge-line>b{white-space:nowrap}

@@ -62,3 +62,13 @@
 .account-gate-icon{display:grid;place-items:center;width:56px;height:56px;border-radius:16px;background:var(--accent-soft);color:var(--accent)}
 .account-gate h2{font-size:18px;margin-top:6px}
 .account-gate p{font-size:12px;color:var(--muted);margin-bottom:12px}
+/* 11-06 Leo: 10月 is a card like 11月; both sit on the Community & Rewards panel */
+.community-card .cm-period{padding:16px;border:1px solid var(--line);border-radius:12px}
+.community-card .cm-period+.cm-period{margin-top:12px}
+
+/* 11-06 走查 #63: group rows carry their subtotal; #66: address stays on one line */
+.portfolio-group-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:6px}
+.portfolio-group-head h3{margin:0}
+.portfolio-group-head>b{font-size:15px;font-weight:600;text-align:right;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.portfolio-group-head small{font-size:10px;font-weight:450;color:var(--muted)}
+.profile-address>span{overflow-wrap:normal;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}

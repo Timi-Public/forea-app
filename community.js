@@ -31,7 +31,7 @@ window.Community=(()=>{
       +`<div class="cm-grid three">${cell(t('社区级差奖励','Differential'),reward(s.diff),'MAAT')}${cell(t('直属奖励','Direct'),reward(s.direct),'MAAT')}${cell(t('托管手续费分成','Custody fee share'),reward(s.fee),'MAAT')}</div>`
       +`</section>`
       +`<section class="cm-period current"><div class="between"><h3>${monthName(p.month)}</h3><span class="cm-state live"><i></i>${t('考核中','In progress')}</span></div>`
-      +`<div class="cm-main"><div class="cm-level plain"><b>${c.level}</b><span>${t('社区等级','Level')}</span></div><div class="cm-stack">`
+      +`<div class="cm-main"><div class="cm-level"><b>${c.level}</b><span>${t('社区等级','Level')}</span></div><div class="cm-stack">`
       +`<div><span class="cm-label">${t('日均社区业绩','Daily community volume')}</span><strong>${volume(c.daily)} <small>USDC</small></strong></div>`
       +`<div><span class="cm-label">${t('下一等级','Next level')}</span><p class="cm-next"><b>${c.next}</b>${volume(c.target)} USDC</p></div></div></div>`
       +`<div><div class="between cm-progress-head"><span>${t('考核进度','Progress')}</span><b>${p.day} / ${p.days} ${t('天','days')}</b></div><div class="cm-progress" role="progressbar" aria-valuemin="0" aria-valuemax="${p.days}" aria-valuenow="${p.day}"><span style="width:${(p.day/p.days*100).toFixed(1)}%"></span></div><p class="cm-left">${t(`剩余 ${p.left} 天`,`${p.left} days left`)}</p></div></section>`
@@ -43,7 +43,7 @@ window.Community=(()=>{
     const {t,esc}=U,link=inviteLink(),addr=S.walletAddress;
     const field=(ic,label,value,kind,empty)=>`<div class="iv-field"><span class="cm-label">${label}</span><div class="iv-value">${icon(ic,'',16)}${value?`<span class="iv-text">${esc(value)}</span><button class="icon-btn iv-copy" data-action="invite-copy" data-value="${kind}" aria-label="${t('复制','Copy')}">${icon('copy','',16)}</button>`:`<button class="text-link" data-action="wallet">${empty}</button>`}</div></div>`;
     return `<article class="panel invite-card" data-card="invite"><div class="panel-head"><div class="row">${icon('user-plus','',20)}<h2>Invite Friends</h2></div><button class="icon-btn" data-action="invite-share" aria-label="${t('分享邀请链接','Share invite link')}" ${link?'':'disabled'}>${icon('share','',18)}</button></div>`
-      +`<p class="iv-desc">${t('通过邀请链接、钱包地址或二维码海报邀请新用户，建立邀请关系','Invite new users with your link, wallet address or QR poster')}</p>`
+      +`<p class="iv-desc">${t('分享邀请链接、钱包地址或二维码海报，新用户加入即绑定邀请关系','Share your link, wallet address or QR poster; new users are linked to you when they join')}</p>`
       +field('link',t('专属邀请链接','Your invite link'),link,'link',t('连接钱包后生成','Connect wallet to generate'))
       +field('wallet',t('邀请人钱包地址','Inviter wallet address'),addr&&addr.slice(0,10)+'…'+addr.slice(-8),'address',t('连接钱包后显示','Connect wallet to show'))
       +`<div class="iv-actions"><button class="btn secondary" disabled>${icon('qr','',16)}${t('邀请海报','Invite poster')}</button><button class="btn outline" data-action="invite-manage">${icon('users','',16)}${t('邀请管理','Manage invites')}</button></div></article>`;

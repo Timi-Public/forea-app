@@ -3,13 +3,14 @@
 window.Insights = (() => {
   const t = (zh, en) => U.t(zh, en);
   const fmt = n => n == null ? '—' : Number(n).toLocaleString('en-US');
+  // 走查 #31: percentage points always read "+3.4 pp".
   const signed = n => (n > 0 ? '+' : n < 0 ? '−' : '') + Math.abs(n).toFixed(1);
-  const { decisionLabel, decisionClass, hhmm } = Engine;
-  const short = m => U.esc(m.question.replace(/^Will (the )?/i, '').replace(/\?$/, ''));
-  const hhmmss = ms => new Date(ms).toLocaleTimeString('en-GB', { hour12: false, timeZone: 'Asia/Kuala_Lumpur' });
+  const pp = n => signed(n) + ' pp';
+  const { decisionLabel, decisionClass } = Engine;
+  // 走查 #29: full question (two-line clamp in CSS), never a cut-down fragment.
+  const q = m => U.esc(m.question);
   const days = m => { const d = Engine.daysLeft(m); return d < 1 ? t('不足 1 天', '< 1 day') : Math.round(d) + t(' 天', d >= 1.5 ? ' days' : ' day'); };
-  const cents = v => v == null ? '—' : (v * 100).toFixed(1) + '¢';
-  const sourceLine = () => `<div class="source"><span>${t('数据来源', 'Data source')}</span><a href="#sources">Polymarket · ${U.captureTime()}${icon('external', '', 10)}</a></div>`;
+  const sourceLine = () => `<div class="source"><span>${t('数据来源', 'Data source')}</span><a href="#sources">Polymarket · ${U.captureTime()}${icon('chevron', '', 10)}</a></div>`;
 
   /* ---------- 智能分析 ---------- */
   function funnel() {
@@ -20,14 +21,12 @@ window.Insights = (() => {
       [t('通过风控', 'Passed risk checks'), Engine.passed(), 'passed', true],
       [t('待执行信号', 'Queued signals'), Engine.pending(), 'pending', true]
     ];
-    const top = Math.log10(Math.max(10, rows[0][1] || 1000));
     return `<article class="panel ins-funnel" data-card="signal-funnel">
       <div class="panel-head"><h2>Signal Funnel</h2></div>
       ${rows.map(([label, value, key, simulated]) => `<div class="ins-funnel-row">
         <div class="between"><span>${label}${simulated ? '' : `<small>Polymarket</small>`}</span><b data-engine="${key}">${fmt(value)}</b></div>
-        <div class="ins-bar"><span style="width:${value ? Math.max(6, Math.log10(Math.max(1, value)) / top * 100) : 0}%"></span></div>
       </div>`).join('')}
-      <div class="source"><span>${t('数据来源', 'Data source')}</span><a href="#sources">${U.captureTime()}${icon('external', '', 10)}</a></div>
+      ${sourceLine()}
     </article>`;
   }
 
@@ -39,15 +38,15 @@ window.Insights = (() => {
       ${list.map(m => {
         const a = Number(m.prices[0]) * 100, b = Engine.model(m) * 100, e = Engine.edge(m), w = Math.min(1, Math.abs(e) / span) * 50;
         return `<div class="ins-edge-row">
-          <p title="${U.esc(m.question)}">${short(m)}</p>
+          <p title="${U.esc(m.question)}">${q(m)}</p>
           <div class="ins-edge-line">
-            <span class="ins-edge-values">${a.toFixed(1)}% <i>→</i> <b class="accent">${b.toFixed(1)}%</b></span>
+            <span class="ins-edge-values">${a.toFixed(1)}% <i>→</i> <b class="${e > 0 ? 'positive' : 'negative'}">${b.toFixed(1)}%</b></span>
             <span class="ins-diverge" aria-hidden="true"><span class="${e > 0 ? 'up' : 'down'}" style="${e > 0 ? 'left:50%' : 'right:50%'};width:${w}%"></span></span>
-            <b class="${e > 0 ? 'positive' : 'negative'}">${signed(e)}</b>
+            <b class="${e > 0 ? 'positive' : 'negative'}">${pp(e)}</b>
           </div>
         </div>`;
       }).join('')}
-      <div class="ins-axis" aria-hidden="true"><span></span><span>−${span}pp</span><span>0</span><span>+${span}pp</span><span></span></div>
+      <div class="ins-axis" aria-hidden="true"><span></span><span>−${span} pp</span><span>0</span><span>+${span} pp</span><span></span></div>
       ${sourceLine()}
     </article>`;
   }
@@ -59,10 +58,10 @@ window.Insights = (() => {
     if (!m) return '';
     const p = Engine.pct(Engine.model(m)), mk = Engine.pct(Number(m.prices[0])), d = Engine.decision(m), f = Object.fromEntries(Engine.factors(m).map(x => [x.key, x.score]));
     const rows = [
-      ['edge', t('概率偏差', 'Probability edge'), signed(Engine.edge(m)) + ' pp', t('模型', 'Model')],
+      ['edge', t('概率偏差', 'Probability edge'), pp(Engine.edge(m)), t('模型', 'Model')],
       ['liquidity', t('盘口流动性', 'Market liquidity'), '$' + U.money(m.liquidity, true), 'Polymarket'],
       ['volume', t('24H 成交额', '24H volume'), '$' + U.money(m.volume24hr, true), 'Polymarket'],
-      ['spread', t('YES 买卖价差', 'YES spread'), cents(Engine.spread(m)), 'Polymarket'],
+      ['spread', t('YES 买卖价差', 'YES spread'), Engine.spread(m) == null ? '—' : U.usd(Engine.spread(m), true), 'Polymarket'],
       ['time', t('距离结算', 'Time to resolution'), days(m), 'Polymarket']
     ];
     return `<article class="panel ins-breakdown" data-card="signal-breakdown">
@@ -77,30 +76,18 @@ window.Insights = (() => {
       <div class="ins-probs">
         <span></span><span class="yes-label">YES</span><span class="no-label">NO</span>
         <span class="muted">${t('市场隐含', 'Market')}</span><b>${mk.yes}%</b><b>${mk.no}%</b>
-        <span class="muted">${t('模型估计', 'Model')}</span><b class="accent">${p.yes}%</b><b class="accent">${p.no}%</b>
+        <span class="muted">${t('模型估计', 'Model')}</span><b class="${Engine.edge(m) > 0 ? 'accent' : ''}">${p.yes}%</b><b class="${Engine.edge(m) > 0 ? '' : 'accent'}">${p.no}%</b>
       </div>
       <div class="ins-factors">${rows.map(([key, label, value, src]) => `<div class="ins-factor">
         <div class="between"><span>${label}<small>${src}</small></span><b>${value}</b></div>
         <div class="ins-bar thin"><span style="width:${Math.round(f[key])}%"></span></div>
       </div>`).join('')}</div>
-      <div class="source"><span>${t('信号生成', 'Signal generated')} ${hhmm(Engine.signalTime())} UTC+8 · ${t('5M 更新', 'Updates every 5M')}</span><a href="#sources">Polymarket · ${U.captureTime()}${icon('external', '', 10)}</a></div>
-    </article>`;
-  }
-
-  function parameters() {
-    const rows = [
-      [t('信号刷新', 'Signal refresh'), t('每 5 分钟', 'Every 5 min')],
-      [t('市场监测刷新', 'Market monitor refresh'), t('每 8 分钟', 'Every 8 min')],
-      [t('运行周期', 'Run cycle'), t('8H · 撤单 3–5H', '8H · Exit 3–5H')]
-    ];
-    return `<article class="panel ins-params" data-card="model-parameters">
-      <div class="panel-head"><h2>Model Parameters</h2></div>
-      ${rows.map(([a, b]) => `<div class="ins-kv"><span>${a}</span><b>${b}</b></div>`).join('')}
+      <div class="source"><span>${t('信号生成', 'Signal generated')} ${U.stamp(Engine.signalTime())} UTC+8 · ${t('5M 更新', 'Updates every 5M')}</span><a href="#sources">Polymarket · ${U.captureTime()}${icon('chevron', '', 10)}</a></div>
     </article>`;
   }
 
   function analysis() {
-    return `<div class="ins-layout">${funnel()}${edgeMap()}${breakdown()}${parameters()}</div>`;
+    return `<div class="ins-layout">${funnel()}${edgeMap()}${breakdown()}</div>`;
   }
 
   /* ---------- 引擎监控 ---------- */
@@ -122,32 +109,19 @@ window.Insights = (() => {
     </article>`;
   }
 
-  function feeds() {
-    const rows = [
-      [t('预测市场与价格', 'Markets & prices'), 'Gamma API'],
-      [t('订单簿', 'Order books'), 'CLOB'],
-      [t('公开成交', 'Public trades'), 'Data API']
-    ];
-    return `<article class="panel ins-feeds" data-card="data-feeds">
-      <div class="panel-head"><h2>Data Feeds</h2></div>
-      ${rows.map(([a, b]) => `<div class="ins-feed"><div><h3>${a}</h3><p>Polymarket · ${b}</p></div><span>${U.captureTime()}</span></div>`).join('')}
-      <a class="text-link ins-feed-link" href="#sources">${t('查看数据来源', 'View data sources')}${icon('arrow', '', 13)}</a>
-    </article>`;
-  }
-
   const logEvery = 7000;
   function logEntries(now = Date.now(), n = 8) {
     const pool = U.featured(), k0 = Math.floor(now / logEvery);
     return Array.from({ length: n }, (_, j) => {
       const k = k0 - j, r = Engine.rnd('log', k), m = pool[Math.floor(Engine.rnd('log-market', k) * pool.length)], at = k * logEvery;
       if (r < .22) return { at, stage: t('市场扫描', 'Scan'), tone: 'gray', text: t(`完成扫描 ${fmt(Engine.monitored())} 个市场 · ${Engine.latency(at)}ms`, `Scanned ${fmt(Engine.monitored())} markets · ${Engine.latency(at)}ms`) };
-      if (r < .58) { const e = Engine.edge(m); return { at, stage: t('信号识别', 'Signal'), tone: '', text: `${short(m)} · ${e > 0 ? 'YES' : 'NO'} ${signed(e)}pp · ${t('评分', 'score')} ${Engine.score(m)}` }; }
-      if (r < .78) return { at, stage: t('风控拦截', 'Blocked'), tone: 'amber', text: short(m) };
+      if (r < .58) { const e = Engine.edge(m); return { at, stage: t('信号识别', 'Signal'), tone: '', text: `${q(m)} · ${e > 0 ? 'YES' : 'NO'} ${pp(e)} · ${t('评分', 'score')} ${Engine.score(m)}` }; }
+      if (r < .78) return { at, stage: t('风控拦截', 'Blocked'), tone: 'amber', text: q(m) };
       const side = Engine.edge(m) > 0 ? 'YES' : 'NO', price = side === 'YES' ? m.prices[0] : m.prices[1];
-      return { at, stage: t('订单执行', 'Order'), tone: 'purple', text: `${short(m)} · ${side} ${t('限价', 'limit')} ${(price * 100).toFixed(1)}¢` };
+      return { at, stage: t('订单执行', 'Order'), tone: 'purple', text: `${q(m)} · ${side} ${t('限价', 'limit')} ${U.usd(price)}` };
     });
   }
-  const logRows = () => logEntries().map(x => `<div class="ins-log-row"><div class="ins-log-meta"><span class="badge ${x.tone}">${x.stage}</span><time>${hhmmss(x.at)}</time></div><p>${x.text}</p></div>`).join('');
+  const logRows = () => logEntries().map(x => `<div class="ins-log-row"><div class="ins-log-meta"><span class="badge ${x.tone}">${x.stage}</span><time>${U.stamp(x.at, true)} UTC+8</time></div><p>${x.text}</p></div>`).join('');
   function engineLog() {
     return `<article class="panel ins-log" data-card="engine-log">
       <div class="panel-head"><h2>Engine Log</h2></div>
@@ -156,7 +130,7 @@ window.Insights = (() => {
   }
 
   function monitoring() {
-    return `<div class="ins-layout">${health()}${engineLog()}${feeds()}</div>`;
+    return `<div class="ins-layout">${health()}${engineLog()}</div>`;
   }
 
   /* ---------- live chart and log updates without re-rendering ---------- */
