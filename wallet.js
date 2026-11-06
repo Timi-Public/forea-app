@@ -28,12 +28,12 @@ window.OKXIdentity=(()=>{
   }
   function view(){
     const {t,esc}=U;
-    sheet(t('连接钱包','Connect wallet'),`${S.walletAddress?`<div class="wallet-status">${icon('wallet','accent',21)}<div><code>${esc(S.walletAddress)}</code><small>OKX Wallet · ${S.walletChainId===137?'Polygon':t('请切换至 Polygon','Switch to Polygon')}</small></div></div>`:''}<button class="wallet-choice" data-action="okx-connect"><span class="wallet-mark okx">OKX</span><span>OKX Wallet<small>Polygon</small></span>${icon('chevron','muted',17)}</button><p id="wallet-error" class="wallet-error" role="status"></p><p class="wallet-note">${t('未连接也可浏览全部页面。连接仅用于读取地址与网络，不请求签名。','All screens work without a wallet. Connection reads your address and network only, with no signature requests.')}</p>${S.walletAddress?`<button class="btn outline block" data-action="disconnect">${t('断开连接','Disconnect')}</button>`:`<button class="btn outline block" data-action="close">${t('继续浏览','Continue browsing')}</button>`}`,'sheet','wallet');
+    sheet(t('连接钱包','Connect wallet'),`${S.walletAddress?`<div class="wallet-status">${icon('wallet','accent',21)}<div><code>${esc(S.walletAddress)}</code><small>OKX Wallet · ${S.walletChainId===137?'Polygon':t('请切换至 Polygon','Switch to Polygon')}</small></div></div>`:''}<button class="wallet-choice" data-action="okx-connect"><span class="wallet-mark okx">OKX</span><span>OKX Wallet<small>Polygon</small></span>${icon('chevron','muted',17)}</button><p id="wallet-error" class="wallet-error" role="status"></p>${S.walletAddress?`<button class="btn outline block" data-action="disconnect">${t('断开连接','Disconnect')}</button>`:`<button class="btn outline block" data-action="close">${t('继续浏览','Continue browsing')}</button>`}`,'sheet','wallet');
   }
   async function connect(testProvider){
     if(busy)return;
     const p=testProvider||(window.okxwallet?.request?window.okxwallet:window.ethereum?.isOkxWallet?window.ethereum:null);
-    if(!p){const error=document.getElementById('wallet-error');if(error)error.textContent=U.t('请在 OKX Wallet 的 DApp 浏览器中打开，或安装 OKX Wallet 插件后重试。','Open this app in the OKX Wallet DApp browser, or install the OKX Wallet extension and retry.');return}
+    if(!p){const error=document.getElementById('wallet-error');if(error)error.textContent=U.t('请在 OKX Wallet 内打开，或安装 OKX Wallet 插件后重试','Open this page in OKX Wallet, or install the OKX Wallet extension and retry');return}
     busy=true;const button=document.querySelector('[data-action="okx-connect"]');if(button){button.disabled=true;button.setAttribute('aria-busy','true')}
     try{
       const accounts=await p.request({method:'eth_requestAccounts'});
@@ -48,7 +48,7 @@ window.OKXIdentity=(()=>{
       if(Number(latestChain)!==137)throw new Error('wrong-chain');
       identity(latest[0],latestChain);closeOverlay();toast(U.t('OKX Wallet 已连接 · Polygon','OKX Wallet connected · Polygon'));
     }catch(error){
-      const message=error.code===4001?U.t('已取消连接，可继续浏览。','Connection cancelled. You can keep browsing.'):error.message==='wrong-chain'?U.t('请在 OKX Wallet 中切换至 Polygon。','Switch to Polygon in OKX Wallet.'):error.code===-32002?U.t('请先处理钱包中的连接请求。','Check the pending connection request in your wallet.'):U.t('连接未完成，请检查 OKX Wallet 后重试。','Connection incomplete. Check OKX Wallet and retry.');
+      const message=error.code===4001?U.t('已取消连接','Connection cancelled'):error.message==='wrong-chain'?U.t('请在 OKX Wallet 中切换至 Polygon','Switch to Polygon in OKX Wallet'):error.code===-32002?U.t('请在钱包中确认连接请求','Confirm the pending request in your wallet'):U.t('连接失败，请检查 OKX Wallet 后重试','Connection failed. Check OKX Wallet and retry');
       const el=document.getElementById('wallet-error');if(el)el.textContent=message;else toast(message);
     }finally{busy=false;if(button?.isConnected){button.disabled=false;button.removeAttribute('aria-busy')}}
   }

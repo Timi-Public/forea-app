@@ -126,3 +126,38 @@ button.more-item:hover,button.more-item:focus-visible{background:var(--panel2)}
 .service-offer .offer-spec small{display:block;margin-top:4px;font-size:11px;color:var(--muted);font-weight:400}
 .btn.ink{background:var(--text);color:var(--panel);min-height:42px;border-radius:999px;gap:6px}
 .btn.ink:hover{opacity:.88}
+
+/* 11-06 Leo #8 #46: Tokenomics is the raised centre item (no separate swap button); #9 #47: English menu names */
+.mobile-nav>a.nav-special{justify-content:flex-end}
+.mobile-nav>a.nav-special .nav-tile{display:grid;place-items:center;width:50px;height:50px;margin-top:-28px;border-radius:15px;background:var(--accent);color:var(--accent-ink);border:5px solid var(--panel);box-shadow:0 -1px 0 var(--line)}
+.mobile-nav>a.nav-special .nav-tile .icon{width:24px;height:24px}
+.mobile-nav>a.nav-special.active .nav-tile .icon{stroke-width:1.9}
+.mobile-nav .nav-label{white-space:normal;word-break:normal;overflow-wrap:normal;max-width:100%}
+
+/* 11-06 Leo #5 #6 #7: More items open straight into their content (no chevrons); community = Envo and DeBox icons */
+.social-icons,.ov-social-icons{display:inline-flex;align-items:center;gap:8px}
+.social-icons img,.ov-social-icons img,.more-row-img{display:block;width:26px;height:26px;border-radius:7px}
+.ov-social-icons img{width:22px;height:22px;border-radius:6px}
+.more-social{display:flex;align-items:center;gap:12px;padding:12px 14px;border-top:1px solid var(--line)}
+.more-social>b{flex:1;font-size:13px}
+.more-social>.icon{color:var(--muted)}
+.more-row-img{width:20px;height:20px;border-radius:5px}
+
+/* 11-06 Leo #16 #25: Agent Trading and Liquidity Marketplace banners show the engine is running */
+.banner-agent,.banner-liquidity{position:relative;overflow:hidden;isolation:isolate}
+.banner-agent::after,.banner-liquidity::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(100deg,transparent 30%,color-mix(in oklch,var(--accent) 18%,transparent) 50%,transparent 70%);background-size:260% 100%;animation:banner-sweep 4.5s linear infinite}
+@keyframes banner-sweep{from{background-position:130% 0}to{background-position:-130% 0}}
+.banner-agent .badge .dot,.banner-liquidity .badge .dot{animation:live-dot 1.6s ease-in-out infinite}
+@keyframes live-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+@media (prefers-reduced-motion:reduce){.banner-agent::after,.banner-liquidity::after,.banner-agent .badge .dot,.banner-liquidity .badge .dot{animation:none}}
+
+/* 11-06 Leo #27: Recent Activity is a vertical timeline that scrolls slowly; pauses on touch/hover */
+.activity-feed{position:relative;height:300px;overflow:hidden;mask-image:linear-gradient(transparent,#000 8%,#000 88%,transparent)}
+.activity-feed .activity-scroll{display:flex;flex-direction:column;gap:0;max-height:none;overflow:visible;animation:activity-scroll 48s linear infinite}
+.activity-feed .activity-loop{display:flex;flex-direction:column}
+.activity-feed .timeline-item{padding:0 0 22px 22px}
+.activity-feed:hover .activity-scroll,.activity-feed:active .activity-scroll{animation-play-state:paused}
+@keyframes activity-scroll{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+@media (prefers-reduced-motion:reduce){.activity-feed{height:auto;mask-image:none}.activity-feed .activity-scroll{animation:none}.activity-feed .activity-loop{display:none}}
+.mobile-nav>a,.mobile-nav>a .nav-label{font-size:min(9px,2.55vw);letter-spacing:-.1px}
+.mobile-nav>a{padding:0 1px}

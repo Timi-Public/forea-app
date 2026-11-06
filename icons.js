@@ -9,6 +9,7 @@ window.icon = (name, cls = '', size = 20) => {
     arrow:'<path d="M5 12h14m-6-6 6 6-6 6"/>',
     external:'<path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/>',
     swap:'<path d="M3 7h17m-5-5 5 5-5 5M21 17H4m5-5-5 5 5 5"/>',
+    'coin-swap':'<circle cx="10" cy="14" r="5"/><circle cx="14" cy="10" r="5"/><path d="M3 8l4-4m-3.5 0H7v3.5M17 16l4 4m0-3.5V20h-3.5"/>',
     sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/>',
     moon:'<path d="M21 13A9 9 0 0 1 11 3a9 9 0 1 0 10 10Z"/>',
     globe:'<circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/>',

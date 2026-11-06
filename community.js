@@ -27,14 +27,15 @@ window.Community=(()=>{
       +`<section class="cm-period"><div class="between"><h3>${monthName(p.last)}</h3><span class="cm-state">${icon('check','',13)}${t('已核定','Verified')}</span></div>`
       +`<div class="cm-main"><div class="cm-level"><b>${s.level}</b><span>${t('社区等级','Level')}</span></div><div class="cm-stack">`
       +`<div><span class="cm-label">${t('日均社区业绩','Daily community volume')}</span><strong>${volume(s.daily)} <small>USDC</small></strong></div>`
-      +`<div><span class="cm-label">${t('总奖励','Total rewards')}</span><div class="cm-reward-line"><strong data-community="total">${reward(total)} <small>MAAT</small></strong><span class="cm-payout">${payout}</span></div></div></div></div>`
+      +`<div><span class="cm-label">${t('总奖励','Total rewards')}</span><div class="cm-reward-line"><strong data-community="total">${reward(total)} <small>MAAT</small></strong><span class="cm-payout${p.paid?' paid':''}">${p.paid?icon('check','',12):''}${payout}</span></div></div></div></div>`
       +`<div class="cm-grid three">${cell(t('社区级差奖励','Differential'),reward(s.diff),'MAAT')}${cell(t('直属奖励','Direct'),reward(s.direct),'MAAT')}${cell(t('托管手续费分成','Custody fee share'),reward(s.fee),'MAAT')}</div>`
-      +`<div class="cm-grid three counts">${cell(t('直属邀请人数','Direct invites'),t(`${s.invites} 人`,String(s.invites)))}${cell(t('社区总人数','Community members'),t(`${s.members} 人`,String(s.members)))}</div></section>`
+      +`</section>`
       +`<section class="cm-period current"><div class="between"><h3>${monthName(p.month)}</h3><span class="cm-state live"><i></i>${t('考核中','In progress')}</span></div>`
       +`<div class="cm-main"><div class="cm-level plain"><b>${c.level}</b><span>${t('社区等级','Level')}</span></div><div class="cm-stack">`
       +`<div><span class="cm-label">${t('日均社区业绩','Daily community volume')}</span><strong>${volume(c.daily)} <small>USDC</small></strong></div>`
       +`<div><span class="cm-label">${t('下一等级','Next level')}</span><p class="cm-next"><b>${c.next}</b>${volume(c.target)} USDC</p></div></div></div>`
-      +`<div><div class="between cm-progress-head"><span>${t('考核进度','Progress')}</span><b>${p.day} / ${p.days} ${t('天','days')}</b></div><div class="cm-progress" role="progressbar" aria-valuemin="0" aria-valuemax="${p.days}" aria-valuenow="${p.day}"><span style="width:${(p.day/p.days*100).toFixed(1)}%"></span></div><p class="cm-left">${t(`剩余 ${p.left} 天`,`${p.left} days left`)}</p></div></section></article>`;
+      +`<div><div class="between cm-progress-head"><span>${t('考核进度','Progress')}</span><b>${p.day} / ${p.days} ${t('天','days')}</b></div><div class="cm-progress" role="progressbar" aria-valuemin="0" aria-valuemax="${p.days}" aria-valuenow="${p.day}"><span style="width:${(p.day/p.days*100).toFixed(1)}%"></span></div><p class="cm-left">${t(`剩余 ${p.left} 天`,`${p.left} days left`)}</p></div></section>`
+      +`<div class="cm-counts"><div><span class="cm-label">${t('直属邀请人数','Direct invites')}</span><b>${s.invites} <small>${t('人','people')}</small></b></div><div><span class="cm-label">${t('社区总人数','Community members')}</span><b>${s.members} <small>${t('人','people')}</small></b></div></div></article>`;
   }
 
   const inviteLink=()=>S.walletAddress?new URL('./?ref='+S.walletAddress,location.href).href:'';

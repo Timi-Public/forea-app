@@ -11,10 +11,6 @@ window.Insights = (() => {
   const cents = v => v == null ? '—' : (v * 100).toFixed(1) + '¢';
   const sourceLine = () => `<div class="source"><span>${t('数据来源', 'Data source')}</span><a href="#sources">Polymarket · ${U.captureTime()}${icon('external', '', 10)}</a></div>`;
 
-  const cta = () => S.agentState === 'inactive'
-    ? `<article class="panel ins-cta" data-card="join"><p>${t('投入 USDC，Agent 按信号替你下单', 'Add USDC and the agent trades on these signals')}</p><button class="btn primary block" data-action="choose-agent">${t('开始智能交易', 'Start agent trading')}${icon('arrow', '', 14)}</button></article>`
-    : `<article class="panel ins-cta" data-card="join"><p>${t('你的 Agent 正在按这些信号运行', 'Your agent is running on these signals')}</p><button class="btn secondary block" data-action="choose-agent">${t('查看我的 Agent', 'View my agent')}${icon('arrow', '', 14)}</button></article>`;
-
   /* ---------- 智能分析 ---------- */
   function funnel() {
     const rows = [
@@ -95,8 +91,6 @@ window.Insights = (() => {
     const rows = [
       [t('信号刷新', 'Signal refresh'), t('每 5 分钟', 'Every 5 min')],
       [t('市场监测刷新', 'Market monitor refresh'), t('每 8 分钟', 'Every 8 min')],
-      [t('模型与市场偏差', 'Model–market edge'), '2–5 pp'],
-      [t('信号评分区间', 'Signal score range'), '50–95'],
       [t('运行周期', 'Run cycle'), t('8H · 撤单 3–5H', '8H · Exit 3–5H')]
     ];
     return `<article class="panel ins-params" data-card="model-parameters">
@@ -106,7 +100,7 @@ window.Insights = (() => {
   }
 
   function analysis() {
-    return `<div class="ins-layout">${funnel()}${edgeMap()}${breakdown()}${parameters()}${cta()}</div>`;
+    return `<div class="ins-layout">${funnel()}${edgeMap()}${breakdown()}${parameters()}</div>`;
   }
 
   /* ---------- 引擎监控 ---------- */
@@ -162,7 +156,7 @@ window.Insights = (() => {
   }
 
   function monitoring() {
-    return `<div class="ins-layout">${health()}${engineLog()}${feeds()}${cta()}</div>`;
+    return `<div class="ins-layout">${health()}${engineLog()}${feeds()}</div>`;
   }
 
   /* ---------- live chart and log updates without re-rendering ---------- */

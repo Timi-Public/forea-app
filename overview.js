@@ -21,7 +21,7 @@ window.Overview=(()=>{
     const pts=curve.map((y,i)=>[Math.round(8+i*304/11),y]);
     const links=net.flatMap((a,i)=>net.slice(i+1).filter(b=>Math.hypot(a[0]-b[0],a[1]-b[1])<54).map(b=>`M${a[0]} ${a[1]}L${b[0]} ${b[1]}`)).join('');
     const spokes=[0,3,6,9].map(i=>net.filter(n=>Math.abs(n[0]-pts[i][0])<48).map(n=>`M${pts[i][0]} ${pts[i][1]}L${n[0]} ${n[1]}`).join('')).join('');
-    return `<svg class="ov-hero-svg" viewBox="0 0 320 140" aria-hidden="true"><path class="net" d="${links}${spokes}"/>${net.map(([x,y])=>`<circle class="net-node" cx="${x}" cy="${y}" r="1.6"/>`).join('')}<path class="base" d="M8 112H312"/><path class="line" d="${smooth(pts)}"/>${pts.map(([x,y],i)=>[0,3,6,9].includes(i)?`<circle class="node big n${[0,3,6,9].indexOf(i)}" cx="${x}" cy="${y}" r="5.5"/>`:`<circle class="node" cx="${x}" cy="${y}" r="2.6"/>`).join('')}</svg>`;
+    return `<svg class="ov-hero-svg" viewBox="0 0 320 140" aria-hidden="true"><path class="net" d="${links}${spokes}"/>${net.map(([x,y])=>`<circle class="net-node" cx="${x}" cy="${y}" r="1.6"/>`).join('')}<path class="base" d="M8 112H312"/><path class="line" d="${smooth(pts)}"/><path class="flow" pathLength="100" d="${smooth(pts)}"/>${pts.map(([x,y],i)=>[0,3,6,9].includes(i)?`<circle class="node big n${[0,3,6,9].indexOf(i)}" cx="${x}" cy="${y}" r="5.5"/>`:`<circle class="node" cx="${x}" cy="${y}" r="2.6"/>`).join('')}</svg>`;
   }
   function hero(){
     return `<article class="ov-hero" data-card="hero"><div class="ov-tags"><i class="ov-live"></i><span>Polymarket</span><span>Polygon</span><span>AI Agent</span></div>`
@@ -29,7 +29,7 @@ window.Overview=(()=>{
       +`<p>${t('基于 Polymarket 构建，以 AI Agent 智能交易与流动性服务为核心，融合市场分析、自动化执行、风险管理与链上资产管理','Built on Polymarket, with AI agent trading and liquidity services at its core, combining market analysis, automated execution, risk management and onchain asset management')}</p>`
       +`<div class="ov-visual"><div class="ov-visual-labels"><span>${icon('brain','',15)}${t('AI 智能分析','AI analysis')}</span><span>${icon('waves','',15)}${t('预测市场流动性','Market liquidity')}</span></div>${heroArt()}<div class="ov-steps"><span>${t('数据分析','Data analysis')}</span>${icon('chevron','',11)}<span>${t('信号决策','Signal decision')}</span>${icon('chevron','',11)}<span>${t('自动执行','Auto execution')}</span></div></div>`
       +`<div class="ov-hero-actions"><a class="btn ov-primary" href="#agent">${t('开始智能交易','Start Agent Trading')}${icon('external','',13)}</a><a class="btn ov-secondary" href="#liquidity">${t('探索流动性市场','Explore liquidity')}${icon('external','',13)}</a></div>`
-      +`<button class="ov-funding" data-action="funding">${icon('wallet','',14)}${t('还没有 USDC？先准备资金','Need USDC? Prepare funds first')}</button></article>`;
+      +`</article>`;
   }
   function stats(){
     const p=Engine.platform(),big=n=>U.money(n,true);
@@ -74,7 +74,7 @@ window.Overview=(()=>{
   function activity(){
     const tab=S.ovTab||0;
     const tabs=[t('交易动态','Trades'),t('交易信号','Signals'),t('流动性','Liquidity')];
-    const body=tab===0?`<div class="ov-empty">${icon('list','',22)}<b>${t('等待交易数据接入','Waiting for trade data')}</b><p>${t('已确认的预测市场成交记录将在这里按时间顺序展示','Confirmed prediction market trades will appear here in time order')}</p></div>`
+    const body=tab===0?`<div class="ov-trades">${[...D.trades].sort((a,b)=>b.timestamp-a.timestamp).slice(0,4).map(tr=>U.tradeRow(tr)).join('')}</div>`
       :tab===1?`<div class="ov-signals">${Engine.signalSet().map((m,i)=>U.signalRow(m,i)).join('')}</div>`:services();
     const link=[['#agent/execution',t('查看完整交易数据','View all trade data')],['#agent',t('查看全部信号','View all signals')],['#liquidity',t('查看流动性市场','Open Liquidity Marketplace')]][tab];
     return `<article class="panel ov-activity" data-card="ov-activity"><div class="panel-head"><div class="row">${icon('chart','',19)}<h2>Live Market Activity</h2></div></div><div class="ov-tabs" role="tablist">${tabs.map((l,i)=>`<button role="tab" aria-selected="${tab===i}" class="${tab===i?'active':''}" data-action="ov-tab" data-value="${i}">${l}</button>`).join('')}</div><div class="ov-activity-body" role="tabpanel">${body}</div><a class="ov-row-link" href="${link[0]}"><span>${link[1]}</span>${icon('external','',14)}</a></article>`;
@@ -94,7 +94,7 @@ window.Overview=(()=>{
   }
   function footer(){
     return `<footer class="ov-footer"><div class="row ov-brand"><img src="assets/mark.svg" alt=""><b>${U.brand}</b></div><p>${t('基于 Polymarket 的 AI 智能交易与预测市场流动性网络','AI trading and liquidity network for prediction markets, built on Polymarket')}</p>`
-      +`<nav class="ov-footer-links" aria-label="${t('页脚导航','Footer')}"><a href="#whitepaper">${t('白皮书','Whitepaper')}</a><a href="#guide">${t('技术文档','Documentation')}</a><button data-action="more-view" data-value="contracts">${t('智能合约','Smart contracts')}</button><button class="ov-community" data-action="more-view" data-value="community" aria-label="${t('官方社区','Community')}"><span>${t('官方社区','Community')}</span>${['x-logo','send','chat'].map(ic=>`<span class="ov-social" aria-hidden="true">${icon(ic,'',14)}</span>`).join('')}</button></nav>`
+      +`<nav class="ov-footer-links" aria-label="${t('页脚导航','Footer')}"><a href="#whitepaper">${t('白皮书','Whitepaper')}</a><a href="#guide">${t('技术文档','Documentation')}</a><button data-action="more-view" data-value="contracts">${t('智能合约','Smart contracts')}</button><span class="ov-community"><span>${t('官方社区','Community')}</span>${U.socialIcons('ov-social-icons')}</span></nav>`
       +`<small>© 2026 ${U.brand} ${t('保留所有权利','All rights reserved')}</small></footer>`;
   }
   function page(){

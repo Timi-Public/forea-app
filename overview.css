@@ -135,3 +135,15 @@
 .ov-sec-rows button{width:100%;text-align:left;color:var(--text)}
 .ov-footer-links button{display:flex;align-items:center;min-height:36px;color:var(--muted);text-align:left}
 .ov-status.demo i{background:var(--amber);opacity:1}
+
+/* 11-06 Leo #3: a pulse travels node 1 → 2 → 3 → 4 along the line and loops; each node lights as it arrives */
+.ov-hero-svg .flow{fill:none;stroke:oklch(97% .08 150);stroke-width:2.6;stroke-linecap:round;stroke-dasharray:10 110;stroke-dashoffset:10;animation:ov-flow 4.8s linear infinite;filter:drop-shadow(0 0 3px oklch(88% .17 150 / .9))}
+@keyframes ov-flow{from{stroke-dashoffset:10}to{stroke-dashoffset:-100}}
+.ov-hero-svg .n0{animation-delay:0s}
+.ov-hero-svg .n1{animation-delay:1.3s}
+.ov-hero-svg .n2{animation-delay:2.6s}
+.ov-hero-svg .n3{animation-delay:3.9s}
+@media (prefers-reduced-motion:reduce){.ov-hero-svg .flow{animation:none;display:none}}
+
+/* 11-06: home Trades tab shows the latest public Polymarket fills instead of an empty state */
+.ov-trades .monitor-row:first-child{padding-top:4px}
